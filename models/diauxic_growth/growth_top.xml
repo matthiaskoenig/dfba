@@ -1,0 +1,1635 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" arrays:required="true" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:arrays="http://www.sbml.org/sbml/level3/version1/arrays/version1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+  <comp:listOfExternalModelDefinitions xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+    <comp:externalModelDefinition comp:id="growth_fba" comp:md5="b8c347b38f8d0d0601b45c4674ab3347" comp:source="growth_fba.xml"/>
+    <comp:externalModelDefinition comp:id="growth_update" comp:md5="4c5eaea9fc79edc1657149e69099b47e" comp:source="growth_update.xml"/>
+  </comp:listOfExternalModelDefinitions>
+  <model fbc:strict="false" id="growth_top" metaid="iBioSim49">
+    <comp:listOfSubmodels xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:submodel comp:id="C1" comp:modelRef="growth_fba" metaid="iBioSim48"/>
+      <comp:submodel comp:id="C2" comp:modelRef="growth_update" metaid="iBioSim50"/>
+    </comp:listOfSubmodels>
+    <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:port comp:id="reaction__growth__C1" comp:idRef="C1" sboTerm="SBO:0000601">
+        <comp:sBaseRef comp:portRef="reaction__growth"/>
+      </comp:port>
+    </comp:listOfPorts>
+    <layout:listOfLayouts xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <layout:layout layout:id="iBioSim">
+        <layout:dimensions layout:depth="0" layout:height="390" layout:width="810"/>
+        <layout:listOfAdditionalGraphicalObjects>
+          <layout:generalGlyph layout:id="Glyph__C1" layout:reference="C1">
+            <layout:boundingBox>
+              <layout:position layout:x="195" layout:y="10"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__C2" layout:reference="C2">
+            <layout:boundingBox>
+              <layout:position layout:x="210" layout:y="170"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfV1" layout:reference="rateOfV1">
+            <layout:boundingBox>
+              <layout:position layout:x="135" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfV2" layout:reference="rateOfV2">
+            <layout:boundingBox>
+              <layout:position layout:x="190" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfV3" layout:reference="rateOfV3">
+            <layout:boundingBox>
+              <layout:position layout:x="245" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfV4" layout:reference="rateOfV4">
+            <layout:boundingBox>
+              <layout:position layout:x="300" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__max_v1" layout:reference="max_v1">
+            <layout:boundingBox>
+              <layout:position layout:x="130" layout:y="65"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__max_v2" layout:reference="max_v2">
+            <layout:boundingBox>
+              <layout:position layout:x="190" layout:y="65"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__">
+            <layout:boundingBox>
+              <layout:position layout:x="60" layout:y="170"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__max_v3" layout:reference="max_v3">
+            <layout:boundingBox>
+              <layout:position layout:x="245" layout:y="65"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__max_v4" layout:reference="max_v4">
+            <layout:boundingBox>
+              <layout:position layout:x="300" layout:y="65"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p0" layout:reference="p0">
+            <layout:boundingBox>
+              <layout:position layout:x="470" layout:y="60"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p1" layout:reference="p1">
+            <layout:boundingBox>
+              <layout:position layout:x="475" layout:y="130"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t0" layout:reference="t0">
+            <layout:boundingBox>
+              <layout:position layout:x="430" layout:y="100"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p0" layout:id="Glyph__t0__substrate__p0" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="485" layout:y="75"/>
+                      <layout:end layout:x="455" layout:y="110"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p1" layout:id="Glyph__t0__product__p1" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="455" layout:y="110"/>
+                      <layout:end layout:x="490" layout:y="145"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t1" layout:reference="t1">
+            <layout:boundingBox>
+              <layout:position layout:x="500" layout:y="100"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p1" layout:id="Glyph__t1__substrate__p1" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="490" layout:y="145"/>
+                      <layout:end layout:x="525" layout:y="110"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p0" layout:id="Glyph__t1__product__p0" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="525" layout:y="110"/>
+                      <layout:end layout:x="485" layout:y="75"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfGrowth" layout:reference="rateOfGrowth">
+            <layout:boundingBox>
+              <layout:position layout:x="355" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p2" layout:reference="p2">
+            <layout:boundingBox>
+              <layout:position layout:x="475" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p3" layout:reference="p3">
+            <layout:boundingBox>
+              <layout:position layout:x="480" layout:y="250"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p4" layout:reference="p4">
+            <layout:boundingBox>
+              <layout:position layout:x="600" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p5" layout:reference="p5">
+            <layout:boundingBox>
+              <layout:position layout:x="600" layout:y="250"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t2" layout:reference="t2">
+            <layout:boundingBox>
+              <layout:position layout:x="440" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p2" layout:id="Glyph__t2__substrate__p2" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="490" layout:y="195"/>
+                      <layout:end layout:x="465" layout:y="230"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p3" layout:id="Glyph__t2__product__p3" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="465" layout:y="230"/>
+                      <layout:end layout:x="495" layout:y="265"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t3" layout:reference="t3">
+            <layout:boundingBox>
+              <layout:position layout:x="500" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p3" layout:id="Glyph__t3__substrate__p3" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="495" layout:y="265"/>
+                      <layout:end layout:x="525" layout:y="230"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p2" layout:id="Glyph__t3__product__p2" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="525" layout:y="230"/>
+                      <layout:end layout:x="490" layout:y="195"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t4" layout:reference="t4">
+            <layout:boundingBox>
+              <layout:position layout:x="560" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p4" layout:id="Glyph__t4__substrate__p4" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="615" layout:y="195"/>
+                      <layout:end layout:x="585" layout:y="230"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p5" layout:id="Glyph__t4__product__p5" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="585" layout:y="230"/>
+                      <layout:end layout:x="615" layout:y="265"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t5" layout:reference="t5">
+            <layout:boundingBox>
+              <layout:position layout:x="620" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p5" layout:id="Glyph__t5__substrate__p5" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="615" layout:y="265"/>
+                      <layout:end layout:x="645" layout:y="230"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p4" layout:id="Glyph__t5__product__p4" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="645" layout:y="230"/>
+                      <layout:end layout:x="615" layout:y="195"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t6" layout:reference="t6">
+            <layout:boundingBox>
+              <layout:position layout:x="680" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p6" layout:id="Glyph__t6__substrate__p6" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="735" layout:y="195"/>
+                      <layout:end layout:x="705" layout:y="230"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p7" layout:id="Glyph__t6__product__p7" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="705" layout:y="230"/>
+                      <layout:end layout:x="735" layout:y="265"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p6" layout:reference="p6">
+            <layout:boundingBox>
+              <layout:position layout:x="720" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p7" layout:reference="p7">
+            <layout:boundingBox>
+              <layout:position layout:x="720" layout:y="250"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t7" layout:reference="t7">
+            <layout:boundingBox>
+              <layout:position layout:x="740" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p7" layout:id="Glyph__t7__substrate__p7" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="735" layout:y="265"/>
+                      <layout:end layout:x="765" layout:y="230"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p6" layout:id="Glyph__t7__product__p6" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="765" layout:y="230"/>
+                      <layout:end layout:x="735" layout:y="195"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p8" layout:reference="p8">
+            <layout:boundingBox>
+              <layout:position layout:x="610" layout:y="60"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t8" layout:reference="t8">
+            <layout:boundingBox>
+              <layout:position layout:x="570" layout:y="100"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p8" layout:id="Glyph__t8__substrate__p8" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="625" layout:y="75"/>
+                      <layout:end layout:x="595" layout:y="110"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p9" layout:id="Glyph__t8__product__p9" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="595" layout:y="110"/>
+                      <layout:end layout:x="625" layout:y="145"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__p9" layout:reference="p9">
+            <layout:boundingBox>
+              <layout:position layout:x="610" layout:y="130"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__t9" layout:reference="t9">
+            <layout:boundingBox>
+              <layout:position layout:x="630" layout:y="100"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__p9" layout:id="Glyph__t9__substrate__p9" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="625" layout:y="145"/>
+                      <layout:end layout:x="655" layout:y="110"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__p8" layout:id="Glyph__t9__product__p8" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="655" layout:y="110"/>
+                      <layout:end layout:x="625" layout:y="75"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__previousTime" layout:reference="previousTime">
+            <layout:boundingBox>
+              <layout:position layout:x="670" layout:y="350"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+        </layout:listOfAdditionalGraphicalObjects>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:compartment="Cell" layout:id="Glyph__Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0"/>
+              <layout:dimensions layout:height="390" layout:width="810"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="Glyph__O2" layout:species="O2">
+            <layout:boundingBox>
+              <layout:position layout:x="60" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__Ac" layout:species="Ac">
+            <layout:boundingBox>
+              <layout:position layout:x="280" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__X" layout:species="X">
+            <layout:boundingBox>
+              <layout:position layout:x="80" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__Glcxt" layout:species="Glcxt">
+            <layout:boundingBox>
+              <layout:position layout:x="320" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__dummy" layout:species="dummy">
+            <layout:boundingBox>
+              <layout:position layout:x="210" layout:y="350"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfReactionGlyphs>
+          <layout:reactionGlyph layout:id="Glyph__v1" layout:reaction="v1">
+            <layout:boundingBox>
+              <layout:position layout:x="140" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v1__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="365"/>
+                      <layout:end layout:x="150" layout:y="310"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__v2" layout:reaction="v2">
+            <layout:boundingBox>
+              <layout:position layout:x="195" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v2__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="365"/>
+                      <layout:end layout:x="205" layout:y="310"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__v3" layout:reaction="v3">
+            <layout:boundingBox>
+              <layout:position layout:x="250" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v3__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="365"/>
+                      <layout:end layout:x="260" layout:y="310"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__v4" layout:reaction="v4">
+            <layout:boundingBox>
+              <layout:position layout:x="305" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v4__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="365"/>
+                      <layout:end layout:x="315" layout:y="310"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R8" layout:reaction="R8">
+            <layout:boundingBox>
+              <layout:position layout:x="100" layout:y="240"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R8__product__O2" layout:role="product" layout:speciesGlyph="Glyph__O2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="110" layout:y="250"/>
+                      <layout:end layout:x="110" layout:y="195"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__mu" layout:reaction="mu">
+            <layout:boundingBox>
+              <layout:position layout:x="360" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__mu__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="365"/>
+                      <layout:end layout:x="370" layout:y="310"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+        </layout:listOfReactionGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:graphicalObject="Glyph__Cell" layout:id="TextGlyph__Cell" layout:text="Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0"/>
+              <layout:dimensions layout:height="390" layout:width="810"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__O2" layout:id="TextGlyph__O2" layout:text="O2">
+            <layout:boundingBox>
+              <layout:position layout:x="60" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__Ac" layout:id="TextGlyph__Ac" layout:text="Ac">
+            <layout:boundingBox>
+              <layout:position layout:x="280" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__X" layout:id="TextGlyph__X" layout:text="X">
+            <layout:boundingBox>
+              <layout:position layout:x="80" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__Glcxt" layout:id="TextGlyph__Glcxt" layout:text="Glcxt">
+            <layout:boundingBox>
+              <layout:position layout:x="320" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__C1" layout:id="TextGlyph__C1" layout:text="C1">
+            <layout:boundingBox>
+              <layout:position layout:x="195" layout:y="10"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__C2" layout:id="TextGlyph__C2" layout:text="C2">
+            <layout:boundingBox>
+              <layout:position layout:x="210" layout:y="170"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfV1" layout:id="TextGlyph__rateOfV1" layout:text="rateOfV1">
+            <layout:boundingBox>
+              <layout:position layout:x="135" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfV2" layout:id="TextGlyph__rateOfV2" layout:text="rateOfV2">
+            <layout:boundingBox>
+              <layout:position layout:x="190" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfV3" layout:id="TextGlyph__rateOfV3" layout:text="rateOfV3">
+            <layout:boundingBox>
+              <layout:position layout:x="245" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfV4" layout:id="TextGlyph__rateOfV4" layout:text="rateOfV4">
+            <layout:boundingBox>
+              <layout:position layout:x="300" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__v1" layout:id="TextGlyph__v1" layout:text="v1">
+            <layout:boundingBox>
+              <layout:position layout:x="140" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__v2" layout:id="TextGlyph__v2" layout:text="v2">
+            <layout:boundingBox>
+              <layout:position layout:x="195" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__v3" layout:id="TextGlyph__v3" layout:text="v3">
+            <layout:boundingBox>
+              <layout:position layout:x="250" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__v4" layout:id="TextGlyph__v4" layout:text="v4">
+            <layout:boundingBox>
+              <layout:position layout:x="305" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__dummy" layout:id="TextGlyph__dummy" layout:text="dummy">
+            <layout:boundingBox>
+              <layout:position layout:x="210" layout:y="350"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__max_v1" layout:id="TextGlyph__max_v1" layout:text="max_v1">
+            <layout:boundingBox>
+              <layout:position layout:x="130" layout:y="65"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__max_v2" layout:id="TextGlyph__max_v2" layout:text="max_v2">
+            <layout:boundingBox>
+              <layout:position layout:x="190" layout:y="65"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R8" layout:id="TextGlyph__R8" layout:text="R8">
+            <layout:boundingBox>
+              <layout:position layout:x="100" layout:y="240"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__" layout:id="TextGlyph__" layout:text="">
+            <layout:boundingBox>
+              <layout:position layout:x="60" layout:y="170"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__max_v3" layout:id="TextGlyph__max_v3" layout:text="max_v3">
+            <layout:boundingBox>
+              <layout:position layout:x="245" layout:y="65"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__max_v4" layout:id="TextGlyph__max_v4" layout:text="max_v4">
+            <layout:boundingBox>
+              <layout:position layout:x="300" layout:y="65"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p0" layout:id="TextGlyph__p0" layout:text="p0">
+            <layout:boundingBox>
+              <layout:position layout:x="470" layout:y="60"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p1" layout:id="TextGlyph__p1" layout:text="p1">
+            <layout:boundingBox>
+              <layout:position layout:x="475" layout:y="130"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t0" layout:id="TextGlyph__t0" layout:text="t0">
+            <layout:boundingBox>
+              <layout:position layout:x="430" layout:y="100"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t1" layout:id="TextGlyph__t1" layout:text="t1">
+            <layout:boundingBox>
+              <layout:position layout:x="500" layout:y="100"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__mu" layout:id="TextGlyph__mu" layout:text="mu">
+            <layout:boundingBox>
+              <layout:position layout:x="360" layout:y="300"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfGrowth" layout:id="TextGlyph__rateOfGrowth" layout:text="rateOfGrowth">
+            <layout:boundingBox>
+              <layout:position layout:x="355" layout:y="260"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p2" layout:id="TextGlyph__p2" layout:text="p2">
+            <layout:boundingBox>
+              <layout:position layout:x="475" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p3" layout:id="TextGlyph__p3" layout:text="p3">
+            <layout:boundingBox>
+              <layout:position layout:x="480" layout:y="250"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p4" layout:id="TextGlyph__p4" layout:text="p4">
+            <layout:boundingBox>
+              <layout:position layout:x="600" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p5" layout:id="TextGlyph__p5" layout:text="p5">
+            <layout:boundingBox>
+              <layout:position layout:x="600" layout:y="250"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t2" layout:id="TextGlyph__t2" layout:text="t2">
+            <layout:boundingBox>
+              <layout:position layout:x="440" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t3" layout:id="TextGlyph__t3" layout:text="t3">
+            <layout:boundingBox>
+              <layout:position layout:x="500" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t4" layout:id="TextGlyph__t4" layout:text="t4">
+            <layout:boundingBox>
+              <layout:position layout:x="560" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t5" layout:id="TextGlyph__t5" layout:text="t5">
+            <layout:boundingBox>
+              <layout:position layout:x="620" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t6" layout:id="TextGlyph__t6" layout:text="t6">
+            <layout:boundingBox>
+              <layout:position layout:x="680" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p6" layout:id="TextGlyph__p6" layout:text="p6">
+            <layout:boundingBox>
+              <layout:position layout:x="720" layout:y="180"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p7" layout:id="TextGlyph__p7" layout:text="p7">
+            <layout:boundingBox>
+              <layout:position layout:x="720" layout:y="250"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t7" layout:id="TextGlyph__t7" layout:text="t7">
+            <layout:boundingBox>
+              <layout:position layout:x="740" layout:y="220"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p8" layout:id="TextGlyph__p8" layout:text="p8">
+            <layout:boundingBox>
+              <layout:position layout:x="610" layout:y="60"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t8" layout:id="TextGlyph__t8" layout:text="t8">
+            <layout:boundingBox>
+              <layout:position layout:x="570" layout:y="100"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__p9" layout:id="TextGlyph__p9" layout:text="p9">
+            <layout:boundingBox>
+              <layout:position layout:x="610" layout:y="130"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__t9" layout:id="TextGlyph__t9" layout:text="t9">
+            <layout:boundingBox>
+              <layout:position layout:x="630" layout:y="100"/>
+              <layout:dimensions layout:height="20" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__previousTime" layout:id="TextGlyph__previousTime" layout:text="previousTime">
+            <layout:boundingBox>
+              <layout:position layout:x="670" layout:y="350"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+        </layout:listOfTextGlyphs>
+      </layout:layout>
+    </layout:listOfLayouts>
+    <listOfCompartments>
+      <compartment constant="true" id="Cell" size="1" spatialDimensions="3">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="compartment__Cell" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="compartment__Cell" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="O2" initialAmount="0.21" metaid="iBioSim1">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__O2" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Ac" initialAmount="0.4" metaid="iBioSim3">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__Ac" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="X" initialAmount="0.001" metaid="iBioSim4">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__X" comp:submodelRef="C2"/>
+          <comp:replacedElement comp:portRef="input__X_out" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Glcxt" initialAmount="10.8" metaid="iBioSim5">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__Glcxt" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="dummy" initialAmount="0" metaid="iBioSim16"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="rateOfV1" metaid="iBioSim8" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfV1" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfV2" metaid="iBioSim9" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfV2" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfV3" metaid="iBioSim10" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfV3" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfV4" metaid="iBioSim11" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfV4" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="max_v1" metaid="iBioSim17" value="8.655">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__max_v1" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="max_v2" metaid="iBioSim18" value="3.195">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__max_v2" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="true" id="Km" metaid="iBioSim6" value="0.015"/>
+      <parameter constant="true" id="max_glcxt_uptake" metaid="iBioSim24" value="10"/>
+      <parameter constant="true" id="max_o2_uptake" metaid="iBioSim25" value="15"/>
+      <parameter constant="false" id="max_v3" metaid="iBioSim27" value="3.15">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__max_v3" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="max_v4" metaid="iBioSim28" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__max_v4" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="true" id="dt" metaid="iBioSim2" value="0.04"/>
+      <parameter constant="false" id="p0" metaid="iBioSim29" sboTerm="SBO:0000593" value="1"/>
+      <parameter constant="false" id="p1" metaid="iBioSim30" sboTerm="SBO:0000593" value="0"/>
+      <parameter constant="false" id="rateOfGrowth" metaid="iBioSim22" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__mu" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="p2" metaid="iBioSim26" sboTerm="SBO:0000593" value="1"/>
+      <parameter constant="false" id="p3" metaid="iBioSim33" sboTerm="SBO:0000593" value="0"/>
+      <parameter constant="false" id="p4" metaid="iBioSim34" sboTerm="SBO:0000593" value="1"/>
+      <parameter constant="false" id="p5" metaid="iBioSim35" sboTerm="SBO:0000593" value="0"/>
+      <parameter constant="false" id="p6" metaid="iBioSim41" sboTerm="SBO:0000593" value="1"/>
+      <parameter constant="false" id="p7" metaid="iBioSim42" sboTerm="SBO:0000593" value="0"/>
+      <parameter constant="false" id="p8" metaid="iBioSim44" sboTerm="SBO:0000593" value="1"/>
+      <parameter constant="false" id="p9" metaid="iBioSim46" sboTerm="SBO:0000593" value="0"/>
+      <parameter constant="false" id="previousTime" metaid="iBioSim20" value="0"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction compartment="Cell" fast="false" id="v4" metaid="iBioSim15" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__v4" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="v2" metaid="iBioSim13" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__v2" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="v3" metaid="iBioSim14" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__v3" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="mu" metaid="iBioSim21" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 0 </cn>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="v1" metaid="iBioSim12" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__v1" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R8" metaid="iBioSim23" reversible="false">
+        <listOfProducts>
+          <speciesReference constant="true" species="O2" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <piecewise>
+              <piece>
+                <apply>
+                  <times/>
+                  <ci> kLa </ci>
+                  <apply>
+                    <minus/>
+                    <cn type="real"> 0.21 </cn>
+                    <ci> O2 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <gt/>
+                  <apply>
+                    <times/>
+                    <ci> kLa </ci>
+                    <apply>
+                      <minus/>
+                      <cn type="real"> 0.21 </cn>
+                      <ci> O2 </ci>
+                    </apply>
+                  </apply>
+                  <cn type="integer"> 0 </cn>
+                </apply>
+              </piece>
+              <otherwise>
+                <cn type="integer"> 0 </cn>
+              </otherwise>
+            </piecewise>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kLa" metaid="R8___kLa" value="7.5"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <listOfEvents>
+      <event id="t0" metaid="iBioSim31" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <apply>
+                <geq/>
+                <apply>
+                  <minus/>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> t </csymbol>
+                  <ci> previousTime </ci>
+                </apply>
+                <ci> dt </ci>
+              </apply>
+              <apply>
+                <eq/>
+                <ci> p0 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <priority>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 2 </cn>
+          </math>
+                </priority>
+        <listOfEventAssignments>
+          <eventAssignment variable="max_v1">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <piecewise>
+                <piece>
+                  <apply>
+                    <plus/>
+                    <ci> rateOfV1 </ci>
+                    <apply>
+                      <times/>
+                      <cn type="real"> 0.1 </cn>
+                      <ci> dt </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <and/>
+                    <apply>
+                      <gt/>
+                      <ci> Ac </ci>
+                      <cn type="integer"> 0 </cn>
+                    </apply>
+                    <apply>
+                      <gt/>
+                      <ci> O2 </ci>
+                      <cn type="integer"> 0 </cn>
+                    </apply>
+                  </apply>
+                </piece>
+                <otherwise>
+                  <cn type="integer"> 0 </cn>
+                </otherwise>
+              </piecewise>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="max_v2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <piecewise>
+                <piece>
+                  <apply>
+                    <plus/>
+                    <ci> rateOfV2 </ci>
+                    <apply>
+                      <times/>
+                      <cn type="real"> 0.3 </cn>
+                      <ci> dt </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <and/>
+                    <apply>
+                      <gt/>
+                      <ci> Glcxt </ci>
+                      <cn type="integer"> 0 </cn>
+                    </apply>
+                    <apply>
+                      <gt/>
+                      <ci> O2 </ci>
+                      <cn type="integer"> 0 </cn>
+                    </apply>
+                  </apply>
+                </piece>
+                <otherwise>
+                  <cn type="integer"> 0 </cn>
+                </otherwise>
+              </piecewise>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="max_v3">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <piecewise>
+                <piece>
+                  <apply>
+                    <plus/>
+                    <ci> rateOfV3 </ci>
+                    <apply>
+                      <times/>
+                      <cn type="real"> 0.3 </cn>
+                      <ci> dt </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <and/>
+                    <apply>
+                      <gt/>
+                      <ci> Glcxt </ci>
+                      <cn type="integer"> 0 </cn>
+                    </apply>
+                    <apply>
+                      <gt/>
+                      <ci> O2 </ci>
+                      <cn type="integer"> 0 </cn>
+                    </apply>
+                  </apply>
+                </piece>
+                <otherwise>
+                  <cn type="integer"> 0 </cn>
+                </otherwise>
+              </piecewise>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="max_v4">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <apply>
+                <plus/>
+                <ci> rateOfV4 </ci>
+                <apply>
+                  <times/>
+                  <cn type="real"> 0.1 </cn>
+                  <ci> dt </ci>
+                </apply>
+              </apply>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="previousTime">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> t </csymbol>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p0">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p1">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t1" metaid="iBioSim32" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <true/>
+              <apply>
+                <eq/>
+                <ci> p1 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <delay>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 0 </cn>
+          </math>
+                </delay>
+        <listOfEventAssignments>
+          <eventAssignment variable="p1">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p0">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t2" metaid="iBioSim36" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <apply>
+                <leq/>
+                <ci> O2 </ci>
+                <cn type="integer"> 0 </cn>
+              </apply>
+              <apply>
+                <eq/>
+                <ci> p2 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="O2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV1">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV3">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p3">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t3" metaid="iBioSim37" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <true/>
+              <apply>
+                <eq/>
+                <ci> p3 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="p3">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t4" metaid="iBioSim38" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <apply>
+                <leq/>
+                <ci> Ac </ci>
+                <cn type="integer"> 0 </cn>
+              </apply>
+              <apply>
+                <eq/>
+                <ci> p4 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="Ac">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV1">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p4">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p5">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t5" metaid="iBioSim39" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <true/>
+              <apply>
+                <eq/>
+                <ci> p5 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="p5">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p4">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t6" metaid="iBioSim40" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <apply>
+                <leq/>
+                <ci> Glcxt </ci>
+                <cn type="integer"> 0 </cn>
+              </apply>
+              <apply>
+                <eq/>
+                <ci> p6 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="Glcxt">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV3">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV4">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p6">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p7">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t7" metaid="iBioSim43" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <true/>
+              <apply>
+                <eq/>
+                <ci> p7 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="p7">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p6">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t8" metaid="iBioSim45" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <true/>
+              <apply>
+                <eq/>
+                <ci> p8 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <priority>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 1 </cn>
+          </math>
+                </priority>
+        <listOfEventAssignments>
+          <eventAssignment variable="rateOfV1">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <piecewise>
+                <piece>
+                  <ci> v1 </ci>
+                  <apply>
+                    <lt/>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <plus/>
+                        <apply>
+                          <times/>
+                          <cn type="integer"> 35 </cn>
+                          <ci> v1 </ci>
+                        </apply>
+                        <apply>
+                          <times/>
+                          <cn type="real"> 12.92 </cn>
+                          <ci> v2 </ci>
+                        </apply>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <cn type="real"> 12.73 </cn>
+                        <ci> v3 </ci>
+                      </apply>
+                    </apply>
+                    <cn type="integer"> 15 </cn>
+                  </apply>
+                </piece>
+                <otherwise>
+                  <cn type="integer"> 0 </cn>
+                </otherwise>
+              </piecewise>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <ci> v2 </ci>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV3">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <ci> v3 </ci>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="rateOfV4">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <piecewise>
+                <piece>
+                  <ci> v4 </ci>
+                  <apply>
+                    <lt/>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <plus/>
+                        <apply>
+                          <times/>
+                          <cn type="real"> 9.46 </cn>
+                          <ci> v2 </ci>
+                        </apply>
+                        <apply>
+                          <times/>
+                          <cn type="real"> 9.84 </cn>
+                          <ci> v3 </ci>
+                        </apply>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <cn type="real"> 19.23 </cn>
+                        <ci> v4 </ci>
+                      </apply>
+                    </apply>
+                    <cn type="integer"> 10 </cn>
+                  </apply>
+                </piece>
+                <otherwise>
+                  <cn type="integer"> 0 </cn>
+                </otherwise>
+              </piecewise>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p8">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p9">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="t9" metaid="iBioSim47" sboTerm="SBO:0000591" useValuesFromTriggerTime="false">
+        <trigger initialValue="false" persistent="false">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <and/>
+              <true/>
+              <apply>
+                <eq/>
+                <ci> p9 </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </trigger>
+        <delay>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> dt </ci>
+          </math>
+                </delay>
+        <listOfEventAssignments>
+          <eventAssignment variable="p9">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 0 </cn>
+            </math>
+                    </eventAssignment>
+          <eventAssignment variable="p8">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+              <cn type="integer"> 1 </cn>
+            </math>
+                    </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+    </listOfEvents>
+  </model>
+</sbml>
