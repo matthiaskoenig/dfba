@@ -1,8 +1,8 @@
 # Dynamic FBA 
 ## Encoding Dynamic Flux Balance Analysis in SBML
-<a href="http://sbml.org" title="SBML"><img src="./docs/images/sbml.png" height="50"/></a>&nbsp;
-<a href="http://sed-ml.org" title="SED-ML"><img src="./docs/images/sedml.png" height="50"/></a>&nbsp;
-<a href="http://co.mbine.org/documents/archive" title="CombineArchive"><img src="./docs/images/omex.png" height="50"/></a>&nbsp;
+<a href="http://sbml.org" title="SBML"><img src="./docs/images/sbml.png" height="35"/></a>&nbsp;
+<a href="http://sed-ml.org" title="SED-ML"><img src="./docs/images/sedml.png" height="35"/></a>&nbsp;
+<a href="http://co.mbine.org/documents/archive" title="CombineArchive"><img src="./docs/images/omex.png" height="35"/></a>&nbsp;
 
 Model examples encoded in the proposed dynamic FBA scheme. the models are listed in the `/models/*` folders. Every model provides
 * SBML model
