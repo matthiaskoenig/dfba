@@ -1,0 +1,902 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" arrays:required="true" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:arrays="http://www.sbml.org/sbml/level3/version1/arrays/version1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+  <comp:listOfExternalModelDefinitions xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+    <comp:externalModelDefinition comp:id="fba" comp:md5="4ce14a7aac66bfeb2182a846a4e6d1b9" comp:source="fba.xml"/>
+    <comp:externalModelDefinition comp:id="update" comp:md5="6ce7a6400d4ea3c2d4e2e47a8f390343" comp:source="update.xml"/>
+    <comp:externalModelDefinition comp:id="ode" comp:md5="959f479e783694d28adec6eb9f10e6b9" comp:source="ode.xml"/>
+  </comp:listOfExternalModelDefinitions>
+  <model fbc:strict="false" id="Top" metaid="iBioSim2">
+    <comp:listOfSubmodels xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:submodel comp:id="C1" comp:modelRef="fba" metaid="iBioSim3"/>
+      <comp:submodel comp:id="C2" comp:modelRef="update" metaid="iBioSim4"/>
+      <comp:submodel comp:id="C3" comp:modelRef="ode" metaid="iBioSim10"/>
+    </comp:listOfSubmodels>
+    <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:port comp:id="input__R1_rate__C1" comp:idRef="C1" sboTerm="SBO:0000600">
+        <comp:sBaseRef comp:portRef="input__R1_rate"/>
+      </comp:port>
+      <comp:port comp:id="compartment__Cell__C1" comp:idRef="C1" sboTerm="SBO:0000601">
+        <comp:sBaseRef comp:portRef="compartment__Cell"/>
+      </comp:port>
+      <comp:port comp:id="compartment__Cell__C2" comp:idRef="C2" sboTerm="SBO:0000601">
+        <comp:sBaseRef comp:portRef="compartment__Cell"/>
+      </comp:port>
+    </comp:listOfPorts>
+    <layout:listOfLayouts xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <layout:layout layout:id="iBioSim">
+        <layout:dimensions layout:depth="0" layout:height="400" layout:width="700"/>
+        <layout:listOfAdditionalGraphicalObjects>
+          <layout:generalGlyph layout:id="Glyph__C1" layout:reference="C1">
+            <layout:boundingBox>
+              <layout:position layout:x="155" layout:y="80"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__C2" layout:reference="C2">
+            <layout:boundingBox>
+              <layout:position layout:x="420" layout:y="240"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__bound" layout:reference="bound">
+            <layout:boundingBox>
+              <layout:position layout:x="30" layout:y="85"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfR0" layout:reference="rateOfR0">
+            <layout:boundingBox>
+              <layout:position layout:x="270" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule0" layout:metaidRef="rule0">
+            <layout:boundingBox>
+              <layout:position layout:x="260" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__rateOfR0" layout:id="Glyph__rule0__product__rateOfR0" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="285" layout:y="85"/>
+                      <layout:end layout:x="285" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule1" layout:metaidRef="rule1">
+            <layout:boundingBox>
+              <layout:position layout:x="20" layout:y="235"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__ATP" layout:id="Glyph__rule1__substrate__ATP" layout:role="substrate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="180" layout:y="260"/>
+                      <layout:end layout:x="45" layout:y="260"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__bound" layout:id="Glyph__rule1__product__bound" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="45" layout:y="260"/>
+                      <layout:end layout:x="45" layout:y="100"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfR1" layout:reference="rateOfR1">
+            <layout:boundingBox>
+              <layout:position layout:x="320" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfR2" layout:reference="rateOfR2">
+            <layout:boundingBox>
+              <layout:position layout:x="370" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfR3" layout:reference="rateOfR3">
+            <layout:boundingBox>
+              <layout:position layout:x="420" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfR4" layout:reference="rateOfR4">
+            <layout:boundingBox>
+              <layout:position layout:x="470" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfR5" layout:reference="rateOfR5">
+            <layout:boundingBox>
+              <layout:position layout:x="520" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfR6" layout:reference="rateOfR6">
+            <layout:boundingBox>
+              <layout:position layout:x="570" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfR7" layout:reference="rateOfR7">
+            <layout:boundingBox>
+              <layout:position layout:x="620" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule2" layout:metaidRef="rule2">
+            <layout:boundingBox>
+              <layout:position layout:x="310" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__rateOfR1" layout:id="Glyph__rule2__product__rateOfR1" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="335" layout:y="85"/>
+                      <layout:end layout:x="335" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule3" layout:metaidRef="rule3">
+            <layout:boundingBox>
+              <layout:position layout:x="360" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__rateOfR2" layout:id="Glyph__rule3__product__rateOfR2" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="385" layout:y="85"/>
+                      <layout:end layout:x="385" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule4" layout:metaidRef="rule4">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__rateOfR3" layout:id="Glyph__rule4__product__rateOfR3" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="435" layout:y="85"/>
+                      <layout:end layout:x="435" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule5" layout:metaidRef="rule5">
+            <layout:boundingBox>
+              <layout:position layout:x="460" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__rateOfR4" layout:id="Glyph__rule5__product__rateOfR4" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="485" layout:y="85"/>
+                      <layout:end layout:x="485" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule6" layout:metaidRef="rule6">
+            <layout:boundingBox>
+              <layout:position layout:x="510" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__rateOfR5" layout:id="Glyph__rule6__product__rateOfR5" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="535" layout:y="85"/>
+                      <layout:end layout:x="535" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule7" layout:metaidRef="rule7">
+            <layout:boundingBox>
+              <layout:position layout:x="560" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__rateOfR6" layout:id="Glyph__rule7__product__rateOfR6" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="585" layout:y="85"/>
+                      <layout:end layout:x="585" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rule8" layout:metaidRef="rule8">
+            <layout:boundingBox>
+              <layout:position layout:x="610" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__rateOfR7" layout:id="Glyph__rule8__product__rateOfR7" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="635" layout:y="85"/>
+                      <layout:end layout:x="635" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__C3" layout:reference="C3">
+            <layout:boundingBox>
+              <layout:position layout:x="140" layout:y="320"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+        </layout:listOfAdditionalGraphicalObjects>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:compartment="Cell" layout:id="Glyph__Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="10" layout:y="0"/>
+              <layout:dimensions layout:height="400" layout:width="690"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="Glyph__ATP" layout:species="ATP">
+            <layout:boundingBox>
+              <layout:position layout:x="130" layout:y="245"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__dummy" layout:species="dummy">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="5"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__ADP" layout:species="ADP">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="325"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfReactionGlyphs>
+          <layout:reactionGlyph layout:id="Glyph__R0" layout:reaction="R0">
+            <layout:boundingBox>
+              <layout:position layout:x="275" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R0__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="460" layout:y="20"/>
+                      <layout:end layout:x="285" layout:y="50"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R1" layout:reaction="R1">
+            <layout:boundingBox>
+              <layout:position layout:x="325" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R1__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="460" layout:y="20"/>
+                      <layout:end layout:x="335" layout:y="50"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R2" layout:reaction="R2">
+            <layout:boundingBox>
+              <layout:position layout:x="375" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R2__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="460" layout:y="20"/>
+                      <layout:end layout:x="385" layout:y="50"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R3" layout:reaction="R3">
+            <layout:boundingBox>
+              <layout:position layout:x="425" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R3__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="460" layout:y="20"/>
+                      <layout:end layout:x="435" layout:y="50"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R4" layout:reaction="R4">
+            <layout:boundingBox>
+              <layout:position layout:x="475" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R4__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="460" layout:y="20"/>
+                      <layout:end layout:x="485" layout:y="50"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R5" layout:reaction="R5">
+            <layout:boundingBox>
+              <layout:position layout:x="525" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R5__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="460" layout:y="20"/>
+                      <layout:end layout:x="535" layout:y="50"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R6" layout:reaction="R6">
+            <layout:boundingBox>
+              <layout:position layout:x="575" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R6__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="460" layout:y="20"/>
+                      <layout:end layout:x="585" layout:y="50"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R7" layout:reaction="R7">
+            <layout:boundingBox>
+              <layout:position layout:x="625" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R7__substrate__dummy" layout:role="substrate" layout:speciesGlyph="Glyph__dummy">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="460" layout:y="20"/>
+                      <layout:end layout:x="635" layout:y="50"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+        </layout:listOfReactionGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:graphicalObject="Glyph__Cell" layout:id="TextGlyph__Cell" layout:text="Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="10" layout:y="0"/>
+              <layout:dimensions layout:height="400" layout:width="690"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__C1" layout:id="TextGlyph__C1" layout:text="C1">
+            <layout:boundingBox>
+              <layout:position layout:x="155" layout:y="80"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__C2" layout:id="TextGlyph__C2" layout:text="C2">
+            <layout:boundingBox>
+              <layout:position layout:x="420" layout:y="240"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__bound" layout:id="TextGlyph__bound" layout:text="bound">
+            <layout:boundingBox>
+              <layout:position layout:x="30" layout:y="85"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R0" layout:id="TextGlyph__R0" layout:text="R0">
+            <layout:boundingBox>
+              <layout:position layout:x="275" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfR0" layout:id="TextGlyph__rateOfR0" layout:text="rateOfR0">
+            <layout:boundingBox>
+              <layout:position layout:x="270" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule0" layout:id="TextGlyph__rule0" layout:text="rule0">
+            <layout:boundingBox>
+              <layout:position layout:x="260" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule1" layout:id="TextGlyph__rule1" layout:text="rule1">
+            <layout:boundingBox>
+              <layout:position layout:x="20" layout:y="235"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__ATP" layout:id="TextGlyph__ATP" layout:text="ATP">
+            <layout:boundingBox>
+              <layout:position layout:x="130" layout:y="245"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R1" layout:id="TextGlyph__R1" layout:text="R1">
+            <layout:boundingBox>
+              <layout:position layout:x="325" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R2" layout:id="TextGlyph__R2" layout:text="R2">
+            <layout:boundingBox>
+              <layout:position layout:x="375" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R3" layout:id="TextGlyph__R3" layout:text="R3">
+            <layout:boundingBox>
+              <layout:position layout:x="425" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R4" layout:id="TextGlyph__R4" layout:text="R4">
+            <layout:boundingBox>
+              <layout:position layout:x="475" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R5" layout:id="TextGlyph__R5" layout:text="R5">
+            <layout:boundingBox>
+              <layout:position layout:x="525" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R6" layout:id="TextGlyph__R6" layout:text="R6">
+            <layout:boundingBox>
+              <layout:position layout:x="575" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R7" layout:id="TextGlyph__R7" layout:text="R7">
+            <layout:boundingBox>
+              <layout:position layout:x="625" layout:y="40"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfR1" layout:id="TextGlyph__rateOfR1" layout:text="rateOfR1">
+            <layout:boundingBox>
+              <layout:position layout:x="320" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfR2" layout:id="TextGlyph__rateOfR2" layout:text="rateOfR2">
+            <layout:boundingBox>
+              <layout:position layout:x="370" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfR3" layout:id="TextGlyph__rateOfR3" layout:text="rateOfR3">
+            <layout:boundingBox>
+              <layout:position layout:x="420" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfR4" layout:id="TextGlyph__rateOfR4" layout:text="rateOfR4">
+            <layout:boundingBox>
+              <layout:position layout:x="470" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfR5" layout:id="TextGlyph__rateOfR5" layout:text="rateOfR5">
+            <layout:boundingBox>
+              <layout:position layout:x="520" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfR6" layout:id="TextGlyph__rateOfR6" layout:text="rateOfR6">
+            <layout:boundingBox>
+              <layout:position layout:x="570" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfR7" layout:id="TextGlyph__rateOfR7" layout:text="rateOfR7">
+            <layout:boundingBox>
+              <layout:position layout:x="620" layout:y="140"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule2" layout:id="TextGlyph__rule2" layout:text="rule2">
+            <layout:boundingBox>
+              <layout:position layout:x="310" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule3" layout:id="TextGlyph__rule3" layout:text="rule3">
+            <layout:boundingBox>
+              <layout:position layout:x="360" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule4" layout:id="TextGlyph__rule4" layout:text="rule4">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule5" layout:id="TextGlyph__rule5" layout:text="rule5">
+            <layout:boundingBox>
+              <layout:position layout:x="460" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule6" layout:id="TextGlyph__rule6" layout:text="rule6">
+            <layout:boundingBox>
+              <layout:position layout:x="510" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule7" layout:id="TextGlyph__rule7" layout:text="rule7">
+            <layout:boundingBox>
+              <layout:position layout:x="560" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rule8" layout:id="TextGlyph__rule8" layout:text="rule8">
+            <layout:boundingBox>
+              <layout:position layout:x="610" layout:y="60"/>
+              <layout:dimensions layout:height="50" layout:width="50"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__dummy" layout:id="TextGlyph__dummy" layout:text="dummy">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="5"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__ADP" layout:id="TextGlyph__ADP" layout:text="ADP">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="325"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__C3" layout:id="TextGlyph__C3" layout:text="C3">
+            <layout:boundingBox>
+              <layout:position layout:x="140" layout:y="320"/>
+              <layout:dimensions layout:height="40" layout:width="80"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+        </layout:listOfTextGlyphs>
+      </layout:layout>
+    </layout:listOfLayouts>
+    <listOfCompartments>
+      <compartment constant="true" id="Cell" size="1" spatialDimensions="3">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="compartment__Cell" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ATP" initialAmount="2" metaid="iBioSim1">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__ATP" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__ATPIn" comp:submodelRef="C2"/>
+          <comp:replacedElement comp:portRef="output__ATPOut" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="dummy" initialAmount="0" metaid="iBioSim19"/>
+      <species boundaryCondition="true" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ADP" initialAmount="1" metaid="iBioSim5">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__ADP" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__ADPIn" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="bound" metaid="iBioSim6" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__fb_R1_lessEqual" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfR0" metaid="iBioSim8" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfR0" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfR1" metaid="iBioSim20" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfR1" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfR2" metaid="iBioSim21" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfR2" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfR3" metaid="iBioSim22" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfR3" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfR4" metaid="iBioSim23" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfR4" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfR5" metaid="iBioSim24" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfR5" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfR6" metaid="iBioSim25" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfR6" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfR7" metaid="iBioSim26" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfR7" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule metaid="rule0" variable="rateOfR0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> R0 </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule1" variable="bound">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <cn type="integer"> 10 </cn>
+              <ci> ATP </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <ci> ATP </ci>
+            </apply>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule2" variable="rateOfR1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> R1 </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule3" variable="rateOfR2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> R2 </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule4" variable="rateOfR3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> R3 </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule5" variable="rateOfR4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> R5 </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule6" variable="rateOfR5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> R6 </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule7" variable="rateOfR6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> R6 </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule8" variable="rateOfR7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> R7 </ci>
+        </math>
+            </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction compartment="Cell" fast="false" id="R0" metaid="iBioSim7" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__R0" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R1" metaid="iBioSim9" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__R1" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R2" metaid="iBioSim13" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__R2" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R3" metaid="iBioSim14" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__R3" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R4" metaid="iBioSim15" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__R4" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R5" metaid="iBioSim16" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__R5" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R6" metaid="iBioSim17" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__R6" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R7" metaid="iBioSim18" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__R7" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
