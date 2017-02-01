@@ -16,11 +16,17 @@ Feedback to the model created with iBioSim.
 
 The first step of validation is to check that your models don't have any validation errors.
 
+## General
+* the relative change in upper bounds is handled incorrectly (maximal allowed change, 
+provides new upper and lower bounds)
+* update of concentrations not correct ? (should be done by reactions via their respective fluxes)
+
 ## growth_fba
 * fbc strict attribute missing
 * don't write array information in the SBML, i.e. remove `arrays:required="true"`. 
 Especially because no array information is in the model.
 * reaction v2 has wrong upper bound: "max_v4" -> max_v2 (which is currently not used)
+* value for max_v2 is wrong, should be 0.3 !
 
 ```
 file: growth_fba.xml
