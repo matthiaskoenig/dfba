@@ -44,6 +44,8 @@ The coupling of either logical models ([SBO:0000234 logical](http://www.ebi.ac.u
 discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/main/SBO:0000063)), or spatial continuous frameworks 
  ([SBO:0000292 spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000292)) is not yet supported.
 
+? How stochastic or deterministic simulation ? (which SBOTerm)
+
 
 ## Ports
 * How to annotate?
