@@ -183,3 +183,8 @@ Reference: L3V1 Fbc V2 Section 3.8
 * The top model contains the complete `growth_update` and `growth_fba` models within its `<comp:listOfModelDefinitions>`.
  In addition these files are provided as separate SBML files. The Top model should only link the FBA and update model, not
  define them.
+ 
+* The handling via the events in the `top` model is extremely ugly. This must be handled differently (for instance by calculating
+what is the upper bound in the FBA depending on the availability of substrates)
+
+* what are p2, ..., p7 and why annotated with SBO:0000593 : petri net place ??? (does not make sense)
