@@ -178,3 +178,8 @@ line 1058: (fbc-20706 [Error]) The attribute 'fbc:upperFluxBound' of a <Reaction
 Reference: L3V1 Fbc V2 Section 3.8
  <Reaction> 'v2' refers to upperBound with id 'v2_max' that does not exist within the <model>.
 ```
+
+## General
+* The top model contains the complete `growth_update` and `growth_fba` models within its `<comp:listOfModelDefinitions>`.
+ In addition these files are provided as separate SBML files. The Top model should only link the FBA and update model, not
+ define them.
