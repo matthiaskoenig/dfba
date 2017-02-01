@@ -1,5 +1,7 @@
 # Encoding DFBA models in SBML
 In this document the guidelines for encoding DFBA models in SBML are described.
+
+
 The example models in the `models` folder follow these guidelines.
 Strict rules which have to be followed are indicated via **MUST**, guidlines which should be followed are indicated
 by **SHOULD**.
@@ -59,8 +61,16 @@ discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/m
 In this first version 
 
 # Model Simulation
-Here we describe how a simulator should execute the submodels and perform the update between the submodels.
-The described update and executation strategy was implemented in `iBioSim` and `sbmlutils`.
+In this section we describe how simulators should simulate a model given in the DFBA SBML formalism.
+The described simulation and update strategy was herby implemented in `iBioSim` and `sbmlutils`.
+
+The DFBA models are solved via a **Static Optimization Approach (SOA)**. The simulation time is
+divided into time intervals with the instantaneous optimization (FBA) solved at the beginning
+of every time interval. The dynamic equations are than integrated over the time interval assuming that the fluxes
+are constant over the interval. 
+Before every optimization of the FBA part optimization constraints have to be updated from the dynamic part, after 
+every optimization the dynamic variables corresponding to the FBA fluxes have to be updated.
+
 
 * what is the order of execution of the models ?? & when are the update steps performed ??
 * how do we deal with the step sizes and tolerances?
@@ -69,6 +79,5 @@ The described update and executation strategy was implemented in `iBioSim` and `
 # Questions?
 * should we allow stochastic models in this first version? If we say yes, we also need an example for the coupling of 
 stochastic to fba models. If we only allow deterministic to FBA coupling in the first version things will be easier.
-
 
 

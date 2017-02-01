@@ -20,7 +20,6 @@ The first step of validation is to check that your models don't have any validat
 * fbc strict attribute missing
 * don't write array information in the SBML, i.e. remove `arrays:required="true"`. 
 Especially because no array information is in the model.
-* rename species: Glcxt -> Glc and Glcxt_out -> Glc_out
 * reaction v2 has wrong upper bound: "max_v4" -> max_v2 (which is currently not used)
 
 ```
