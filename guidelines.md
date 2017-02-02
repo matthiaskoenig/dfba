@@ -25,10 +25,21 @@ by **SHOULD**.
   The different submodels **SHOULD** be stored in separate files.
   
 ### TOP
+* how related to `FBA` and `UPDATE` model ?
   
 ### FBA
+The `FBA` models **MUST** be encoded using the SBML package `fbc v2`. Variables for all upper and lower bounds **MUST** exist.
+The selected objective function in the `FBA` models will be optimized.
+
+* How the bounds?
+* How the objective functions?
+* What is optimized / maximization/minimization?
 
 ### UPDATE
+The update model?
+* how to name things? 
+* how related to the FBA and top model?
+
 
 ## SBO terms
 
@@ -50,15 +61,19 @@ discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/m
 
 
 ## Ports
-* How to annotate?
+Objects which are linked via ports in the different submodels **MUST** have the same ids in the the different submodels.
+The respective ports **MUST** have the same ids.
+
+* How to annotate (SBO) and how to name (we should have a simple naming convention which should be followed, so
+it is clear which ports are belonging to what)?
 * How to encode? 
 * What must be coupled between the subnetworks?
 
 ## Multiple FBA and kinetic models
-* ? How to handle multiple FBA models and kinetic models.
+* How to handle multiple FBA models and kinetic models ?
 
-* ? How to deal with stochastic models.
-In this first version 
+* How to deal with stochastic models ?
+In this first version of the guidlines and implementation no stochastic models are supported. 
 
 # Model Simulation
 In this section we describe how simulators should simulate a model given in the DFBA SBML formalism.
