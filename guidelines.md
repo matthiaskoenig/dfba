@@ -1,20 +1,16 @@
-# Encoding DFBA models in SBML
-In this document the guidelines for encoding DFBA models in SBML are described.
-
-
-The example models in the `models` folder follow these guidelines.
-Strict rules which have to be followed are indicated via **MUST**, guidlines which should be followed are indicated
+# Encoding Dynamic Flux Balance Analysis (DFBA) models in SBML
+This document describes the rules and guidelines for encoding DFBA models in SBML.
+Required rules are stated via **MUST**, guidelines which should be followed are indicated
 by **SHOULD**.
 
-## Model Validity
-* All SBML models **MUST** be valid SBML.
-* All SBML models **MUST** be encoded in SBML L3V1 or higher.
-
-## SBML Packages
-* ALL SBML models **SHOULD** only use released SBML packages.
+The provided example models in the `models` folder follow the rules & guidelines below.
 
 ## Models
-* The DFBA model **MUST** be encoded using the `comp` package.  
+The DFBA model in SBML consists of multiple SBML submodels.
+* All SBML models for DFBA **MUST** be encoded in SBML L3V1 or higher.
+* All SBML models **MUST** be valid SBML.
+* The DFBA model **MUST** be encoded using the `comp` and `fbc` packages.
+* All SBML models **SHOULD** only use released SBML packages.
 * The **MUST** at least consist of three submodels:
     * the `TOP` model, which is the SBML top model including the other models, 
     * the `FBA` model, which defines the FBA submodel using the `fbc` package,
@@ -24,16 +20,43 @@ by **SHOULD**.
   make clear what part of the DFBA model is encoded by the submodel.  
   The different submodels **SHOULD** be stored in separate files.
   
-### TOP
+## TOP model
 * how related to `FBA` and `UPDATE` model ?
+* dummy reaction & respective assignments ?
   
-### FBA
-The `FBA` models **MUST** be encoded using the SBML package `fbc v2`. Variables for all upper and lower bounds **MUST** exist.
+## FBA model
+- The `FBA` models **MUST** be encoded using the SBML package `fbc v2`. Variables for all upper and lower bounds **MUST** exist.
 The selected objective function in the `FBA` models will be optimized.
+- The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model
+must be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
+- The `FBA` submodel(s) **MUST** have the SBOTerm [SBO:0000624 flux balance framework](http://www.ebi.ac.uk/sbo/main/SBO:0000624)  
+set as modeling framework on the model element  
+```<id="growth_fba" sboTerm="SBO:0000624" ... >```
 
-* How the bounds?
-* How the objective functions?
-* What is optimized / maximization/minimization?
+**Objective function**
+
+- The FBA model **MUST** contain at least one objective function. The optimization objective for the DFBA model 
+**MUST** be the active objective in the fba model.
+- The objective **MUST** be `maximize`.
+
+**Exchange reaction**
+
+- The unbalanced species in the FBA, which correspond to the species which are changed in the kinetic model 
+via the FBA solution **MUST NOT** be encoded via setting `boundaryCondition=True` on the species, 
+ but **MUST** be encoded via creating an exchange reaction for the species. I.e. species which are 
+ changed via the FBA fluxes have additional exchange reaction in the FBA model.
+- The exchange reactions **MUST** have the Species with stoichiometry `1.0` as product and have no substrates (-> 1.0 S), 
+i.e. point towards the species and be annotated with the SBOterm  
+[SBO:0000627 exchange reaction](http://www.ebi.ac.uk/sbo/main/SBO:0000627)  
+TODO: the definition of the direction is different in the SBO term, 
+which would require to reverse all FBA exchange fluxes for the update of the metabolites.
+ 
+**Reaction bounds**
+
+The following upper and lower bound default values are set in models: If no flux bounds are specified the default upper flux bound is `1000`, 
+and the default lower flux bound is `-1000` for reversible and `0` for irreversible reactions.
+
+The parameters for all flux bounds in the FBA submodel **MUST** be set to numerical values.
 
 ### UPDATE
 The update model?
@@ -61,12 +84,8 @@ $$r1: A + 2 B -> C+3D$$
 
 
 
-## SBO terms
-
 ### Modeling Framework
-* The `FBA` submodel(s) **MUST** have the following SBOTerm for the modeling framework on the model element  
-[SBO:0000624 flux balance framework](http://www.ebi.ac.uk/sbo/main/SBO:0000624)  
-```<id="growth_fba" sboTerm="SBO:0000624" ... >```
+
 
 * The `TOP`,`UPDATE` and all other `NON-FBA` models **MUST** have the following SBOTerm for the modeling framework
 on the model element  
