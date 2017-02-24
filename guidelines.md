@@ -11,27 +11,32 @@ The DFBA model in SBML consists of multiple SBML submodels.
 * All SBML models **MUST** be valid SBML.
 * The DFBA model **MUST** be encoded using the `comp` and `fbc` packages.
 * All SBML models **SHOULD** only use released SBML packages.
-* The **MUST** at least consist of three submodels:
-    * the `TOP` model, which is the SBML top model including the other models, 
-    * the `FBA` model, which defines the FBA submodel using the `fbc` package,
-    * the `UPDATE` model, which defines the update between the `TOP` and `FBA` model. 
-  
-  Models and model filenames **SHOULD** contain the word `TOP`, `FBA` and `UPDATE`, respectively to 
+* The DFBA model **SHOULD** consist of four submodels:
+    * the `TOP` ode model, which is the SBML top model including the other submodels via `comp:ExternalModelDefinitions` 
+    * the `FBA` fba model, which defines the FBA submodel using the `fbc` package,
+    * the `BOUNDS` ode model, which defines the calculation of the FBA bounds
+    * the `UPDATE` ode model, which defines the update of the `TOP` model from the `FBA` model.
+    
+  Models and model filenames **SHOULD** contain the word `TOP`, `FBA`, `BOUNDS` and `UPDATE`, respectively to 
   make clear what part of the DFBA model is encoded by the submodel.  
   The different submodels **SHOULD** be stored in separate files.
+* The DFBA model **MUST** consist of at least two models:
+    * the `TOP` model, which in this case includes the `BOUNDS` and `UPDATE` logic
+    * the `FBA` fba model, which defines the FBA submodel using the `fbc` package
   
-## TOP model
-* how related to `FBA` and `UPDATE` model ?
-* dummy reaction & respective assignments ?
+**Ports**
+- All `comp:Port` elements `SHOULD` follow the following id schema: `{idRef}_port` for a port with `idRef={idRef}`.
   
 ## FBA model
-- The `FBA` models **MUST** be encoded using the SBML package `fbc v2`. Variables for all upper and lower bounds **MUST** exist.
-The selected objective function in the `FBA` models will be optimized.
-- The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model
-must be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
+- The `FBA` models **MUST** be encoded using the SBML package `fbc v2` with `strict=false`. 
 - The `FBA` submodel(s) **MUST** have the SBOTerm [SBO:0000624 flux balance framework](http://www.ebi.ac.uk/sbo/main/SBO:0000624)  
 set as modeling framework on the model element  
 ```<id="growth_fba" sboTerm="SBO:0000624" ... >```
+
+
+The selected objective function in the `FBA` models will be optimized.
+- The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model
+must be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
 
 **Objective function**
 
@@ -52,16 +57,34 @@ TODO: the definition of the direction is different in the SBO term,
 which would require to reverse all FBA exchange fluxes for the update of the metabolites.
  
 **Reaction bounds**
-
-The following upper and lower bound default values are set in models: If no flux bounds are specified the default upper flux bound is `1000`, 
+- SBML `Parameters` for upper and lower bounds **MUST** exist for all reactions and have numerical values, i.e. no `InitialAssignments` or
+`AssignmentRules` for flux bound parameter are allowed.
+- The following upper and lower bound default values **MUST** be set in fba models: If no flux bounds are specified the default upper flux bound is `1000`, 
 and the default lower flux bound is `-1000` for reversible and `0` for irreversible reactions.
+- The `Parameters` for the upper and lower bounds of reactions **SHOULD** have the ids `ub_{rid}` and `lb_{rid}` with `{rid}`
+being the respective reaction id.
+- SBML `Parameters` describing the flux bounds of exchange reactions **MUST** be `constant=False`. All exchange reactions
+must have individual `Parameters` for the upper and lower bound which are not used by other reactions.
 
-The parameters for all flux bounds in the FBA submodel **MUST** be set to numerical values.
+- SBML `Parameters` describing the flux bounds of internal reactions where the **MUST** be `constant=False`.
 
-### UPDATE
+**Ports**
+- all exchange reactions `MUST` have a port
+- all upper and lower bounds of the exchange reactions `MUST` have a port
+- species used in exchange reactions `MUST` have a port
+- compartments for species used in exchange reactions `MUST` have a port
+
+
+## TOP model
+* how related to `FBA` and `UPDATE` model ?
+* dummy reaction & respective assignments ?
+
+## UPDATE model
 The update model?
 * how to name things? 
 * how related to the FBA and top model?
+
+## BOUNDS model
 
 ### Linking FBA and ode models
 Two links must be defined between the FBA model and the kinetic models:
@@ -85,8 +108,6 @@ $$r1: A + 2 B -> C+3D$$
 
 
 ### Modeling Framework
-
-
 * The `TOP`,`UPDATE` and all other `NON-FBA` models **MUST** have the following SBOTerm for the modeling framework
 on the model element  
 [SBO:0000293 non-spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000293)  
@@ -96,9 +117,7 @@ The coupling of either logical models ([SBO:0000234 logical](http://www.ebi.ac.u
 discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/main/SBO:0000063)), or spatial continuous frameworks 
  ([SBO:0000292 spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000292)) is not yet supported.
 
-? How stochastic or deterministic simulation ? (which SBOTerm)
 
-* The `dt` parameter must be annotated with the SBOTerm ?
 
 
 ## Ports
