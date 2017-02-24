@@ -40,6 +40,26 @@ The update model?
 * how to name things? 
 * how related to the FBA and top model?
 
+### Linking FBA and ode models
+Two links must be defined between the FBA model and the kinetic models:
+1. How are the species updated based on the FBA flux distributions:
+After every FBA step the FBA fluxes are stored where ? in FBA model.
+
+- Michaelis-Menten rule based on the species in the reaction 
+
+2. How are the flux bounds updated before the FBA is run?
+- The submodel handling the update of the bounds must contain a parameter `dt` which defines the step size of the FBA optimizations, i.e.
+after which time interval the FBA is performed. During the time interval `dt` the FBA flux distribution
+is assumed constant. The output time points of the complete simulation, i.e. at which timepoints outputs
+are generated must be compatible to `dt`, i.e. the time between output points is `dt`.
+- The parameter `dt` is used in calculating the upper and lower bounds based on the availability of the species
+ used in the reaction. This ensures that the FBA solution cannot take more than the available species amounts
+ in the timestep of duration `dt`
+
+$$r1: A + 2 B -> C+3D$$
+
+
+
 
 ## SBO terms
 
@@ -58,6 +78,8 @@ discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/m
  ([SBO:0000292 spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000292)) is not yet supported.
 
 ? How stochastic or deterministic simulation ? (which SBOTerm)
+
+* The `dt` parameter must be annotated with the SBOTerm ?
 
 
 ## Ports
