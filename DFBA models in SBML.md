@@ -1,14 +1,16 @@
 # DFBA models in SBML
-**[Latest editable version](https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both)**
+* **[Latest editable version](https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both)**
+* **[github repository](https://github.com/matthiaskoenig/dfba)**
 
-[//]: <> (Please edit this file ONLY on hackmd.io for now and commit the file when finished with editing to the dfba git via Menu -> Download -> Markdown. Than we have the latest version available on github. Comments in this text via the comment syntax.)
-
+<!--
+Please edit this file ONLY on hackmd.io for now and commit the file when finished with editing to the dfba git via Menu -> Download -> Markdown. Than we have the latest version available on github. Comments in this text via the comment syntax.
+-->
 This document describes the rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in SBML in section A. In addition information is provided on how the simulators `iBioSim` and `sbmlutils` implement the DFBA. The following conventions are used in this document.
 * required rules are stated via **MUST**. DFBA models in SBML must implement this rules.
 * guidelines which should be followed are indicated by **SHOULD**.
 
+The example models in the [github repository](https://github.com/matthiaskoenig/dfba) in the `dfba/models` folder implement these rules & guidelines.
 
-The provided example models in the `dfba/models` folder follow the rules & guidelines below.
 # A) Encoding DFBA models in SBML
 ## Models
 The DFBA model in SBML consists of multiple SBML submodels.

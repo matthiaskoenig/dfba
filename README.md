@@ -11,7 +11,11 @@ Model examples encoded in the proposed dynamic FBA scheme. the models are listed
 
 The models can be simulated either with [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
 
-## How to cite
-[Overleaf](https://www.overleaf.com/6382003zbbpfy#/21488847/)
+## Manuscript
+https://www.overleaf.com/6382003zbbpfy#/21488847/
+
+## Guidelines
+https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both
+
 
 
