@@ -1,12 +1,15 @@
-# Encoding Dynamic Flux Balance Analysis (DFBA) models in SBML
-This document describes the rules and guidelines for encoding DFBA models in SBML.
+# DFBA models in SBML
+**[Latest editable version](https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both)**
+
+[comment]: <> (Please edit this file ONLY on hackmd.io for now and commit the file when finished with editing to the dfba git via Menu -> Download -> Markdown. Than we have the latest version available on github. Comments in this text via the comment syntax.)
+
+This document describes the rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in SBML in section A. In addition information is provided on how the simulators `iBioSim` and `sbmlutils` implement the DFBA. The following conventions are used in this document.
+* required rules are stated via **MUST**. DFBA models in SBML must implement this rules.
+* guidelines which should be followed are indicated by **SHOULD**.
 
 
-Required rules are stated via **MUST**, guidelines which should be followed are indicated
-by **SHOULD**.
-
-The provided example models in the `models` folder follow the rules & guidelines below.
-
+The provided example models in the `dfba/models` folder follow the rules & guidelines below.
+# A) Encoding DFBA models in SBML
 ## Models
 The DFBA model in SBML consists of multiple SBML submodels.
 * All SBML models for DFBA **MUST** be encoded in SBML L3V1 or higher.
@@ -27,18 +30,15 @@ The DFBA model in SBML consists of multiple SBML submodels.
     * the `FBA` fba model, which defines the FBA submodel using the `fbc` package
   
 **Ports**
-- All `comp:Port` elements `SHOULD` follow the following id schema: `{idRef}_port` for a port with `idRef={idRef}`.
+- All `comp:Port` elements **SHOULD** follow the following id schema: `{idRef}_port` for a port with `idRef={idRef}`.
   
 ## FBA model
 - The `FBA` models **MUST** be encoded using the SBML package `fbc v2` with `strict=false`. 
-- The `FBA` submodel(s) **MUST** have the SBOTerm [SBO:0000624 flux balance framework](http://www.ebi.ac.uk/sbo/main/SBO:0000624)  
-set as modeling framework on the model element  
-```<id="growth_fba" sboTerm="SBO:0000624" ... >```
-
+- The `FBA` submodel(s) **MUST** have the SBOTerm [SBO:0000624 flux balance framework](http://www.ebi.ac.uk/sbo/main/SBO:0000624) set as modeling framework on the `model` element.
 
 The selected objective function in the `FBA` models will be optimized.
 - The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model
-must be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
+**MUST** be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
 
 **Objective function**
 
@@ -107,13 +107,9 @@ are generated must be compatible to `dt`, i.e. the time between output points is
 $$r1: A + 2 B -> C+3D$$
 
 
-
-
 ### Modeling Framework
 * The `TOP`,`UPDATE` and all other `NON-FBA` models **MUST** have the following SBOTerm for the modeling framework
-on the model element  
-[SBO:0000293 non-spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000293)  
-```<id="growth_fba" sboTerm="SBO:0000624" ... >```
+on the model element [SBO:0000293 non-spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000293).
 
 The coupling of either logical models ([SBO:0000234 logical](http://www.ebi.ac.uk/sbo/main/SBO:0000234)), 
 discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/main/SBO:0000063)), or spatial continuous frameworks 
@@ -131,27 +127,27 @@ it is clear which ports are belonging to what)?
 
 ## Multiple FBA and kinetic models
 * How to handle multiple FBA models and kinetic models ?
-
 * How to deal with stochastic models ?
 In this first version of the guidlines and implementation no stochastic models are supported. 
 
-# Model Simulation
-In this section we describe how simulators should simulate a model given in the DFBA SBML formalism.
-The described simulation and update strategy was herby implemented in `iBioSim` and `sbmlutils`.
+## SBOTerm
+This section gives an overview over the SBOterms used in DFBA models. 
+* TODO: collect the SBOTerms
 
-The DFBA models are solved via a **Static Optimization Approach (SOA)**. The simulation time is
-divided into time intervals with the instantaneous optimization (FBA) solved at the beginning
-of every time interval. The dynamic equations are than integrated over the time interval assuming that the fluxes
+
+# B) Model Simulation
+In this section we describe how simulators should simulate a model given in the DFBA SBML formalism described in section A. The described simulation and update strategy was implemented in the two simulators `iBioSim` and `sbmlutils`.
+
+The DFBA models are solved via a **Static Optimization Approach (SOA)**. The simulation time is divided into time intervals with the instantaneous optimization (FBA) solved at the beginning of every time interval. The dynamic equations are than integrated over the time interval assuming that the fluxes
 are constant over the interval. 
-Before every optimization of the FBA part optimization constraints have to be updated from the dynamic part, after 
-every optimization the dynamic variables corresponding to the FBA fluxes have to be updated.
+Before every optimization of the FBA part optimization constraints have to be updated from the dynamic part, after every optimization the dynamic variables corresponding to the FBA fluxes have to be updated.
 
 
 * what is the order of execution of the models ?? & when are the update steps performed ??
 * how do we deal with the step sizes and tolerances?
 
 
-# Questions?
+# C) Open Questions
 * should we allow stochastic models in this first version? If we say yes, we also need an example for the coupling of 
 stochastic to fba models. If we only allow deterministic to FBA coupling in the first version things will be easier.
 
