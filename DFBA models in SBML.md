@@ -1,24 +1,38 @@
 # DFBA models in SBML
-* **[Latest editable version](https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both)**
-* **[github repository](https://github.com/matthiaskoenig/dfba)**
-
+**version: 0.1-draft**
 <!--
 Please edit this file ONLY on hackmd.io for now and commit the file when finished with editing to the dfba git via Menu -> Download -> Markdown. Than we have the latest version available on github. Comments in this text via the comment syntax.
 -->
-This document describes the rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in SBML in section A. In addition information is provided on how the simulators `iBioSim` and `sbmlutils` implement the DFBA. The following conventions are used in this document.
-* required rules are stated via **MUST**. DFBA models in SBML must implement this rules.
-* guidelines which should be followed are indicated by **SHOULD**.
+* **[latest editable version](https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both)**
+* **[github repository](https://github.com/matthiaskoenig/dfba)**
 
-The example models in the [github repository](https://github.com/matthiaskoenig/dfba) in the `dfba/models` folder implement these rules & guidelines.
+This document describes the rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in the Systems Biology Markup Language (SBML), a free and open interchange format for computer models of biological processes.
+* Section A) describes how to encode DFBA models in SBML.
+* Section B) provides information on how simulators should execute models provided in the format of Section A). Example implementations can be found in `iBioSim` and `sbmlutils` implement the DFBA. 
+* Section C) provides answers to frequently asked questions.
+
+The following conventions are used in this document.
+* Required rules are stated via **MUST**, i.e. DFBA models in SBML must implement these rules.
+* Guidelines which should be followed are indicated by **SHOULD**, i.e. it is good practise to follow these guidelines, but they are not required for an executable DFBA model in SBML.
+
+The example models in the [github repository](https://github.com/matthiaskoenig/dfba) in the `dfba/models` folder implement these rules and guidelines.
 
 # A) Encoding DFBA models in SBML
-## Models
+This section describes how DFBA models can be 
+
+
 The DFBA model in SBML consists of multiple SBML submodels.
+
 * All SBML models for DFBA **MUST** be encoded in SBML L3V1 or higher.
 * All SBML models **MUST** be valid SBML.
 * The DFBA model **MUST** be encoded using the `comp` and `fbc` packages.
-<!-- @Leandro: This is tricky because we don't support all packages. I think we should require the bare minimum to make a simulatable model for our tools.  -->
+<!-- @Leandro: This is tricky because we don't support all packages. I think we should require the bare minimum to make a simulatable model for our tools.  
+@Matthias: I think you misunderstood and we should clarify. This just says you should use comp & fbc to encode the DFBA, nothing more. We are doing this. It not even says that you have to support all of comp or fbc.
+-->
+
 * All SBML models **SHOULD** only use released SBML packages.
+
+
 --@Leandro: This is ambiguous with the next requirement. This one says it should contain four and the next says it needs at least two. Maybe this should change to at most four submodels.
 * The DFBA model **SHOULD** consist of four submodels:
     * the `TOP` ode model, which is the SBML top model including the other submodels via `comp:ExternalModelDefinitions` 
@@ -32,28 +46,30 @@ The DFBA model in SBML consists of multiple SBML submodels.
 * The DFBA model **MUST** consist of at least two models:
     * the `TOP` model, which in this case includes the `BOUNDS` and `UPDATE` logic
     * the `FBA` fba model, which defines the FBA submodel using the `fbc` package
-  
-**Ports**
-- All `comp:Port` elements **SHOULD** follow the following id schema: `{idRef}_port` for a port with `idRef={idRef}`.
-  
-## FBA model
-- The `FBA` models **MUST** be encoded using the SBML package `fbc v2` with `strict=false`. 
-- The `FBA` submodel(s) **MUST** have the SBOTerm [SBO:0000624 flux balance framework](http://www.ebi.ac.uk/sbo/main/SBO:0000624) set as modeling framework on the `model` element.
+ 
+ **`TODO:`** Create figure showing linking between submodels
 
-The selected objective function in the `FBA` models will be optimized.
+In the following sections the guidelines for the individual submodels are specified
+  
+### FBA submodel
+* The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=false`. 
+* The `FBA` submodel(s) **MUST** have the SBOTerm [SBO:0000624 (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) set as modeling framework on the `model` element.
+* There **MUST** be exactely one submodel with `fbc` and [SBO:0000624](http://www.ebi.ac.uk/sbo/main/SBO:0000624) in the `comp` model. Multiple `fbc` submodels are not allowed.
+
+
 - The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model
 **MUST** be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
 
 **Objective function**
-
-- The FBA model **MUST** contain at least one objective function. The optimization objective for the DFBA model 
-**MUST** be the active objective in the fba model.
-
-- The objective **MUST** be `maximize`.
--- @Leandro: Will this always be the case?
+* The FBA model **MUST** contain at least one objective function.
+* The optimization objective for the DFBA model **MUST** be the active objective in the fba model, i.e. an active objective **MUST** exist and be the objective which is executed in every step of the DFBA.
+* The objective **MUST** be `maximize`.
+<!--
+@Leandro: Will this always be the case?
+@Matthias: Are you supporting minimize? If yes we can make this minimize or maximize (I am only supporting maximize right now, but could easily implement minimize as well)
+-->
 
 **Exchange reaction**
-
 
 - The unbalanced species in the FBA, which correspond to the species which are changed in the kinetic model 
 via the FBA solution **MUST NOT** be encoded via setting `boundaryCondition=True` on the species, 
@@ -71,6 +87,7 @@ which would require to reverse all FBA exchange fluxes for the update of the met
 - SBML `Parameters` for upper and lower bounds **MUST** exist for all reactions and have numerical values, i.e. no `InitialAssignments` or
 `AssignmentRules` for flux bound parameter are allowed.
 -- @Leandro: In the FBA, only parameters, species, compartment(s), and reactions are allowed. Reactions should not have kinetic law.
+
 - The following upper and lower bound default values **MUST** be set in fba models: If no flux bounds are specified the default upper flux bound is `1000`, 
 and the default lower flux bound is `-1000` for reversible and `0` for irreversible reactions.
 - The `Parameters` for the upper and lower bounds of reactions **SHOULD** have the ids `ub_{rid}` and `lb_{rid}` with `{rid}`
@@ -122,12 +139,11 @@ $$r1: A + 2 B -> C+3D$$
 
 
 ### Modeling Framework
+
 * The `TOP`,`UPDATE` and all other `NON-FBA` models **MUST** have the following SBOTerm for the modeling framework
 on the model element [SBO:0000293 non-spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000293).
 
-The coupling of either logical models ([SBO:0000234 logical](http://www.ebi.ac.uk/sbo/main/SBO:0000234)), 
-discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/main/SBO:0000063)), or spatial continuous frameworks 
- ([SBO:0000292 spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000292)) is not yet supported.
+
 <!-- How to do ODE + SSA + Logical? -->
 * @Leandro: does not support coupling of different frameworks. All submodels should be consistent.
 
@@ -135,16 +151,13 @@ discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/m
 Objects which are linked via ports in the different submodels **MUST** have the same ids in the the different submodels.
 The respective ports **MUST** have the same ids.
 
+* All `comp:Port` elements **SHOULD** follow the following id schema: `{idRef}_port` for a port with `idRef={idRef}`.
+
 * How to annotate (SBO) and how to name (we should have a simple naming convention which should be followed, so
 it is clear which ports are belonging to what)?
 * How to encode? 
 * What must be coupled between the subnetworks?
 
-## Multiple FBA and kinetic models
-* How to handle multiple FBA models and kinetic models ?
--- @Leandro: Is it possible to have FBA models that depend on each other? Order of execution would matter.
-* How to deal with stochastic models ?
-In this first version of the guidlines and implementation no stochastic models are supported. 
 
 ## SBOTerm
 This section gives an overview over the SBOterms used in DFBA models. 
@@ -154,17 +167,34 @@ This section gives an overview over the SBOterms used in DFBA models.
 # B) Model Simulation
 In this section we describe how simulators should simulate a model given in the DFBA SBML formalism described in section A. The described simulation and update strategy was implemented in the two simulators `iBioSim` and `sbmlutils`.
 
+**`TODO:`** Create figure showing simulation workflow
+
 The DFBA models are solved via a **Static Optimization Approach (SOA)**. The simulation time is divided into time intervals with the instantaneous optimization (FBA) solved at the beginning of every time interval. The dynamic equations are than integrated over the time interval assuming that the fluxes
 are constant over the interval. 
 Before every optimization of the FBA part optimization constraints have to be updated from the dynamic part, after every optimization the dynamic variables corresponding to the FBA fluxes have to be updated.
 
-
 * what is the order of execution of the models ?? & when are the update steps performed ??
 * how do we deal with the step sizes and tolerances?
 
-# C) Open Questions
-* should we allow stochastic models in this first version? If we say yes, we also need an example for the coupling of 
-stochastic to fba models. If we only allow deterministic to FBA coupling in the first version things will be easier.
--- @Leandro: I would say no. Need to figure out how to deal with reversible reactions in DFBA/SSA.
+# C) Frequently asked questions (FAQ)
+## Are multiple kinetic models supported?
+Yes, multiple kinetic submodels can exist in the DFBA. During the kinetic integrations the flattend kinetic model is integrated.
+
+## Are multiple FBA submodels supported?
+No, in the first version only a single FBA submodel is allowed.
+<!-- 
+@Leandro: Is it possible to have FBA models that depend on each other? Order of execution would matter.
+@Matthias: I would say we keep it as simple as possible in the first version, i.e. only one FBA submodel. We have to think about what to do with multiple FBA models in the future. Things to consider are
+* execution order
+* resource allocation, i.e. boundary condition via species.
+A possible solution could be merging of the FBA models and 
+creating one overall optimization function. But we should not touch this in the first version.
+-->
 
 
+## Are stochastic & logical models supported?
+It is possible to encode SBML models with additional modeling frameworks than FBA or deterministic ODE models. Examples are logical models encoded with the SBML package `qual` or stochastic models, i.e. stochastic ODE models. In the first version of the DFBA guidelines and implementation only deterministic kinetic models can be coupled to FBA models. In future versions the coupling of stochastic and/or logical models can be supported.
+
+The coupling of either logical models ([SBO:0000234 logical](http://www.ebi.ac.uk/sbo/main/SBO:0000234)), 
+discrete frameworks ([SBO:0000063 discrete framework](http://www.ebi.ac.uk/sbo/main/SBO:0000063)), or spatial continuous frameworks 
+ ([SBO:0000292 spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000292)) is not yet supported.
