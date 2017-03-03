@@ -46,14 +46,14 @@ Leandro: This is tricky because we don't support all packages. I think we should
 Matthias: I think you misunderstood and we should clarify. This just says you should only use released packages to encode the DFBA, nothing more. It does not say anything about what you have to support.
 -->
 
-The DFBA models consists of different units performing part of the DFBA task. These tasks are
+The DFBA models consists of different units performing parts of the DFBA task. These tasks are
 * `TOP` : DFBA comp model that includes all submodels and their corresponding connections
 * `KINETIC` : kinetic part of the DFBA model
 * `FBA` : FBA part of the DFBA model
 * `BOUNDS` : calculation of the upper and lower bounds for the `FBA` model
 * `UPDATE` : calculation of the updated `KINETIC` part from the `FBA` solution
 
- **`TODO:`** Create figure showing linking between submodels (this section is unclear, figure will help)
+ **`TODO:`** Create figure showing linking between submodels (this section is unclear, figure will help. Show the different alternatives)
 
 * The DFBA model **MUST** consist of the `comp` model and at least one `comp:SubModel`
     * a `TOP` kinetic model (main DFBA `comp` model)
@@ -66,8 +66,16 @@ The DFBA models consists of different units performing part of the DFBA task. Th
     * the `BOUNDS` ode model, which defines the calculation of the FBA bounds
     * the `UPDATE` ode model, which defines the update of the `TOP` model from the `FBA` model.
 
+### Modeling Frameworks
 * Every model other than `FBA` **MUST** have the SBOTerm [SBO:0000293 non-spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000293) defining the modeling framework on the model element .
 
+### Ports
+Objects in the different submodels are linked via `comp:Ports`.
+* Objects which are linked via ports in the different submodels **MUST** have the same ids in the the different submodels. 
+* In addition, the respective ports of the linked objects **MUST** have the same ids.
+* All `comp:Port` elements **SHOULD** hereby follow the id schema: id of the port is `{idRef}_port` for an object with `idRef={idRef}`.
+
+### Units
 * All models **SHOULD** include units.
 
 In the following sections the guidelines for the individual submodels are specified.
@@ -100,7 +108,7 @@ Leandro: This is not how I have done the FBA models but it seems it works in our
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
 
-* * The exchange reactions **MUST** have the Species with stoichiometry `1.0` as product and have no substrates (-> 1.0 S), i.e. point towards the species and be annotated with the SBOterm [SBO:0000627 exchange reaction](http://www.ebi.ac.uk/sbo/main/SBO:0000627)  
+* The exchange reactions **MUST** have the Species with stoichiometry `1.0` as product and have no substrates (-> 1.0 S), i.e. point towards the species and be annotated with the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).  
 `TODO:` the definition of the direction is different in the SBO term, which would require to reverse all FBA exchange fluxes for the update of the metabolites.
 <!--
 --@Leandro: Tricky when we use reversible reaction in the FBA model and want to do DFBA with stochastic simulation. 
@@ -132,18 +140,28 @@ Matthias: I don't understand that? What do you mean?
 
 ## TOP model
 <!-- how related to `FBA` and `UPDATE` model ? -->
+### dt
+* The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. 
+* The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).
+<!--
+Matthias: what is the correct SBOTerm for this?
+-->
 
-### dummy reactions
+
+### Dummy reactions
+`TODO:` Describe the dummy reactions.
 * For every flux computed in the FBA submodel, there **MUST** be a dummy reaction in the TOP model that replaces the reactions in the FBA submodel. 
 * Each dummy reaction **MUST** include a dummy reactant as product/species.
+* naming of dummy reactions? relation to FBA reactions?
 
-`TODO:` Describe the dummy reactions.
+
 <!--
 Matthias: Is there still the requirement for a species in a reaction in L3V2. If not
 we should just force L3V2 and remove the dummy species.
 -->
 
-## UPDATE model
+## UPDATE submodel
+The `UPDATE` model can be part of the `TOP` model or a separate submodel.
 * All species and reactions in the UPDATE submodel **MUST** be named as the species and reactions in the FBA submodel.
 * The UPDATE submodel **MUST** be structurely equivalent to the FBA submodel. The only difference should be reactions in the UPDATE submodel should use kinetic law and the FBA submodel should use flux bounds.
 * All reactions in the UPDATE submodel ** MUST ** have a kinetic law that depends on a parameter being replaced by another parameter in the TOP model. 
@@ -151,20 +169,10 @@ we should just force L3V2 and remove the dummy species.
 <!--how to name things? -->
 <!--how related to the FBA and top model?-->
 
-## BOUNDS model
-* This **MUST** contain bound parameters for every reaction in the FBA that does not use default bounds. 
-* **MUST** have species values to compute how much reactions can be fired.
-* **MUST** contain  parameter dt.
-
-
-## Linking FBA with ODE model
-Two links are required between the FBA model and the kinetic models: 
-* Update of flux bounds in the FBA model from the kinetic model. 
-* Update of species in kinetic model which are changed by FBA boundary reactions.
-
-### Update of flux bounds
-* The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed.
-* The submodel handling the update of the bounds **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. The `BOUNDS` submodel `dt` must be linked via a port to the `TOP` model `dt`. If the `TOP` model is performing the update of the bounds this rule is obsolete.
+## BOUNDS submodel
+The `BOUNDS` submodel is used for the calculation of the upper and lower bounds for the `FBA` model. For the calculation the species changed by FBA and the time step `dt` are required. The `BOUNDS` model can be part of the `TOP` model or a separate submodel.
+* The submodel handling the update of the bounds **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. The `BOUNDS` submodel `dt` must be linked via a port to the `TOP` model `dt`. The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).  
+If the `BOUNDS` model is part of the `TOP` model this rule is obsolete.
 <!-- 
 @Leandro: should dt be defined in the top? Can simulation time be updated using t = t + dt?
 Ambiguous with SED-ML?
@@ -172,6 +180,21 @@ Ambiguous with SED-ML?
 Yes, t(i+1) = t(i) + dt, but this only defines when the FBA is executed. I updated the rules above accordingly and added the info to the simulation section.
 -->
 
+* This **MUST** contain bound parameters for every reaction in the FBA that does not use default bounds. 
+* **MUST** have species values to compute how much reactions can be fired.
+
+
+
+## Linking FBA with ODE model
+<!-- 
+Matthias: this section should be removed and the infromation merged with the `BOUNDS`, `UPDATE` model parts and the simulation section
+-->
+
+Two links are required between the FBA model and the kinetic models: 
+* Update of flux bounds in the FBA model from the kinetic model. 
+* Update of species in kinetic model which are changed by FBA boundary reactions.
+
+### Update of flux bounds
 * The parameter `dt` is used in calculating the upper and lower bounds based on the availability of the species used in the reaction. This ensures that the FBA solution cannot take more than the available species amounts in the timestep of duration `dt`
 
 $$r1: A + 2 B -> C+3D$$
@@ -186,19 +209,6 @@ Matthias: this is more simulation section than model definition section.
 * Michaelis-Menten rule based on the species in the reaction kinetic law. This ensures the species will not go negative.
 
 `TODO:` fill in the Michaelis menten rules. Which form? How does this work?
-
-
-## Ports
-* Objects which are linked via ports in the different submodels **MUST** have the same ids in the the different submodels. 
-* * The respective ports **MUST** have the same ids.
-* All `comp:Port` elements **SHOULD** follow the following id schema: `{idRef}_port` for a port with `idRef={idRef}`.
-* How to annotate (SBO) and how to name (we should have a simple naming convention which should be followed, so it is clear which ports are belonging to what)?
-* How to encode? 
-* What must be coupled between the subnetworks?
-
-## SBOTerms
-This section gives an overview over the SBOterms used in DFBA models. 
-* `TODO:` collect and list all SBOTerms we use
 
 
 <!------------------------------------------------------------------->
