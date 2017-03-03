@@ -109,7 +109,7 @@ Leandro: This is not how I have done the FBA models but it seems it works in our
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
 
-* The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as product with stoichiometry `1.0` and have no substrates, i.e. being of the form `-> 1.0 S`.
+* The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as product with stoichiometry `1.0` and have no substrates, i.e. being of the form `-> 1.0 {sid}` with `{sid}` being the `Species` id.
 * The exchange `Reactions` **MUST** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
 <!--
 --@Leandro: Tricky when we use reversible reaction in the FBA model and want to do DFBA with stochastic simulation. 
@@ -163,12 +163,6 @@ Also no real SBOTerm fitting for dummy species or reaction. Using empty set for 
 * The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
 * The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 
-### ReplacedBy
-For every dummy reaction in the `TOP` model with `id="dummy_{rid}"` must be replaced via a `comp:ReplacedBy` with the corresponding exchange reaction with `id={rid}` from the `FBA` submodel. The `comp:ReplacedBy` uses the `portRef` of the exchange reaction `{rid}_port`.
-<!--
-Matthias: Not sure if this part is needed. This is how I am encoding my models right now. I am using this ReplacedBy for the update of kinetic modek based on the FBA solution
--->
-
 ### Flux AssignmentRules & Flux parameters
 * For every dummy reaction in the `TOP` model with `id="dummy_{rid}"` a flux parameter **MUST** exist in the `TOP` model with `id="{rid}"` which is `constant=true`.
 <!--
@@ -179,6 +173,15 @@ SBOTerm for the flux parameters?
 * The flux `AssignmentRules` **SHOULD** have the SBOTerm [`SBO:0000391` (steady state expression)](http://www.ebi.ac.uk/sbo/main/SBO:0000391).
 <!-- What SBOTerm? -->
 
+### ReplacedBy
+For every dummy reaction in the `TOP` model with `id="dummy_{rid}"` must be replaced via a `comp:ReplacedBy` with the corresponding exchange reaction with `id={rid}` from the `FBA` submodel. The `comp:ReplacedBy` uses the `portRef` of the exchange reaction `{rid}_port`.
+<!--
+Matthias: Not sure if this part is needed. This is how I am encoding my models right now. I am using this ReplacedBy for the update of kinetic modek based on the FBA solution
+-->
+
+### Replacments
+The following replacements are part of the model:
+`TODO:` what are the replacements exactely, list all of them
 
 
 ## UPDATE submodel
@@ -202,9 +205,16 @@ Ambiguous with SED-ML?
 @Matthias: Yes dt should be in top. But if there is separate model for bounds calculation dt must be mirrored there.
 Yes, t(i+1) = t(i) + dt, but this only defines when the FBA is executed. I updated the rules above accordingly and added the info to the simulation section.
 -->
+* The `BOUNDS` model **MUST** contain all `Species` which are products of  `FBA` exchange `Reactions`. The `Species` concentrations/amounts are used to restrict the maximal fluxes via setting the upper and lower bounds based on the available concentration/amount and the duration of the FBA timestep `dt`.
+* The `BOUNDS` model **MUST** contain `Parameters` for all upper and lower flux bounds of exchange `Reactions`.
+* The formulas for the upper and lower flux bounds are hereby:
+`TODO`: formulas
+<!--
+Matthias: The bound must be the most restrictive bound via min/max function. Probably good to use L3V2 where there exist min and max functions for the calculation.
+-->
 
-* This **MUST** contain bound parameters for every reaction in the FBA that does not use default bounds. 
-* **MUST** have species values to compute how much reactions can be fired.
+* ? This **MUST** contain bound parameters for every reaction in the FBA that does not use default bounds. 
+
 
 
 ## Linking FBA with ODE model
