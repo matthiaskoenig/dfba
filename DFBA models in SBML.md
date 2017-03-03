@@ -9,13 +9,14 @@ Please edit this file ONLY on hackmd.io for now and commit the file when finishe
 This document describes the rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in the Systems Biology Markup Language ([SBML](http://sbml.org/Main_Page)), a free and open interchange format for computer models of biological processes.
 
 The document is structured in
-* Section A) describes how to encode DFBA models in SBML.
-* Section B) provides information on how simulators should execute models provided in the format of Section A). DFBA Implementation are provided by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
-* Section C) provides answers to frequently asked questions.
+* **Section A**: describes how to encode DFBA models in SBML.
+* **Section B**: provides information on how simulators should execute models provided in the format of Section A). DFBA Implementation are provided by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
+* **Section C**: provides answers to frequently asked questions.
 
 The following conventions are used throughout this document.
 * Required rules are stated via **MUST**, i.e. DFBA models in SBML must implement these rules.
 * Guidelines which should be followed are indicated by **SHOULD**, i.e. it is good practice to follow these guidelines, but they are not required for an executable DFBA model in SBML. [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) will run the DFBA even if these recommendations are not followed.
+* Curly brackets function as place holders. For instance the reaction id `{rid}` means that `{rid}` is replaced with the actual id of the reaction.
 
 Example models implementing the rules and guidelines of this document are provided in the `dfba/models` folder of the [github repository](https://github.com/matthiaskoenig/dfba).
 
@@ -67,7 +68,7 @@ The DFBA models consists of different units performing parts of the DFBA task. T
     * the `UPDATE` ode model, which defines the update of the `TOP` model from the `FBA` model.
 
 ### Modeling Frameworks
-* Every model other than `FBA` **MUST** have the SBOTerm [SBO:0000293 non-spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000293) defining the modeling framework on the model element .
+* Every model other than `FBA` **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) defining the modeling framework on the model element .
 
 ### Ports
 Objects in the different submodels are linked via `comp:Ports`.
@@ -82,7 +83,7 @@ In the following sections the guidelines for the individual submodels are specif
   
 ## FBA submodel
 * The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=false`. 
-* The `FBA` submodel(s) **MUST** have the SBOTerm [SBO:0000624 (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) set as modeling framework on the `model` element.
+* The `FBA` submodel(s) **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) set as modeling framework on the `model` element.
 * Exactly one `fbc` submodel **MUST** exist in the DFBA model, i.e. multiple `fbc` submodels are currently not supported.
 * The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model **MUST** be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
 * The `reactions` in the FBA model `MUST NOT` have any `KineticLaw`.
@@ -155,17 +156,20 @@ requirement for the dummy species. This would simplify and clarify things, i.e. 
 I have to check if roadrunner is supporting this, if yes we can go to L3V2.
 Also no real SBOTerm fitting for dummy species or reaction. Using empty set for now.
 -->
-* For every exchange reaction in the `FBA` submodel, there **MUST** be exist a dummy reaction in the `TOP`. The id of the dummy reaction **MUST** be `id=dummy_{rid}` for the respective exchange reaction with `id={rid}` in the `FBA` submodel.
+* For every exchange reaction in the `FBA` submodel, there **MUST** be exist a dummy reaction in the `TOP`. The id of the dummy reaction **MUST** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
 * Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. No other reactants, products or modifiers are allowed on the dummy reactions. 
 * The dummy reactions **MUST** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 
 ### Flux AssignmentRules
-For every exchange reaction in the `FBA` with `id={rid}` and the corresponding dummy reaction in the `TOP` model with `id=dummy_{rid}` an `AssignmentRule` in the `TOP` model **MUST** exist of form
+For every exchange reaction in the `FBA` with `id="{rid}"` and the corresponding dummy reaction in the `TOP` model with `id="dummy_{rid}"` an `AssignmentRule` in the `TOP` model **MUST** exist of form
 ```
 {rid} = {dummy_rid}
 ```
-
-
+### ReplacedBy
+For every dummy reaction in the `TOP` model with `id="dummy_{rid}"` must be replaced via a `comp:ReplacedBy` with the corresponding exchange reaction with `id={rid}` from the `FBA` submodel. The `comp:ReplacedBy` uses the `portRef` of the exchange reaction `{rid}_port`.
+<!--
+Matthias: Not sure if this part is needed. This is how I am encoding my models right now. I am using this ReplacedBy for the update of kinetic modek based on the FBA solution
+-->
 
 ## UPDATE submodel
 The `UPDATE` model can be part of the `TOP` model or a separate submodel.
