@@ -109,11 +109,12 @@ Leandro: This is not how I have done the FBA models but it seems it works in our
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
 
-* The exchange reactions **MUST** have the Species with stoichiometry `1.0` as product and have no substrates (-> 1.0 S), i.e. point towards the species and be annotated with the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).  
-`TODO:` the definition of the direction is different in the SBO term, which would require to reverse all FBA exchange fluxes for the update of the metabolites.
+* The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as product with stoichiometry `1.0` and have no substrates, i.e. being of the form `-> 1.0 S`.
+* The exchange `Reactions` **MUST** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
 <!--
 --@Leandro: Tricky when we use reversible reaction in the FBA model and want to do DFBA with stochastic simulation. 
 Matthias: no stochastic simulations for now, but we have to plan for this.
+Matthias: the definition of the direction is different in the SBO term, which would require to reverse all FBA exchange fluxes for the update of the metabolites. How to resolve this?
 -->
  
 ### Reaction bounds
@@ -123,20 +124,21 @@ Matthias: no stochastic simulations for now, but we have to plan for this.
 Matthias: not sure about that. We probably should change that to: All reactions **MUST** have upper and lower flux bounds defined. This would make things more consistent.
 -->
 
+* SBML `Parameters` describing the flux bounds of exchange reactions **MUST** be `constant=False`. All exchange reactions must have individual `Parameters` for the upper and lower bound which are not used by other reactions. 
+* SBML `Parameters` describing the flux bounds of internal reactions **MUST** be `constant=False`.
 * The `Parameters` for the upper and lower bounds of reactions **SHOULD** have the ids `ub_{rid}` and `lb_{rid}` with `{rid}` being the respective reaction id.
 <!--
 Leandro: Can they use default values?
 Matthias: I don't understand that? What do you mean?
 -->
+* The `Parameters` describing the flux bounds **SHOULD** have the SBOTerm [`SBO:0000625` (flux bound)](http://www.ebi.ac.uk/sbo/main/SBO:0000625). 
 
-* SBML `Parameters` describing the flux bounds of exchange reactions **MUST** be `constant=False`. All exchange reactions must have individual `Parameters` for the upper and lower bound which are not used by other reactions. 
-* SBML `Parameters` describing the flux bounds of internal reactions **MUST** be `constant=False`.
 
 ### Ports
-* All exchange reactions `MUST` have a port.
-* All upper and lower bounds of the exchange reactions `MUST` have a port.
-* Species used in exchange reactions `MUST` have a port.
-* Compartments for species used in exchange reactions `MUST` have a port.
+* All exchange reactions **MUST** have a port.
+* All upper and lower bounds of the exchange reactions **MUST** have a port.
+* Species used in exchange reactions **MUST** have a port.
+* Compartments for species used in exchange reactions **MUST** have a port.
 
 
 ## TOP model
@@ -149,7 +151,7 @@ Matthias: what is the correct SBOTerm for dt. I used the temporal measurement fo
 -->
 
 ### Dummy reactions
-* The top model **MUST** include a dummy species with `id="dummy_S"` with the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). This species is required for the definition of the dummy reactions in SBML L3V1.
+* The top model **MUST** include a dummy species with `id="dummy_S"`. The dummy species are required for the definition of the dummy reactions in SBML L3V1.
 <!--
 Matthias: We should move to L3V2, where there is no more
 requirement for the dummy species. This would simplify and clarify things, i.e. remove the dummy species rules.
@@ -158,27 +160,37 @@ Also no real SBOTerm fitting for dummy species or reaction. Using empty set for 
 -->
 * For every exchange reaction in the `FBA` submodel, there **MUST** be exist a dummy reaction in the `TOP`. The id of the dummy reaction **MUST** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
 * Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. No other reactants, products or modifiers are allowed on the dummy reactions. 
-* The dummy reactions **MUST** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
+* The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
+* The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 
-### Flux AssignmentRules
-For every exchange reaction in the `FBA` with `id="{rid}"` and the corresponding dummy reaction in the `TOP` model with `id="dummy_{rid}"` an `AssignmentRule` in the `TOP` model **MUST** exist of form
-```
-{rid} = {dummy_rid}
-```
 ### ReplacedBy
 For every dummy reaction in the `TOP` model with `id="dummy_{rid}"` must be replaced via a `comp:ReplacedBy` with the corresponding exchange reaction with `id={rid}` from the `FBA` submodel. The `comp:ReplacedBy` uses the `portRef` of the exchange reaction `{rid}_port`.
 <!--
 Matthias: Not sure if this part is needed. This is how I am encoding my models right now. I am using this ReplacedBy for the update of kinetic modek based on the FBA solution
 -->
 
+### Flux AssignmentRules & Flux parameters
+* For every dummy reaction in the `TOP` model with `id="dummy_{rid}"` a flux parameter **MUST** exist in the `TOP` model with `id="{rid}"` which is `constant=true`.
+<!--
+SBOTerm for the flux parameters?
+-->
+* For every dummy `Reaction` and corresponding flux `Parameter` in the top model an `AssignmentRule` in the `TOP` model **MUST** exist of form `{rid} = {dummy_rid}`. With these `AssignmentRules` the flux from the `FBA` is assigned to the flux `Parameters`.
+* The flux `Parameters` **SHOULD** have the SBOTerm [`SBO:0000612` (rate of reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000612).
+* The flux `AssignmentRules` **SHOULD** have the SBOTerm [`SBO:0000391` (steady state expression)](http://www.ebi.ac.uk/sbo/main/SBO:0000391).
+<!-- What SBOTerm? -->
+
+
+
 ## UPDATE submodel
-The `UPDATE` model can be part of the `TOP` model or a separate submodel.
+The `UPDATE` model can be part of the `TOP` model or a separate submodel. The update submodel takes care of the 
 * All species and reactions in the UPDATE submodel **MUST** be named as the species and reactions in the FBA submodel.
 * The UPDATE submodel **MUST** be structurely equivalent to the FBA submodel. The only difference should be reactions in the UPDATE submodel should use kinetic law and the FBA submodel should use flux bounds.
 * All reactions in the UPDATE submodel **MUST** have a kinetic law that depends on a parameter being replaced by another parameter in the TOP model. 
 * The parameters that appear in the reactions kinetic law **SHOULD** be a function of the computed fluxes of the FBA submodel.
 <!--how to name things? -->
 <!--how related to the FBA and top model?-->
+`TODO:` These are Michaelis-Menten like Terms of the form `(vGlcxt*Y*bioreactor) * Glcxt/(Km_vFBA + Glcxt)`. How to encode these exactely? reactions? parameters?
+
 
 ## BOUNDS submodel
 The `BOUNDS` submodel is used for the calculation of the upper and lower bounds for the `FBA` model. For the calculation the species changed by FBA and the time step `dt` are required. The `BOUNDS` model can be part of the `TOP` model or a separate submodel.
