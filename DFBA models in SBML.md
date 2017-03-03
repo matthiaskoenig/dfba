@@ -179,10 +179,12 @@ For every dummy reaction in the `TOP` model with `id="dummy_{rid}"` must be repl
 Matthias: Not sure if this part is needed. This is how I am encoding my models right now. I am using this ReplacedBy for the update of kinetic modek based on the FBA solution
 -->
 
-### Replacments
+### Replacements
 The following replacements are part of the model:
 `TODO:` what are the replacements exactely, list all of them
-
+<!-- 
+Try to do all replacements in the top model.
+-->
 
 ## UPDATE submodel
 The `UPDATE` model can be part of the `TOP` model or a separate submodel. The update submodel takes care of the 
