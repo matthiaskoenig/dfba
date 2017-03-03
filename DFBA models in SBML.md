@@ -148,18 +148,22 @@ Matthias: what is the correct SBOTerm for dt. I used the temporal measurement fo
 -->
 
 ### Dummy reactions
-`TODO:` Describe the dummy reactions.
-* For every flux computed in the FBA submodel, there **MUST** be a dummy reaction in the TOP model that replaces the reactions in the FBA submodel. 
-* Each dummy reaction **MUST** include a dummy reactant as product/species.
+* The top model **MUST** include a dummy species with `id="dummy_S"` with the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). This species is required for the definition of the dummy reactions in SBML L3V1.
 <!--
 Matthias: We should move to L3V2, where there is no more
-requirement for the dummy species. This would simplify and clarify 
-things.
+requirement for the dummy species. This would simplify and clarify things, i.e. remove the dummy species rules.
 I have to check if roadrunner is supporting this, if yes we can go to L3V2.
+Also no real SBOTerm fitting for dummy species or reaction. Using empty set for now.
 -->
+* For every exchange reaction in the `FBA` submodel, there **MUST** be exist a dummy reaction in the `TOP`. The id of the dummy reaction **MUST** be `id=dummy_{rid}` for the respective exchange reaction with `id={rid}` in the `FBA` submodel.
+* Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. No other reactants, products or modifiers are allowed on the dummy reactions. 
+* The dummy reactions **MUST** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 
-
-* naming of dummy reactions? relation to FBA reactions?
+### Flux AssignmentRules
+For every exchange reaction in the `FBA` with `id={rid}` and the corresponding dummy reaction in the `TOP` model with `id=dummy_{rid}` an `AssignmentRule` in the `TOP` model **MUST** exist of form
+```
+{rid} = {dummy_rid}
+```
 
 
 
@@ -167,8 +171,8 @@ I have to check if roadrunner is supporting this, if yes we can go to L3V2.
 The `UPDATE` model can be part of the `TOP` model or a separate submodel.
 * All species and reactions in the UPDATE submodel **MUST** be named as the species and reactions in the FBA submodel.
 * The UPDATE submodel **MUST** be structurely equivalent to the FBA submodel. The only difference should be reactions in the UPDATE submodel should use kinetic law and the FBA submodel should use flux bounds.
-* All reactions in the UPDATE submodel ** MUST ** have a kinetic law that depends on a parameter being replaced by another parameter in the TOP model. 
-* The parameters that appear in the reactions kinetic law should be a function of the computed fluxes of the FBA submodel.
+* All reactions in the UPDATE submodel **MUST** have a kinetic law that depends on a parameter being replaced by another parameter in the TOP model. 
+* The parameters that appear in the reactions kinetic law **SHOULD** be a function of the computed fluxes of the FBA submodel.
 <!--how to name things? -->
 <!--how related to the FBA and top model?-->
 
@@ -185,7 +189,6 @@ Yes, t(i+1) = t(i) + dt, but this only defines when the FBA is executed. I updat
 
 * This **MUST** contain bound parameters for every reaction in the FBA that does not use default bounds. 
 * **MUST** have species values to compute how much reactions can be fired.
-
 
 
 ## Linking FBA with ODE model
