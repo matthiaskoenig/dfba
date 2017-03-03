@@ -13,9 +13,9 @@ The document is structured in
 * Section B) provides information on how simulators should execute models provided in the format of Section A). DFBA Implementation are provided by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
 * Section C) provides answers to frequently asked questions.
 
-The following conventions are used in throughout this document.
+The following conventions are used throughout this document.
 * Required rules are stated via **MUST**, i.e. DFBA models in SBML must implement these rules.
-* Guidelines which should be followed are indicated by **SHOULD**, i.e. it is good practise to follow these guidelines, but they are not required for an executable DFBA model in SBML.
+* Guidelines which should be followed are indicated by **SHOULD**, i.e. it is good practice to follow these guidelines, but they are not required for an executable DFBA model in SBML. [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) will run the DFBA even if these recommendations are not followed.
 
 Example models implementing the rules and guidelines of this document are provided in the `dfba/models` folder of the [github repository](https://github.com/matthiaskoenig/dfba).
 
@@ -24,8 +24,11 @@ The following abbreviations are used in this document
 * FBA : Flux Balance Analysis
 * SBML : Systems Biology Markup Language
 
+
+<!------------------------------------------------------------------->
 # A) Encoding DFBA models in SBML
 This section describes how DFBA models can be encoded in SBML.
+
 ## DFBA model
 * The DFBA SBML model **MUST** be a single `comp` model.
 * The DFBA submodel **MUST** be encoded in the DFBA model via `comp:SubModel`. The individual submodels **MUST** be encoded via `comp:ExternalModelDefinition` with each submodel being a separate file.
@@ -36,7 +39,7 @@ Matthias: I am currently only supporting ExternalModelDefinitions. I can impleme
 * All SBML submodels of the DFBA model **MUST** be encoded in SBML L3V1 or higher.
 * The DFBA SBML model and all SBML submodels **MUST** be valid SBML.
 * The DFBA model **MUST** be encoded using SBML `core` and the SBML packages `comp` and `fbc`.
-* All DFB model and all submodels **SHOULD** only use released SBML packages.
+* All DFBA model and submodels **SHOULD** only use released SBML packages.
 <!-- 
 Leandro: This is tricky because we don't support all packages. I think we should require the bare minimum to make a simulatable model for our tools.  
 
@@ -44,7 +47,7 @@ Matthias: I think you misunderstood and we should clarify. This just says you sh
 -->
 
 The DFBA models consists of different units performing part of the DFBA task. These tasks are
-* `TOP` : DFBA comp model
+* `TOP` : DFBA comp model that includes all submodels and their corresponding connections
 * `KINETIC` : kinetic part of the DFBA model
 * `FBA` : FBA part of the DFBA model
 * `BOUNDS` : calculation of the upper and lower bounds for the `FBA` model
@@ -63,9 +66,11 @@ The DFBA models consists of different units performing part of the DFBA task. Th
     * the `BOUNDS` ode model, which defines the calculation of the FBA bounds
     * the `UPDATE` ode model, which defines the update of the `TOP` model from the `FBA` model.
 
-* The `TOP`,`UPDATE` and all other `NON-FBA` models **MUST** have the SBOTerm [SBO:0000293 non-spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000293) defining the modeling framework on the model element .
+* Every model other than `FBA` **MUST** have the SBOTerm [SBO:0000293 non-spatial continuous framework](http://www.ebi.ac.uk/sbo/main/SBO:0000293) defining the modeling framework on the model element .
 
-In the following sections the guidelines for the individual submodels are specified
+* All models **SHOULD** include units.
+
+In the following sections the guidelines for the individual submodels are specified.
   
 ## FBA submodel
 * The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=false`. 
@@ -121,44 +126,71 @@ Matthias: I don't understand that? What do you mean?
 ### Ports
 * All exchange reactions `MUST` have a port.
 * All upper and lower bounds of the exchange reactions `MUST` have a port.
-* Apecies used in exchange reactions `MUST` have a port.
+* Species used in exchange reactions `MUST` have a port.
 * Compartments for species used in exchange reactions `MUST` have a port.
 
 
 ## TOP model
-* how related to `FBA` and `UPDATE` model ?
-* dummy reaction & reactant.
-* @Leandro: Do we need KISAO for DFBA?
-* @Leandro: should we allow any SBML core? events, algebraic, delay, etc?  
-@Matthias: yes, everything but delays and algebraic rules
+<!-- how related to `FBA` and `UPDATE` model ? -->
+
+### dummy reactions
+* For every flux computed in the FBA submodel, there **MUST** be a dummy reaction in the TOP model that replaces the reactions in the FBA submodel. 
+* Each dummy reaction **MUST** include a dummy reactant as product/species.
+
+`TODO:` Describe the dummy reactions.
+<!--
+Matthias: Is there still the requirement for a species in a reaction in L3V2. If not
+we should just force L3V2 and remove the dummy species.
+-->
 
 ## UPDATE model
-* how to name things? 
-* how related to the FBA and top model?
+* All species and reactions in the UPDATE submodel **MUST** be named as the species and reactions in the FBA submodel.
+* The UPDATE submodel **MUST** be structurely equivalent to the FBA submodel. The only difference should be reactions in the UPDATE submodel should use kinetic law and the FBA submodel should use flux bounds.
+* All reactions in the UPDATE submodel ** MUST ** have a kinetic law that depends on a parameter being replaced by another parameter in the TOP model. 
+* The parameters that appear in the reactions kinetic law should be a function of the computed fluxes of the FBA submodel.
+<!--how to name things? -->
+<!--how related to the FBA and top model?-->
 
 ## BOUNDS model
-* This should contain bound parameters for every reaction in the FBA that does not use default bounds. 
-* Should have species values to compute how much reactions can be fired.
+* This **MUST** contain bound parameters for every reaction in the FBA that does not use default bounds. 
+* **MUST** have species values to compute how much reactions can be fired.
+* **MUST** contain  parameter dt.
 
-## Linking FBA and ode models
-Two links must be defined between the FBA model and the kinetic models:
-1. How are the species updated based on the FBA flux distributions:
-After every FBA step the FBA fluxes are stored where ? in FBA model.
 
-* Michaelis-Menten rule based on the species in the reaction (@Leandro: shouldn't this be in the update?)
+## Linking FBA with ODE model
+Two links are required between the FBA model and the kinetic models: 
+* Update of flux bounds in the FBA model from the kinetic model. 
+* Update of species in kinetic model which are changed by FBA boundary reactions.
 
-2. How are the flux bounds updated before the FBA is run?
-* The submodel handling the update of the bounds must contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. During the time interval `dt` the FBA flux distribution is assumed constant. The output time points of the complete simulation, i.e. at which timepoints outputs are generated must be compatible to `dt`, i.e. the time between output points is `dt`.
-* The parameter `dt` is used in calculating the upper and lower bounds based on the availability of the species used in the reaction. This ensures that the FBA solution cannot take more than the available species amounts in the timestep of duration `dt`
-
+### Update of flux bounds
+* The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed.
+* The submodel handling the update of the bounds **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. The `BOUNDS` submodel `dt` must be linked via a port to the `TOP` model `dt`. If the `TOP` model is performing the update of the bounds this rule is obsolete.
+<!-- 
 @Leandro: should dt be defined in the top? Can simulation time be updated using t = t + dt?
 Ambiguous with SED-ML?
-@Matthias: Yes dt should be in top. Yes, t(i+1) = t(i) + dt, but this only defines when the FBA is executed.
+@Matthias: Yes dt should be in top. But if there is separate model for bounds calculation dt must be mirrored there.
+Yes, t(i+1) = t(i) + dt, but this only defines when the FBA is executed. I updated the rules above accordingly and added the info to the simulation section.
+-->
+
+* The parameter `dt` is used in calculating the upper and lower bounds based on the availability of the species used in the reaction. This ensures that the FBA solution cannot take more than the available species amounts in the timestep of duration `dt`
 
 $$r1: A + 2 B -> C+3D$$
 
+`TODO:` fill in the rules/math which must be added for bounds update
+
+### Update of species from FBA solutions
+* After every FBA step the fluxes of the optimal FBA solution **MUST** be stored in the respective dummy reactions in the `TOP` model.
+<!--
+Matthias: this is more simulation section than model definition section.
+-->
+* Michaelis-Menten rule based on the species in the reaction kinetic law. This ensures the species will not go negative.
+
+`TODO:` fill in the Michaelis menten rules. Which form? How does this work?
+
+
 ## Ports
-* Objects which are linked via ports in the different submodels **MUST** have the same ids in the the different submodels. * The respective ports **MUST** have the same ids.
+* Objects which are linked via ports in the different submodels **MUST** have the same ids in the the different submodels. 
+* * The respective ports **MUST** have the same ids.
 * All `comp:Port` elements **SHOULD** follow the following id schema: `{idRef}_port` for a port with `idRef={idRef}`.
 * How to annotate (SBO) and how to name (we should have a simple naming convention which should be followed, so it is clear which ports are belonging to what)?
 * How to encode? 
@@ -169,8 +201,11 @@ This section gives an overview over the SBOterms used in DFBA models.
 * `TODO:` collect and list all SBOTerms we use
 
 
+<!------------------------------------------------------------------->
 # B) Model Simulation
 In this section we describe how simulators should simulate a model given in the DFBA SBML formalism described in section A. The described simulation and update strategy was implemented in the two simulators `iBioSim` and `sbmlutils`.
+
+Currently, all SBML core constructs are supported in the kinetic models with the exception of `Delay` and `AlgebraicRule`.
 
 **`TODO:`** Create figure showing simulation workflow
 
@@ -178,12 +213,24 @@ The DFBA models are solved via a **Static Optimization Approach (SOA)**. The sim
 are constant over the interval. 
 Before every optimization of the FBA part optimization constraints have to be updated from the dynamic part, after every optimization the dynamic variables corresponding to the FBA fluxes have to be updated.
 
+The simulation algorithm starts off by computing the reaction fluxes in the FBA submodel. The reaction fluxes updates the reaction values in the TOP model, which are used to compute the reaction rates in the UPDATE submodel. Once the reaction fluxes are computed by FBA, all NON-FBA submodels are updated concurrently.
+
+* The output time points **MUST** be in agreement with the `dt` parameter, i.e. the interval between subsequent time points **MUST** be `dt`. This does not affect the internal steps of the kinetic solver.
+* If the FBA optimization encounters an infeasible solution the simulation **MUST** stop.
+* If the kinetic simulation encounters problems like unfulfilled tolerances the simulation **MUST** stop.
+* The flux bounds **MUST** be updated from the kinetic model before the FBA optimization is run.
+* The fluxes in the kinetic model **MUST** be set before the kinetic simulation is run.
+
+* For the execution of the kinetic models the comp model is flattend and the flattened model is simulated.
+
 * what is the order of execution of the models ?? & when are the update steps performed ??
 * how do we deal with the step sizes and tolerances?
 
+
+<!------------------------------------------------------------------->
 # C) Frequently asked questions (FAQ)
 ## Are multiple kinetic models supported?
-Yes, multiple kinetic submodels can exist in the DFBA. During the kinetic integrations the flattend kinetic model is integrated.
+Yes, multiple kinetic submodels can exist in the DFBA. During the kinetic integrations the flattend kinetic model is integrated. However, kinetic submodels **SHOULD** be kept inside the KINETIC submodel. 
 
 ## Are multiple FBA submodels supported?
 No, in the first version only a single FBA submodel is allowed.
@@ -196,6 +243,9 @@ A possible solution could be merging of the FBA models and
 creating one overall optimization function. But we should not touch this in the first version.
 -->
 
-
 ## Are stochastic & logical models supported?
-It is possible to encode SBML models with additional modeling frameworks than FBA or deterministic ODE models. Examples are logical models encoded with the SBML package `qual` or stochastic models, i.e. stochastic ODE models. In the first version of the DFBA guidelines and implementation only deterministic kinetic models can be coupled to FBA models. In future versions the coupling of stochastic and/or logical models can be supported.
+No, in the first version of the DFBA guidelines and implementation only deterministic kinetic models can be coupled to FBA models. In future versions the coupling of stochastic and/or logical models can be supported.
+It is possible to encode SBML models with additional modeling frameworks than FBA or deterministic ODE models. Examples are logical models encoded with the SBML package `qual` or stochastic models, i.e. stochastic ODE models. Such models will be considered in future versions. 
+
+## Are variable step sizes supported?
+No, currently only fixed step sizes are supported. The simulation steps must be in agreement with the `dt` parameter for bound updates.
