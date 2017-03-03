@@ -139,26 +139,29 @@ Matthias: I don't understand that? What do you mean?
 
 
 ## TOP model
-<!-- how related to `FBA` and `UPDATE` model ? -->
+
 ### dt
 * The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. 
 * The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).
 <!--
-Matthias: what is the correct SBOTerm for this?
+Matthias: what is the correct SBOTerm for dt. I used the temporal measurement for now.
 -->
-
 
 ### Dummy reactions
 `TODO:` Describe the dummy reactions.
 * For every flux computed in the FBA submodel, there **MUST** be a dummy reaction in the TOP model that replaces the reactions in the FBA submodel. 
 * Each dummy reaction **MUST** include a dummy reactant as product/species.
+<!--
+Matthias: We should move to L3V2, where there is no more
+requirement for the dummy species. This would simplify and clarify 
+things.
+I have to check if roadrunner is supporting this, if yes we can go to L3V2.
+-->
+
+
 * naming of dummy reactions? relation to FBA reactions?
 
 
-<!--
-Matthias: Is there still the requirement for a species in a reaction in L3V2. If not
-we should just force L3V2 and remove the dummy species.
--->
 
 ## UPDATE submodel
 The `UPDATE` model can be part of the `TOP` model or a separate submodel.
