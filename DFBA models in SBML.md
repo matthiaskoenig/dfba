@@ -3,6 +3,7 @@
 <!--
 Please edit this file ONLY on hackmd.io for now and commit the file when finished with editing to the dfba git via Menu -> Download -> Markdown. Than we have the latest version available on github. Comments in this text via the comment syntax.
 -->
+<!-- Discuss this during the next Harmony meeting -->
 * **[latest editable version](https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both)**
 * **[github repository](https://github.com/matthiaskoenig/dfba)**
 
@@ -103,15 +104,18 @@ I added the no KineticLaw as rule above.
 -->
 
 ### Exchange reaction
-* The unbalanced species in the FBA, which correspond to the species which are changed in the kinetic model via the FBA solution **MUST NOT** be encoded via setting `boundaryCondition=True` on the species, but **MUST** be encoded via creating an exchange reaction for the species. I.e. species which are changed via the FBA fluxes have additional exchange reaction in the FBA model.
+* The unbalanced species in the FBA, which correspond to species which are changed in the kinetic model via the FBA solution **MUST NOT** be encoded via setting `boundaryCondition=True` on the species, but **MUST** be encoded via creating an exchange reaction for the species. I.e. species which are changed via the FBA fluxes have additional exchange reaction in the FBA model.
 <!--
 Leandro: This is not how I have done the FBA models but it seems it works in our tool. Would need to change my model and verify.
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
 
-* The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as product with stoichiometry `1.0` and have no substrates, i.e. being of the form `-> 1.0 {sid}` with `{sid}` being the `Species` id.
+* The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as substrate with stoichiometry `1.0` and have no products, i.e. have the form `1.0 {sid} ->` with `{sid}` being the `Species` id.
 * The exchange `Reactions` **MUST** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
+* The exchange `Reactions` **SHOULD** be named `v{sid}_ex`, i.e. contain the `Species` id and the suffix `_ex`.
 <!--
+Matthias: !! directionality changed to be in agreement with SBO and cobra.
+
 --@Leandro: Tricky when we use reversible reaction in the FBA model and want to do DFBA with stochastic simulation. 
 Matthias: no stochastic simulations for now, but we have to plan for this.
 Matthias: the definition of the direction is different in the SBO term, which would require to reverse all FBA exchange fluxes for the update of the metabolites. How to resolve this?
@@ -153,12 +157,12 @@ Matthias: what is the correct SBOTerm for dt. I used the temporal measurement fo
 ### Dummy reactions
 * The top model **MUST** include a dummy species with `id="dummy_S"`. The dummy species are required for the definition of the dummy reactions in SBML L3V1.
 <!--
-Matthias: We should move to L3V2, where there is no more
+Matthias: We should think about moving to L3V2, where there is no more
 requirement for the dummy species. This would simplify and clarify things, i.e. remove the dummy species rules.
 I have to check if roadrunner is supporting this, if yes we can go to L3V2.
 Also no real SBOTerm fitting for dummy species or reaction. Using empty set for now.
 -->
-* For every exchange reaction in the `FBA` submodel, there **MUST** be exist a dummy reaction in the `TOP`. The id of the dummy reaction **MUST** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
+* For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP`. The id of the dummy reaction **MUST** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
 * Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. No other reactants, products or modifiers are allowed on the dummy reactions. 
 * The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
 * The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
@@ -187,14 +191,18 @@ Try to do all replacements in the top model.
 -->
 
 ## UPDATE submodel
-The `UPDATE` model can be part of the `TOP` model or a separate submodel. The update submodel takes care of the 
-* All species and reactions in the UPDATE submodel **MUST** be named as the species and reactions in the FBA submodel.
-* The UPDATE submodel **MUST** be structurely equivalent to the FBA submodel. The only difference should be reactions in the UPDATE submodel should use kinetic law and the FBA submodel should use flux bounds.
-* All reactions in the UPDATE submodel **MUST** have a kinetic law that depends on a parameter being replaced by another parameter in the TOP model. 
-* The parameters that appear in the reactions kinetic law **SHOULD** be a function of the computed fluxes of the FBA submodel.
-<!--how to name things? -->
-<!--how related to the FBA and top model?-->
-`TODO:` These are Michaelis-Menten like Terms of the form `(vGlcxt*Y*bioreactor) * Glcxt/(Km_vFBA + Glcxt)`. How to encode these exactely? reactions? parameters?
+The `UPDATE` model can be part of the `TOP` model or a separate submodel. The update submodel performs the update of the species which are changed by the FBA, i.e. the species which have exchange reactions.
+* For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain a parameter with id `{pid}={rid}` to store the flux from the FBA solution.
+
+* For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
+* The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
+* The update reaction **MUST** have a `KineticLaw` of the form 
+$$v_S\cdot\frac{S}{Km + S}$$
+for the `Species` S being updated. The Michaelis Menten Term assures that the update of the `Species` by the `FBA` flux does not result in negative concentrations. 
+* All species in the UPDATE submodel **MUST** be named identical to the species in the `FBA` submodel.
+<!--
+
+-->
 
 
 ## BOUNDS submodel
