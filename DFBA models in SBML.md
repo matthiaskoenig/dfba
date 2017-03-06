@@ -9,6 +9,8 @@ Please edit this file ONLY on hackmd.io for now and commit the file when finishe
 
 This document describes the rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in the Systems Biology Markup Language ([SBML](http://sbml.org/Main_Page)), a free and open interchange format for computer models of biological processes.
 
+Note that the guidelines have been proposed by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) as ground rules to simulate DFBA models in these tools. It is by no means a community agreement. However, we highly encourage everyone who wants to encode DFBA models and tool developers to follow these rules.
+
 The document is structured in
 * **Section A**: describes how to encode DFBA models in SBML.
 * **Section B**: provides information on how simulators should execute models provided in the format of Section A). DFBA Implementation are provided by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
@@ -16,7 +18,8 @@ The document is structured in
 
 The following conventions are used throughout this document.
 * Required rules are stated via **MUST**, i.e. DFBA models in SBML must implement these rules.
-* Guidelines which should be followed are indicated by **SHOULD**, i.e. it is good practice to follow these guidelines, but they are not required for an executable DFBA model in SBML. [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) will run the DFBA even if these recommendations are not followed.
+* Guidelines which are recommended to be followed are indicated by **SHOULD**, i.e. it is good practice to follow these guidelines, but they are not required for an executable DFBA model in SBML. [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) will run the DFBA even if these recommendations are not followed.
+* Additional information for clarification is provided by **CAN**, i.e. it is clarified that this is allowed.
 * Curly brackets function as place holders. For instance the reaction id `{rid}` means that `{rid}` is replaced with the actual id of the reaction.
 
 Example models implementing the rules and guidelines of this document are provided in the `dfba/models` folder of the [github repository](https://github.com/matthiaskoenig/dfba).
@@ -78,16 +81,15 @@ Objects in the different submodels are linked via `comp:Ports`.
 * All `comp:Port` elements **SHOULD** hereby follow the id schema: id of the port is `{idRef}_port` for an object with `idRef={idRef}`.
 
 ### Units
+Units are especially helpful when connecting `FBA` and kinetic model in DFBA models, because they can ensure that the updates of `Species` via `FBA` fluxes have compatible units.
 * All models **SHOULD** include units.
-
-In the following sections the guidelines for the individual submodels are specified.
   
 ## FBA submodel
 * The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=false`. 
 * The `FBA` submodel(s) **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) set as modeling framework on the `model` element.
 * Exactly one `fbc` submodel **MUST** exist in the DFBA model, i.e. multiple `fbc` submodels are currently not supported.
 * The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model **MUST** be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
-* The `reactions` in the FBA model `MUST NOT` have any `KineticLaw`.
+* The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
 <!--
 Leandro: The FBA model **MUST** consist only of `parameters`, `species`, `compartments`, and `reactions` are allowed. Reactions should not have kinetic law.
 Matthias: I think this is too restrictive. We should allow valid FBA models encoded in fbc-v2.
@@ -97,11 +99,7 @@ I added the no KineticLaw as rule above.
 ### Objective function
 * The FBA model **MUST** contain at least one objective function.
 * The optimization objective for the DFBA model **MUST** be the active objective in the fba model, i.e. an active objective **MUST** exist and be the objective which is executed in every step of the DFBA.
-* The objective **MUST** be `maximize`.
-<!--
-@Leandro: Will this always be the case?
-@Matthias: Are you supporting minimize? If yes we can make this minimize or maximize (I am only supporting maximize right now, but could easily implement minimize as well)
--->
+* The objective **CAN** be `maximize` or `minimize`.
 
 ### Exchange reaction
 * The unbalanced species in the FBA, which correspond to species which are changed in the kinetic model via the FBA solution **MUST NOT** be encoded via setting `boundaryCondition=True` on the species, but **MUST** be encoded via creating an exchange reaction for the species. I.e. species which are changed via the FBA fluxes have additional exchange reaction in the FBA model.
@@ -112,14 +110,16 @@ Matthias: This would be great because it simplifies many things for me. Also we 
 
 * The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as substrate with stoichiometry `1.0` and have no products, i.e. have the form `1.0 {sid} ->` with `{sid}` being the `Species` id.
 * The exchange `Reactions` **MUST** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
-* The exchange `Reactions` **SHOULD** be named `v{sid}_ex`, i.e. contain the `Species` id and the suffix `_ex`.
+* The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
 <!--
-Matthias: !! directionality changed to be in agreement with SBO and cobra.
+Matthias: !! directionality changed to be in agreement with SBO, cobra(py) and BiGG models. Also naming adapted. This allows to directly use BiGG models for DFBA simulations. See for instance
+http://bigg.ucsd.edu/models/e_coli_core/reactions/EX_ac_e
 
 --@Leandro: Tricky when we use reversible reaction in the FBA model and want to do DFBA with stochastic simulation. 
 Matthias: no stochastic simulations for now, but we have to plan for this.
-Matthias: the definition of the direction is different in the SBO term, which would require to reverse all FBA exchange fluxes for the update of the metabolites. How to resolve this?
 -->
+### BoundaryCondition
+FBA models which have `species` with `boundaryCondition=True` are not supported. Such models can easily be converted in supported `FBA` models by setting `boundaryCondition=False` and adding a exchange `Reaction` for the corresponding `Species`.
  
 ### Reaction bounds
 * SBML `Parameters` for upper and lower bounds **MUST** exist for all reactions and have numerical values, i.e. no `InitialAssignments` or `AssignmentRules` for flux bound parameter are allowed.
@@ -197,11 +197,12 @@ The `UPDATE` model can be part of the `TOP` model or a separate submodel. The up
 * For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
 * The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
 * The update reaction **MUST** have a `KineticLaw` of the form 
-$$v_S\cdot\frac{S}{Km + S}$$
+$$update_S = v_S\cdot\frac{S}{Km + S}$$
 for the `Species` S being updated. The Michaelis Menten Term assures that the update of the `Species` by the `FBA` flux does not result in negative concentrations. 
-* All species in the UPDATE submodel **MUST** be named identical to the species in the `FBA` submodel.
+* All species in the `UPDATE` submodel **MUST** be named identical to the species in the `FBA` submodel.
+* The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 <!--
-
+Matthias: The flux units must fit to the species. This is currently a problem in the diauxic growth because things are always normalized with X. I must update the model structure that fluxes and species are compatible, but still have the normalization. Not sure how to handle this best.
 -->
 
 
@@ -301,3 +302,6 @@ It is possible to encode SBML models with additional modeling frameworks than FB
 
 ## Are variable step sizes supported?
 No, currently only fixed step sizes are supported. The simulation steps must be in agreement with the `dt` parameter for bound updates.
+
+## I am a tool developer and have different ideas about DFBA encoding in SBML. How can I contribute?
+You can make suggestions on the [Github Issue Tracker](https://github.com/matthiaskoenig/dfba/issues). Note this does not guarantee that your suggestions will be adopted.
