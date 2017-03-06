@@ -20,6 +20,3 @@ https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both
 
 **Repository version**  
 [DFBA models in SBML.md](DFBA models in SBML.md)
-
-
-d 
