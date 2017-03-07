@@ -167,12 +167,10 @@ Also no real SBOTerm fitting for dummy species or reaction. Using empty set for 
 * The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
 * The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 
-### Flux AssignmentRules & Flux parameters
-* For every dummy reaction in the `TOP` model with `id="dummy_{rid}"` a flux parameter **MUST** exist in the `TOP` model with `id="{rid}"` which is `constant=true`.
-<!--
-SBOTerm for the flux parameters?
--->
-* For every dummy `Reaction` and corresponding flux `Parameter` in the top model an `AssignmentRule` in the `TOP` model **MUST** exist of form `{rid} = {dummy_rid}`. With these `AssignmentRules` the flux from the `FBA` is assigned to the flux `Parameters`.
+###  Flux parameters & Flux AssignmentRules
+* For every dummy `Reaction` in the `TOP` model with id a corresponding flux `Parameter` **MUST** exist in the `TOP` model which is `constant=true`.
+* For every dummy `Reaction` and corresponding flux `Parameter` in the top model an `AssignmentRule` in the `TOP` model **MUST** exist of form `{rid} = {dummy_rid}`.
+* The flux parameter **SHOULD** have the id with `{rid}` for dummy reactions `{dummy_rid}`.
 * The flux `Parameters` **SHOULD** have the SBOTerm [`SBO:0000612` (rate of reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000612).
 * The flux `AssignmentRules` **SHOULD** have the SBOTerm [`SBO:0000391` (steady state expression)](http://www.ebi.ac.uk/sbo/main/SBO:0000391).
 <!-- What SBOTerm? -->
