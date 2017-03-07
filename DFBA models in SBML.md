@@ -32,7 +32,10 @@ The following abbreviations are used in this document
 
 <!------------------------------------------------------------------->
 # A) Encoding DFBA models in SBML
-This section describes how DFBA models can be encoded in SBML.
+This section describes how DFBA models can be encoded in SBML. Two main links are hereby required between the FBA model and the kinetic models: 
+* Update of flux bounds in the FBA model from the kinetic model. 
+* Update of reaction fluxes in the kinetic model from the FBA solution.
+
 
 ## DFBA model
 * The DFBA SBML model **MUST** be a single `comp` model.
@@ -85,8 +88,8 @@ Units are especially helpful when connecting `FBA` and kinetic model in DFBA mod
 * All models **SHOULD** include units.
   
 ## FBA submodel
+* The `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
 * The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=false`. 
-* The `FBA` submodel(s) **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) set as modeling framework on the `model` element.
 * Exactly one `fbc` submodel **MUST** exist in the DFBA model, i.e. multiple `fbc` submodels are currently not supported.
 * The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model **MUST** be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
 * The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
@@ -146,6 +149,7 @@ Matthias: I don't understand that? What do you mean?
 
 
 ## TOP model
+* The `TOP` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
 
 ### dt
 * The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. 
@@ -188,24 +192,13 @@ The following replacements are part of the model:
 Try to do all replacements in the top model.
 -->
 
-## UPDATE submodel
-The `UPDATE` model can be part of the `TOP` model or a separate submodel. The update submodel performs the update of the species which are changed by the FBA, i.e. the species which have exchange reactions.
-* For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain a parameter with id `{pid}={rid}` to store the flux from the FBA solution.
-
-* For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
-* The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
-* The update reaction **MUST** have a `KineticLaw` of the form 
-$$update_S = v_S\cdot\frac{S}{Km + S}$$
-for the `Species` S being updated. The Michaelis Menten Term assures that the update of the `Species` by the `FBA` flux does not result in negative concentrations. 
-* All species in the `UPDATE` submodel **MUST** be named identical to the species in the `FBA` submodel.
-* The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
-<!--
-Matthias: The flux units must fit to the species. This is currently a problem in the diauxic growth because things are always normalized with X. I must update the model structure that fluxes and species are compatible, but still have the normalization. Not sure how to handle this best.
--->
-
-
 ## BOUNDS submodel
 The `BOUNDS` submodel is used for the calculation of the upper and lower bounds for the `FBA` model. For the calculation the species changed by FBA and the time step `dt` are required. The `BOUNDS` model can be part of the `TOP` model or a separate submodel.
+The parameter `dt` is used in calculating the upper and lower bounds based on the availability of the species used in the reaction. This ensures that the FBA solution cannot take more than the available species amounts in the timestep of duration `dt`
+
+* After every FBA step the fluxes of the optimal FBA solution **MUST** be stored in the respective dummy reactions in the `TOP` model.
+
+* The `BOUNDS` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
 * The submodel handling the update of the bounds **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. The `BOUNDS` submodel `dt` must be linked via a port to the `TOP` model `dt`. The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).  
 If the `BOUNDS` model is part of the `TOP` model this rule is obsolete.
 <!-- 
@@ -224,33 +217,21 @@ Matthias: The bound must be the most restrictive bound via min/max function. Pro
 
 * ? This **MUST** contain bound parameters for every reaction in the FBA that does not use default bounds. 
 
+## UPDATE submodel
+The `UPDATE` model can be part of the `TOP` model or a separate submodel. The update submodel performs the update of the species which are changed by the FBA, i.e. the species which have exchange reactions.
+* The `UPDATE` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
+* For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain a parameter with id `{pid}={rid}` to store the flux from the FBA solution.
 
-
-## Linking FBA with ODE model
-<!-- 
-Matthias: this section should be removed and the infromation merged with the `BOUNDS`, `UPDATE` model parts and the simulation section
--->
-
-Two links are required between the FBA model and the kinetic models: 
-* Update of flux bounds in the FBA model from the kinetic model. 
-* Update of species in kinetic model which are changed by FBA boundary reactions.
-
-### Update of flux bounds
-* The parameter `dt` is used in calculating the upper and lower bounds based on the availability of the species used in the reaction. This ensures that the FBA solution cannot take more than the available species amounts in the timestep of duration `dt`
-
-$$r1: A + 2 B -> C+3D$$
-
-`TODO:` fill in the rules/math which must be added for bounds update
-
-### Update of species from FBA solutions
-* After every FBA step the fluxes of the optimal FBA solution **MUST** be stored in the respective dummy reactions in the `TOP` model.
+* For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
+* The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
+* The update reaction **MUST** have a `KineticLaw` of the form 
+$$update_S = v_S\cdot\frac{S}{Km + S}$$
+for the `Species` S being updated. The Michaelis Menten Term assures that the update of the `Species` by the `FBA` flux does not result in negative concentrations. 
+* All species in the `UPDATE` submodel **MUST** be named identical to the species in the `FBA` submodel.
+* The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 <!--
-Matthias: this is more simulation section than model definition section.
+Matthias: The flux units must fit to the species. This is currently a problem in the diauxic growth because things are always normalized with X. I must update the model structure that fluxes and species are compatible, but still have the normalization. Not sure how to handle this best.
 -->
-* Michaelis-Menten rule based on the species in the reaction kinetic law. This ensures the species will not go negative.
-
-`TODO:` fill in the Michaelis menten rules. Which form? How does this work?
-
 
 <!------------------------------------------------------------------->
 # B) Model Simulation
@@ -265,6 +246,26 @@ are constant over the interval.
 Before every optimization of the FBA part optimization constraints have to be updated from the dynamic part, after every optimization the dynamic variables corresponding to the FBA fluxes have to be updated.
 
 The simulation algorithm starts off by computing the reaction fluxes in the FBA submodel. The reaction fluxes updates the reaction values in the TOP model, which are used to compute the reaction rates in the UPDATE submodel. Once the reaction fluxes are computed by FBA, all NON-FBA submodels are updated concurrently.
+
+```
+time = 0
+while (time <= tend){
+    # FBA
+    set_bounds_fba()
+    v_optimal = optimize_fba()
+    
+    # ODE
+    update_fluxes_ode(v_optimal)
+    integrate_ode(start=time, end=time+dt, steps=1)
+    
+    # Next time step
+    time = time + dt
+}
+
+
+```
+
+
 
 * The output time points **MUST** be in agreement with the `dt` parameter, i.e. the interval between subsequent time points **MUST** be `dt`. This does not affect the internal steps of the kinetic solver.
 * If the FBA optimization encounters an infeasible solution the simulation **MUST** stop.
