@@ -140,8 +140,8 @@ Matthias: I don't understand that? What do you mean?
 
 ### Ports
 * All exchange reactions **MUST** have a port.
-* All upper and lower bounds of the exchange reactions **MUST** have a port.
-* Species used in exchange reactions **MUST** have a port.
+* All Species used in exchange reactions **MUST** have a port.
+* All upper and lower bounds of exchange reactions **MUST** have a port.
 * Compartments for species used in exchange reactions **MUST** have a port.
 
 
@@ -162,8 +162,8 @@ requirement for the dummy species. This would simplify and clarify things, i.e. 
 I have to check if roadrunner is supporting this, if yes we can go to L3V2.
 Also no real SBOTerm fitting for dummy species or reaction. Using empty set for now.
 -->
-* For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP`. The id of the dummy reaction **MUST** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
-* Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. No other reactants, products or modifiers are allowed on the dummy reactions. 
+* For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP`. Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. No other reactants, products or modifiers are allowed on the dummy reactions `(-> dummy_S)`. 
+* The id of the dummy reaction **SHOULD** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
 * The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
 * The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 
