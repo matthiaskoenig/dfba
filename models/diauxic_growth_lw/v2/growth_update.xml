@@ -1,0 +1,678 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" arrays:required="true" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:arrays="http://www.sbml.org/sbml/level3/version1/arrays/version1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+  <model fbc:strict="false" id="growth_update" metaid="iBioSim3" sboTerm="SBO:0000293">
+    <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:port comp:idRef="Cell" id="compartment__Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:idRef="Ac" id="input__Ac" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="rateOfV1" id="input__rateOfV1" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="rateOfV3" id="input__rateOfV3" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="rateOfV4" id="input__rateOfV4" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="rateOfV2" id="input__rateOfV2" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="X" id="input__X" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="o_rate_uptake" id="input__o_rate_uptake" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="g_rate_uptake" id="input__g_rate_uptake" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="Glcxt" id="input__Glcxt" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="O2" id="input__O2" sboTerm="SBO:0000600"/>
+    </comp:listOfPorts>
+    <layout:listOfLayouts xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <layout:layout layout:id="iBioSim">
+        <layout:dimensions layout:depth="0" layout:height="470" layout:width="530"/>
+        <layout:listOfAdditionalGraphicalObjects>
+          <layout:generalGlyph layout:id="Glyph__rateOfV1" layout:reference="rateOfV1">
+            <layout:boundingBox>
+              <layout:position layout:x="245" layout:y="430"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__v1" layout:id="Glyph__rateOfV1__product__v1" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="575" layout:y="75"/>
+                      <layout:end layout:x="260" layout:y="400"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfV3" layout:reference="rateOfV3">
+            <layout:boundingBox>
+              <layout:position layout:x="200" layout:y="195"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__v3" layout:id="Glyph__rateOfV3__product__v3" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="575" layout:y="115"/>
+                      <layout:end layout:x="260" layout:y="210"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfV2" layout:reference="rateOfV2">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="100"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__v2" layout:id="Glyph__rateOfV2__product__v2" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="625" layout:y="75"/>
+                      <layout:end layout:x="425" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfV4" layout:reference="rateOfV4">
+            <layout:boundingBox>
+              <layout:position layout:x="65" layout:y="105"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__v4" layout:id="Glyph__rateOfV4__product__v4" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="625" layout:y="115"/>
+                      <layout:end layout:x="80" layout:y="165"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__g_rate_uptake" layout:reference="g_rate_uptake">
+            <layout:boundingBox>
+              <layout:position layout:x="245" layout:y="10"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__r0" layout:id="Glyph__g_rate_uptake__product__r0" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="515" layout:y="25"/>
+                      <layout:end layout:x="30" layout:y="40"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__g_uptake" layout:id="Glyph__g_rate_uptake__product__g_uptake" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="365" layout:y="55"/>
+                      <layout:end layout:x="260" layout:y="55"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__o_rate_uptake" layout:reference="o_rate_uptake">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="380"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__r1" layout:id="Glyph__o_rate_uptake__product__r1" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="495" layout:y="335"/>
+                      <layout:end layout:x="30" layout:y="40"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+        </layout:listOfAdditionalGraphicalObjects>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:compartment="Cell" layout:id="Glyph__Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="20" layout:y="10"/>
+              <layout:dimensions layout:height="460" layout:width="510"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="Glyph__Glcxt" layout:species="Glcxt">
+            <layout:boundingBox>
+              <layout:position layout:x="210" layout:y="70"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__O2" layout:species="O2">
+            <layout:boundingBox>
+              <layout:position layout:x="375" layout:y="290"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__Ac" layout:species="Ac">
+            <layout:boundingBox>
+              <layout:position layout:x="30" layout:y="300"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__X" layout:species="X">
+            <layout:boundingBox>
+              <layout:position layout:x="210" layout:y="255"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfReactionGlyphs>
+          <layout:reactionGlyph layout:id="Glyph__v3" layout:reaction="v3">
+            <layout:boundingBox>
+              <layout:position layout:x="250" layout:y="200"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v3__substrate__O2" layout:role="substrate" layout:speciesGlyph="Glyph__O2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="425" layout:y="305"/>
+                      <layout:end layout:x="260" layout:y="210"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v3__substrate__Glcxt" layout:role="substrate" layout:speciesGlyph="Glyph__Glcxt">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="85"/>
+                      <layout:end layout:x="260" layout:y="210"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v3__product__Ac" layout:role="product" layout:speciesGlyph="Glyph__Ac">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="210"/>
+                      <layout:end layout:x="80" layout:y="315"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v3__product__X" layout:role="product" layout:speciesGlyph="Glyph__X">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="210"/>
+                      <layout:end layout:x="260" layout:y="270"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__v1" layout:reaction="v1">
+            <layout:boundingBox>
+              <layout:position layout:x="250" layout:y="390"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v1__substrate__Ac" layout:role="substrate" layout:speciesGlyph="Glyph__Ac">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="80" layout:y="315"/>
+                      <layout:end layout:x="260" layout:y="400"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v1__substrate__O2" layout:role="substrate" layout:speciesGlyph="Glyph__O2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="425" layout:y="305"/>
+                      <layout:end layout:x="260" layout:y="400"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v1__product__X" layout:role="product" layout:speciesGlyph="Glyph__X">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="400"/>
+                      <layout:end layout:x="260" layout:y="270"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__v2" layout:reaction="v2">
+            <layout:boundingBox>
+              <layout:position layout:x="415" layout:y="145"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v2__substrate__Glcxt" layout:role="substrate" layout:speciesGlyph="Glyph__Glcxt">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="85"/>
+                      <layout:end layout:x="425" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v2__substrate__O2" layout:role="substrate" layout:speciesGlyph="Glyph__O2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="425" layout:y="305"/>
+                      <layout:end layout:x="425" layout:y="155"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v2__product__X" layout:role="product" layout:speciesGlyph="Glyph__X">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="425" layout:y="155"/>
+                      <layout:end layout:x="260" layout:y="270"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__v4" layout:reaction="v4">
+            <layout:boundingBox>
+              <layout:position layout:x="70" layout:y="155"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v4__substrate__Glcxt" layout:role="substrate" layout:speciesGlyph="Glyph__Glcxt">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="85"/>
+                      <layout:end layout:x="80" layout:y="165"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v4__product__Ac" layout:role="product" layout:speciesGlyph="Glyph__Ac">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="80" layout:y="165"/>
+                      <layout:end layout:x="80" layout:y="315"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="Glyph__v4__product__X" layout:role="product" layout:speciesGlyph="Glyph__X">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="80" layout:y="165"/>
+                      <layout:end layout:x="260" layout:y="270"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__g_uptake" layout:reaction="g_uptake">
+            <layout:boundingBox>
+              <layout:position layout:x="250" layout:y="45"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__g_uptake__product__Glcxt" layout:role="product" layout:speciesGlyph="Glyph__Glcxt">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="260" layout:y="55"/>
+                      <layout:end layout:x="260" layout:y="85"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__r1" layout:reaction="r1">
+            <layout:boundingBox>
+              <layout:position layout:x="415" layout:y="340"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__r1__product__O2" layout:role="product" layout:speciesGlyph="Glyph__O2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="425" layout:y="350"/>
+                      <layout:end layout:x="425" layout:y="305"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+        </layout:listOfReactionGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:graphicalObject="Glyph__Cell" layout:id="TextGlyph__Cell" layout:text="Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="20" layout:y="10"/>
+              <layout:dimensions layout:height="460" layout:width="510"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__Glcxt" layout:id="TextGlyph__Glcxt" layout:text="Glcxt">
+            <layout:boundingBox>
+              <layout:position layout:x="210" layout:y="70"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__O2" layout:id="TextGlyph__O2" layout:text="O2">
+            <layout:boundingBox>
+              <layout:position layout:x="375" layout:y="290"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__Ac" layout:id="TextGlyph__Ac" layout:text="Ac">
+            <layout:boundingBox>
+              <layout:position layout:x="30" layout:y="300"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__v3" layout:id="TextGlyph__v3" layout:text="v3">
+            <layout:boundingBox>
+              <layout:position layout:x="250" layout:y="200"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__v1" layout:id="TextGlyph__v1" layout:text="v1">
+            <layout:boundingBox>
+              <layout:position layout:x="250" layout:y="390"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__v2" layout:id="TextGlyph__v2" layout:text="v2">
+            <layout:boundingBox>
+              <layout:position layout:x="415" layout:y="145"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__v4" layout:id="TextGlyph__v4" layout:text="v4">
+            <layout:boundingBox>
+              <layout:position layout:x="70" layout:y="155"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfV1" layout:id="TextGlyph__rateOfV1" layout:text="rateOfV1">
+            <layout:boundingBox>
+              <layout:position layout:x="245" layout:y="430"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfV3" layout:id="TextGlyph__rateOfV3" layout:text="rateOfV3">
+            <layout:boundingBox>
+              <layout:position layout:x="200" layout:y="195"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfV2" layout:id="TextGlyph__rateOfV2" layout:text="rateOfV2">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="100"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfV4" layout:id="TextGlyph__rateOfV4" layout:text="rateOfV4">
+            <layout:boundingBox>
+              <layout:position layout:x="65" layout:y="105"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__X" layout:id="TextGlyph__X" layout:text="X">
+            <layout:boundingBox>
+              <layout:position layout:x="210" layout:y="255"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__g_rate_uptake" layout:id="TextGlyph__g_rate_uptake" layout:text="g_rate_uptake">
+            <layout:boundingBox>
+              <layout:position layout:x="245" layout:y="10"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__o_rate_uptake" layout:id="TextGlyph__o_rate_uptake" layout:text="o_rate_uptake">
+            <layout:boundingBox>
+              <layout:position layout:x="410" layout:y="380"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__g_uptake" layout:id="TextGlyph__g_uptake" layout:text="g_uptake">
+            <layout:boundingBox>
+              <layout:position layout:x="250" layout:y="45"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__r1" layout:id="TextGlyph__r1" layout:text="r1">
+            <layout:boundingBox>
+              <layout:position layout:x="415" layout:y="340"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+        </layout:listOfTextGlyphs>
+      </layout:layout>
+    </layout:listOfLayouts>
+            <listOfCompartments>
+      <compartment constant="true" id="Cell" size="1" spatialDimensions="3"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Glcxt" initialAmount="0" metaid="growth_update__iBioSim2"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="O2" initialAmount="0" metaid="growth_update__iBioSim3"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Ac" initialAmount="0" metaid="growth_update__iBioSim4"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="X" initialAmount="0" metaid="growth_update__iBioSim5"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="rateOfV1" metaid="growth_update__iBioSim14" value="0"/>
+      <parameter constant="false" id="rateOfV3" metaid="growth_update__iBioSim23" value="0"/>
+      <parameter constant="false" id="rateOfV2" metaid="growth_update__iBioSim24" value="0"/>
+      <parameter constant="false" id="rateOfV4" metaid="growth_update__iBioSim25" value="0"/>
+      <parameter constant="false" id="g_rate_uptake" metaid="growth_update__iBioSim10" value="0"/>
+      <parameter constant="false" id="o_rate_uptake" metaid="growth_update__iBioSim15" value="0"/>
+      <parameter constant="true" id="Km" metaid="iBioSim1" value="0.001"/>
+    </listOfParameters>
+        <listOfReactions>
+      <reaction compartment="Cell" fast="false" id="r1" metaid="iBioSim2" reversible="false">
+                <listOfProducts>
+          <speciesReference constant="true" species="O2" stoichiometry="1"/>
+        </listOfProducts>
+                <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 0 </cn>
+          </math>
+                          </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="v4_min" fbc:upperFluxBound="v4_max" id="v4" metaid="growth_update__iBioSim8" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Glcxt" stoichiometry="19.23"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="Ac" stoichiometry="12.12"/>
+          <speciesReference constant="true" species="X" stoichiometry="1"/>
+        </listOfProducts>
+                <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> rateOfV4 </ci>
+                  <ci> X </ci>
+                </apply>
+                <ci> Glcxt </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Glcxt </ci>
+                <ci> Km </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="v2_min" fbc:upperFluxBound="v2_max" id="v2" metaid="growth_update__iBioSim7" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Glcxt" stoichiometry="9.46"/>
+          <speciesReference constant="true" species="O2" stoichiometry="12.92"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="X" stoichiometry="1"/>
+        </listOfProducts>
+                <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <times/>
+                      <ci> X </ci>
+                      <ci> rateOfV2 </ci>
+                    </apply>
+                    <ci> Glcxt </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> Glcxt </ci>
+                    <ci> Km </ci>
+                  </apply>
+                </apply>
+                <ci> O2 </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> O2 </ci>
+                <ci> Km </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="v1_min" fbc:upperFluxBound="v1_max" id="v1" metaid="growth_update__iBioSim1" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Ac" stoichiometry="39.43"/>
+          <speciesReference constant="true" species="O2" stoichiometry="35"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="X" stoichiometry="1"/>
+        </listOfProducts>
+                <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <times/>
+                      <ci> X </ci>
+                      <ci> rateOfV1 </ci>
+                    </apply>
+                    <ci> Ac </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> Ac </ci>
+                    <ci> Km </ci>
+                  </apply>
+                </apply>
+                <ci> O2 </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> O2 </ci>
+                <ci> Km </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="v3_min" fbc:upperFluxBound="v3_max" id="v3" metaid="growth_update__iBioSim9" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="O2" stoichiometry="12.73"/>
+          <speciesReference constant="true" species="Glcxt" stoichiometry="9.84"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="Ac" stoichiometry="1.24"/>
+          <speciesReference constant="true" species="X" stoichiometry="1"/>
+        </listOfProducts>
+                <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <times/>
+                      <ci> X </ci>
+                      <ci> rateOfV3 </ci>
+                    </apply>
+                    <ci> O2 </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> O2 </ci>
+                    <ci> Km </ci>
+                  </apply>
+                </apply>
+                <ci> Glcxt </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Glcxt </ci>
+                <ci> Km </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="g_rate_uptake" fbc:upperFluxBound="g_rate_uptake" id="g_uptake" metaid="iBioSim4" reversible="false">
+                <listOfProducts>
+          <speciesReference constant="true" species="Glcxt" stoichiometry="1"/>
+        </listOfProducts>
+                <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 0 </cn>
+          </math>
+                          </kineticLaw>
+      </reaction>
+    </listOfReactions>
+      </model>
+</sbml>
