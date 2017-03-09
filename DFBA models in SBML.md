@@ -36,10 +36,19 @@ This section describes how DFBA models can be encoded in SBML. Two main links ar
 * Update of flux bounds in the FBA model from the kinetic model. 
 * Update of reaction fluxes in the kinetic model from the FBA solution.
 
+The DFBA models consists of different components performing parts of the DFBA task:
+* `TOP` : DFBA comp model that includes all submodels and their corresponding connections
+* `KINETIC` : kinetic part of the DFBA model
+* `FBA` : FBA part of the DFBA model
+* `BOUNDS` : calculation of the upper and lower bounds for the `FBA` model
+* `UPDATE` : calculation of the updated `KINETIC` part from the `FBA` solution
+
+ **`TODO:`** Create figure showing linking between submodels (this section is unclear, figure will help. Show the different alternatives)
 
 ## DFBA model
-* The DFBA SBML model **MUST** be a single `comp` model.
-* The DFBA submodel **MUST** be encoded in the DFBA model via `comp:SubModel`. The individual submodels **MUST** be encoded via `comp:ExternalModelDefinition` with each submodel being a separate file.
+* The DFBA SBML model **MUST** be a single SBML `comp` model.
+* The DFBA submodels **MUST** be encoded in the DFBA model via `comp:SubModels`. 
+* The DFBA submodels **CAN** be encoded via `comp:ModelDefinition` or `comp:ExternalModelDefinition`, with each submodel being defined in a separate file.
 <!-- 
 Matthias: I am currently only supporting ExternalModelDefinitions. I can implement the additional direct definition of submodels. Than we can change this rule from **MUST** to **SHOULD** .
 -->
@@ -54,14 +63,7 @@ Leandro: This is tricky because we don't support all packages. I think we should
 Matthias: I think you misunderstood and we should clarify. This just says you should only use released packages to encode the DFBA, nothing more. It does not say anything about what you have to support.
 -->
 
-The DFBA models consists of different units performing parts of the DFBA task. These tasks are
-* `TOP` : DFBA comp model that includes all submodels and their corresponding connections
-* `KINETIC` : kinetic part of the DFBA model
-* `FBA` : FBA part of the DFBA model
-* `BOUNDS` : calculation of the upper and lower bounds for the `FBA` model
-* `UPDATE` : calculation of the updated `KINETIC` part from the `FBA` solution
 
- **`TODO:`** Create figure showing linking between submodels (this section is unclear, figure will help. Show the different alternatives)
 
 * The DFBA model **MUST** consist of the `comp` model and at least one `comp:SubModel`
     * a `TOP` kinetic model (main DFBA `comp` model)
@@ -88,10 +90,19 @@ Units are especially helpful when connecting `FBA` and kinetic model in DFBA mod
 * All models **SHOULD** contain units. The units of the submodel **SHOULD** be identical and be replaced by the top model.
   
 ## FBA submodel
-* The `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
-* The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=false`. 
-* Exactly one `fbc` submodel **MUST** exist in the DFBA model, i.e. multiple `fbc` submodels are currently not supported.
+* The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
+
+* The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
+<!-- 
+Matthias: change to strict=true
+-->
+
+<!--
 * The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model **MUST** be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
+
+Matthias: This is not really a model encoding rule, it makes the differce between an encoded and simulatable model, i.e. a model which produces useable results.
+-->
+
 * The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
 <!--
 Leandro: The FBA model **MUST** consist only of `parameters`, `species`, `compartments`, and `reactions` are allowed. Reactions should not have kinetic law.
@@ -105,14 +116,13 @@ I added the no KineticLaw as rule above.
 * The objective **CAN** be `maximize` or `minimize`.
 
 ### Exchange reaction
-* The unbalanced species in the FBA, which correspond to species which are changed in the kinetic model via the FBA solution **MUST NOT** be encoded via setting `boundaryCondition=True` on the species, but **MUST** be encoded via creating an exchange reaction for the species. I.e. species which are changed via the FBA fluxes have additional exchange reaction in the FBA model.
+* Unbalanced species in the FBA **MUST** be encoded by creating an exchange reaction for the respective species. The unbalanced species correspond to species in the kinetic model which are changed via the FBA solution fluxes.
 <!--
 Leandro: This is not how I have done the FBA models but it seems it works in our tool. Would need to change my model and verify.
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
-
 * The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as substrate with stoichiometry `1.0` and have no products, i.e. have the form `1.0 {sid} ->` with `{sid}` being the `Species` id.
-* The exchange `Reactions` **MUST** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
+* The exchange `Reactions` **SHOULD** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
 * The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
 <!--
 Matthias: !! directionality changed to be in agreement with SBO, cobra(py) and BiGG models. Also naming adapted. This allows to directly use BiGG models for DFBA simulations. See for instance
@@ -122,41 +132,32 @@ http://bigg.ucsd.edu/models/e_coli_core/reactions/EX_ac_e
 Matthias: no stochastic simulations for now, but we have to plan for this.
 -->
 ### BoundaryCondition
-FBA models which have `species` with `boundaryCondition=True` are not supported. Such models can easily be converted in supported `FBA` models by setting `boundaryCondition=False` and adding a exchange `Reaction` for the corresponding `Species`.
+* The FBA model **MUST NOT** have `species` with `boundaryCondition=True`. Such models can easily be converted in supported `FBA` models by setting `boundaryCondition=False` and adding a exchange `Reaction` for the corresponding `Species`.
  
 ### Reaction flux bounds
-Three main classes of flux bounds exist in a DFBA model:
-* constant flux bounds, which are set in the FBA model
-* exchange reaction bounds, which are set based on the species amounts and `dt` step
-* kinetic flux bounds, which are calculated in the `BOUNDS` model. These are additional kinetic expressions for flux bounds in the DFBA model, for instance flux bounds based on the amount/concentration of a regulator.
-
-The following rules and guidelines apply for flux bounds
+<!-- REMOVE
 * SBML `Parameters` for upper and lower bounds **MUST** exist for all reactions and have numerical values, i.e. no `InitialAssignments` or `AssignmentRules` for flux bound parameter are allowed.
-* The following upper and lower bound default values **MUST** be set in fba models: If no flux bounds are specified the default upper flux bound is `1000`, and the default lower flux bound is `-1000` for reversible and `0` for irreversible reactions.
-<!-- 
-Matthias: not sure about that. We probably should change that to: All reactions **MUST** have upper and lower flux bounds defined. This would make things more consistent.
+Matthias: This is covered by fbc strict=true
+-->
+* All exchange reactions **MUST** have individual `Parameters` for the upper and lower bound which are not used by other reactions. 
+
+<!-- REMOVE
+* The following upper and lower bound default values **MUST** be set in fba models: If no flux bounds are specified the default upper flux bound is `1000`, and the default lower flux bound is `-1000` for reversible and `0` for irreversible reactions. 
+
+Matthias: we should agree that we use -1000, 1000 for all unspecified upper and lower bounds when we encode the models for us. All reactions have flux bounds due to fbc strict=true.
 -->
 
-* SBML `Parameters` describing the flux bounds of exchange reactions **MUST** be `constant=False`. All exchange reactions must have individual `Parameters` for the upper and lower bound which are not used by other reactions. 
-* SBML `Parameters` describing the flux bounds of internal reactions **MUST** be `constant=False`.
 * The `Parameters` for the upper and lower bounds of reactions **SHOULD** have the ids `ub_{rid}` and `lb_{rid}` with `{rid}` being the respective reaction id.
-<!--
-Leandro: Can they use default values?
-Matthias: I don't understand that? What do you mean?
--->
-* The `Parameters` for the upper and lower bounds of a reaction with id `{rid}` **SHOULD** be named `ub_{rid}` and `lb_{rid}`. 
 * The `Parameters` describing the flux bounds **SHOULD** have the SBOTerm [`SBO:0000625` (flux bound)](http://www.ebi.ac.uk/sbo/main/SBO:0000625). 
 
 
 ### Ports
 * All exchange reactions **MUST** have a port.
-* All `Species` used in exchange reactions **MUST** have a port.
 * All upper and lower bounds of exchange reactions **MUST** have a port.
-* Compartments for species used in exchange reactions **MUST** have a port.
-
 
 ## TOP model
 * The `TOP` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
+* The `TOP` model **MUST** have exactly one submodel with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element, i.e. multiple `fbc` submodels are currently not supported.
 
 ### dt
 * The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. 
@@ -253,16 +254,13 @@ Matthias: The flux units must fit to the species. This is currently a problem in
 
 <!------------------------------------------------------------------->
 # B) Model Simulation
-In this section we describe how simulators should simulate a model given in the DFBA SBML formalism described in section A. The described simulation and update strategy was implemented in the two simulators `iBioSim` and `sbmlutils`.
+In this section we describe how models in the DFBA SBML formalism described in section A should be simulated by software. The described simulation and update strategy was implemented in two DFBA simulators: `iBioSim` and `sbmlutils`.
 
-Currently, all SBML core constructs are supported in the kinetic models with the exception of `Delay` and `AlgebraicRule`.
-
-**`TODO:`** Create figure showing simulation workflow
-
-The DFBA models are solved via a **Static Optimization Approach (SOA)**. The simulation time is divided into time intervals with the instantaneous optimization (FBA) solved at the beginning of every time interval. The dynamic equations are than integrated over the time interval assuming that the fluxes
-are constant over the interval. 
+## Static Optimization Approach (SOA)
+The DFBA models are solved via a **Static Optimization Approach (SOA)**. The total simulation time is divided into time intervals of length `dt` with the instantaneous optimization (FBA) solved at the beginning of every time interval. The dynamic equations are than integrated over the time interval assuming that the fluxes are constant over the interval. 
 Before every optimization of the FBA part optimization constraints have to be updated from the dynamic part, after every optimization the dynamic variables corresponding to the FBA fluxes have to be updated.
 
+## Simulation Algorithm
 The simulation algorithm starts off by computing the reaction fluxes in the FBA submodel. The reaction fluxes updates the reaction values in the TOP model, which are used to compute the reaction rates in the UPDATE submodel. Once the reaction fluxes are computed by FBA, all NON-FBA submodels are updated concurrently.
 
 ```
@@ -282,23 +280,22 @@ while (time <= tend){
     # Next time step
     time = time + dt
 }
-
-
 ```
-
-
-
 * The output time points **MUST** be in agreement with the `dt` parameter, i.e. the interval between subsequent time points **MUST** be `dt`. This does not affect the internal steps of the kinetic solver.
-* If the FBA optimization encounters an infeasible solution the simulation **MUST** stop.
+* The model simulation **MUST** abort if the FBA LP probelm is infeasible.
 * If the kinetic simulation encounters problems like unfulfilled tolerances the simulation **MUST** stop.
 * The flux bounds **MUST** be updated from the kinetic model before the FBA optimization is run.
 * The fluxes in the kinetic model **MUST** be set before the kinetic simulation is run.
 
 * For the execution of the kinetic models the comp model is flattend and the flattened model is simulated.
 
-* what is the order of execution of the models ?? & when are the update steps performed ??
-* how do we deal with the step sizes and tolerances?
-
+## Tolerances
+For the DFBA simulation absolute tolerances `absTol` and `relTol` are defined. These tolerances are used for the kinetic integration. 
+In addition `absTol` is used in the update of the bounds. If the updated bounds are smaller than the absolute tolerance the bounds are set to zero (this avoids infeasible LP problems due to very small negative upper bounds or positive lower bounds). 
+```
+if abs(bound_updated)<= absTol:
+    bound_updated = 0
+```
 
 <!------------------------------------------------------------------->
 # C) Frequently asked questions (FAQ)
@@ -322,6 +319,9 @@ It is possible to encode SBML models with additional modeling frameworks than FB
 
 ## Are variable step sizes supported?
 No, currently only fixed step sizes are supported. The simulation steps must be in agreement with the `dt` parameter for bound updates.
+
+## What SBML constructs are supported by the simulators?
+Currently, in `iBioSim` and `sbmlutils` all SBML core constructs are supported in the kinetic models with the exception of `Delay` and `AlgebraicRule`.
 
 ## I am a tool developer and have different ideas about DFBA encoding in SBML. How can I contribute?
 You can make suggestions on the [Github Issue Tracker](https://github.com/matthiaskoenig/dfba/issues). Note this does not guarantee that your suggestions will be adopted. However, we welcome good ideas that would improve our proposed data model idea.
