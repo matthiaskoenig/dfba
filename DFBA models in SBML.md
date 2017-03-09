@@ -91,28 +91,17 @@ Units are especially helpful when connecting `FBA` and kinetic model in DFBA mod
   
 ## FBA submodel
 * The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
-
 * The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
 <!-- 
 Matthias: change to strict=true
 -->
 
-<!--
-* The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model **MUST** be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
-
-Matthias: This is not really a model encoding rule, it makes the differce between an encoded and simulatable model, i.e. a model which produces useable results.
--->
-
 * The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
-<!--
-Leandro: The FBA model **MUST** consist only of `parameters`, `species`, `compartments`, and `reactions` are allowed. Reactions should not have kinetic law.
-Matthias: I think this is too restrictive. We should allow valid FBA models encoded in fbc-v2.
-I added the no KineticLaw as rule above.
--->
+
 
 ### Objective function
 * The FBA model **MUST** contain at least one objective function.
-* The optimization objective for the DFBA model **MUST** be the active objective in the fba model, i.e. an active objective **MUST** exist and be the objective which is executed in every step of the DFBA.
+* The optimization objective for the DFBA model **MUST** be the active objective in the fba model.
 * The objective **CAN** be `maximize` or `minimize`.
 
 ### Exchange reaction
@@ -150,10 +139,11 @@ Matthias: we should agree that we use -1000, 1000 for all unspecified upper and 
 * The `Parameters` for the upper and lower bounds of reactions **SHOULD** have the ids `ub_{rid}` and `lb_{rid}` with `{rid}` being the respective reaction id.
 * The `Parameters` describing the flux bounds **SHOULD** have the SBOTerm [`SBO:0000625` (flux bound)](http://www.ebi.ac.uk/sbo/main/SBO:0000625). 
 
-
 ### Ports
 * All exchange reactions **MUST** have a port.
 * All upper and lower bounds of exchange reactions **MUST** have a port.
+
+![GitHub Logo](https://github.com/matthiaskoenig/dfba/blob/master/diauxic_fba.png)
 
 ## TOP model
 * The `TOP` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
@@ -325,3 +315,13 @@ Currently, in `iBioSim` and `sbmlutils` all SBML core constructs are supported i
 
 ## I am a tool developer and have different ideas about DFBA encoding in SBML. How can I contribute?
 You can make suggestions on the [Github Issue Tracker](https://github.com/matthiaskoenig/dfba/issues). Note this does not guarantee that your suggestions will be adopted. However, we welcome good ideas that would improve our proposed data model idea.
+
+<!------------------------------------------------------------------->
+<!-- text drop -->
+<!------------------------------------------------------------------->
+
+<!--
+* The fba submodel **MUST** be optimizable without any additional information as a stand-alone model, i.e. the model **MUST** be importable in a FBA simulator like cobrapy and result in an optimal solution when optimized.
+
+Matthias: This is not really a model encoding rule, it makes the differce between an encoded and simulatable model, i.e. a model which produces useable results.
+-->
