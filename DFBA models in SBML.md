@@ -267,8 +267,7 @@ The simulation algorithm starts off by computing the reaction fluxes in the FBA 
 ```
 time = 0
 # necessary to calculate the initial flux bounds
-calculate_bounds()
-## Leandro: calculate_initial_conditions instead?
+calculate_initial_state()
 while (time <= tend){
     # FBA
     set_bounds_fba()
