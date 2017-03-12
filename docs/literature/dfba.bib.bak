@@ -75,7 +75,7 @@
   country       = {United States},
   created       = {2017-02-13},
   doi           = {10.1038/nbt.3796},
-  file          = {:literature/Gupta2017.pdf:PDF},
+  file          = {:pdf/Gupta2017.pdf:PDF},
   issn-linking  = {1087-0156},
   issue         = {3},
   mid           = {NIHMS843850},
