@@ -168,7 +168,7 @@ http://bigg.ucsd.edu/models/e_coli_core/reactions/EX_ac_e
 Matthias: no stochastic simulations for now, but we have to plan for this.
 -->
 ### BoundaryCondition
-* The FBA model **MUST NOT** have `species` with `boundaryCondition=True`. Such models can easily be converted in supported `FBA` models by setting `boundaryCondition=False` and adding a exchange `Reaction` for the corresponding `Species`.
+* All `Species` in the FBA model **MUST** have `boundaryCondition=False`. FBA models containing species with `boundaryCondition=True` can easily be converted in supported `FBA` models by setting `boundaryCondition=False` and adding a exchange `Reaction` for the corresponding `Species`.
  
 ### Reaction flux bounds
 <!-- REMOVE
@@ -198,7 +198,8 @@ The parameter `dt` is used in calculating the upper and lower bounds based on th
 
 * The `BOUNDS` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
 * The `BOUNDS` model **MUST** contain the parameter `dt` which defines the step size of the FBA optimizations. The `dt` `Parameter` **MUST** be linked via a port to the `TOP` model `dt`. The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).  
-* The `BOUNDS` model **MUST** contain all `Species` which are used in `FBA` exchange `Reactions`.
+* The `BOUNDS` submodel **MUST** contain all bounds `Species`, i.e. `Species` which are reactants in `FBA` exchange `Reactions`.
+* All `BOUNDS` submodel **MUST** contain all compartments of bounds `Species`.
 * The `BOUNDS` model **MUST** contain `Parameters` for all upper and lower flux bounds of exchange `Reactions`.
 * The `BOUNDS` model **MUST** contain `FunctionDefinitions` for `min` and `max` of the form  
 `min=lambda( x,y, piecewise(x,lt(x,y),y) )`  
@@ -206,17 +207,17 @@ and
 `max=lambda( x,y, piecewise(x,gt(x,y),y) )`.
 
 * The `BOUNDS` model **MUST** contain `AssignmentRules` for the update of lower bounds of the exchange reactions of the form
-`lb_EX_{sid}=max(lb_default, -{sid}*{cid}/dt)`  
+`lb_EX_{sid}=max(lb_default, -{sid}*{cid}/dt)` 
 with `{cid}` being the compartment of the species `{sid}`. This ensures that in the time step `dt` not more than the available amounts of the species are used in the `FBA` solution.
-<!--
-Matthias: The bound must be the most restrictive bound via min/max function. Probably good to use L3V2 where there exist min and max functions for the calculation.
--->
 * If there are additional kinetic bounds on the exchange reactions these kinetic bounds must be used for restricting the bounds, i.e. 
-`lb_EX_{sid}=max(lb_kinetic, -{sid}*{cid}/dt)`  
-
-* `TODO`: AssignmentRules for kinetic bounds
-
+`lb_EX_{sid}=max(lb_kinetic, -{sid}*{cid}/dt)` 
+* The `BOUNDS` submodel **CAN** calculate additional kinetic bounds for exchange reactions via `AssignmentRules`, `RateRules` or `EventAssignments`.
 * The `BOUNDS` model **MUST** contain the necessary parameter and assignment rules for the update of additional upper and lower bounds of reactions in the FBA which are not exchange reactions. E.g. if there is a time dependent change in an upper bound of an FBA reaction this belongs in the `BOUNDS` model.
+
+## Ports
+* All bound `Species` **MUST** have a port.
+* All `Compartments` of bound `Species` **MUST** have a port.
+* All upper and lower bounds of exchange reactions **MUST** have a port.
 
 
 ### ReplacedElements
