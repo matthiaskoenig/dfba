@@ -1,3 +1,5 @@
-# Wholecell Toymodel
-Initial simple toy DFBA model developed during the wholecell workshop.
+# Toy model
+Toy dynamic FBA model
 
+# Feedback
+## 
