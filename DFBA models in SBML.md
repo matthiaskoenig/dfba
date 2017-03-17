@@ -46,195 +46,199 @@ The DFBA models consists of different components performing parts of the DFBA ta
  **`TODO:`** Create figure showing linking between submodels (this section is unclear, figure will help. Show the different alternatives)
 
 ## DFBA model
-* The DFBA SBML model **MUST** be a single SBML `comp` model.
-* The DFBA submodels **MUST** be encoded in the DFBA model via `comp:SubModels`. 
-* The DFBA submodels **CAN** be encoded via `comp:ModelDefinition` or `comp:ExternalModelDefinition`, with each submodel being defined in a separate file.
+* **`[DFBA-R0001]`** The DFBA model **MUST** be a single SBML `comp` model.
+* **`[DFBA-R0002]`** The DFBA submodels **MUST** be encoded in the DFBA model via `comp:SubModels`. 
+* **`[DFBA-R0003]`** The DFBA submodels **MUST** be defined via `comp:ExternalModelDefinitions`.
 <!-- 
 Matthias: I am currently only supporting ExternalModelDefinitions. I can implement the additional direct definition of submodels. Than we can change this rule from **MUST** to **SHOULD** .
+Matthias: Too many issues with ModelDefinitions, we will only allow ExternalModelDefinitions for now. This makes things cleaner.
 -->
 
-* All SBML submodels of the DFBA model **MUST** be encoded in SBML L3V1 or higher.
-* The DFBA SBML model and all SBML submodels **MUST** be valid SBML.
-* The DFBA model **MUST** be encoded using SBML `core` and the SBML packages `comp` and `fbc`.
+* **`[DFBA-R0004]`** The DFBA model and all submodels **MUST** be encoded in `SBML L3V1` or higher.
+* **`[DFBA-R0005]`** The DFBA model and all submodels **MUST** be valid SBML.
+* **`[DFBA-R0006]`** The DFBA model **MUST** be encoded using SBML `core` and the SBML packages `comp` and `fbc`.
+<!--
 * All DFBA model and submodels **SHOULD** only use released SBML packages.
+Matthias: removing this. Not necessary, does not provide additional information.
+-->
 <!-- 
-Leandro: This is tricky because we don't support all packages. I think we should require the bare minimum to make a simulatable model for our tools.  
-
+Leandro: This is tricky because we don't support all packages. I think we should require the bare minimum to make a simulatable model for our tools. 
 Matthias: I think you misunderstood and we should clarify. This just says you should only use released packages to encode the DFBA, nothing more. It does not say anything about what you have to support.
+Matthias: We can just ignore all packages besides fbc & comp for now.
 -->
 
-
-
+<!--
 * The DFBA model **MUST** consist of the `comp` model and at least one `comp:SubModel`
     * a `TOP` kinetic model (main DFBA `comp` model)
     * a `FBA` FBA submodel, which defines the FBA submodel using the `fbc` package
     * In the case of a single `FBA` submodel, the `TOP` model performs multiple functions, i.e. the `KINETIC` part of the model, the calculation of the flux bounds (`BOUNDS`) and the update of the kinetic model from the FBA solution (`UPDATE`)
 
-* The DFBA model **SHOULD** consist of the `comp` model and three `comp:SubModels`
-    * the `TOP` ode model, which is the SBML top model containing the other submodels, and includes the `KINETIC` part of the DFBA
-    * the `FBA` fba model, which defines the FBA submodel using the `fbc` package,
-    * the `BOUNDS` ode model, which defines the calculation of the FBA bounds
-    * the `UPDATE` ode model, which defines the update of the `TOP` model from the `FBA` model.
+Matthias: I made the following structure required and removed the parts above, i.e. TOP, BOUNDS, UPDATE, FBA. This has many advantages like simplificatin of the guidelines, clear mapping of the submodels to parts of simulation algorithm, better validation, separation of logic, ...
+-->
+
+* **`[DFBA-R0007]`** The DFBA model **MUST** consist of the `TOP` model and at least three `submodels` (`FBA`, `BOUNDS`, `UPDATE`).
+    * the `TOP` model is the main SBML model, containing the other submodels. The `TOP` model encodes the kinetic model parts of the DFBA (besides bounds calculation and updates from FBA).
+    * the `FBA` model defines the FBA submodel using the `fbc` package,
+    * the `BOUNDS` model defines all logic for the update of the FBA bounds
+    * the `UPDATE` defines the update of the `TOP` model from the `FBA` model.
+* The `TOP` model **CAN** contain additional submodels. These submodels must be kinetic submodels and only linked to the `TOP` model via `comp`
+* The DFBA model and all submodels **CAN** have additional packages than `fbc` and `comp`.
 
 ### Ports
 Objects in the different submodels are linked via `comp:Ports`.
-* Objects which are linked via ports in the different submodels **MUST** have the same ids in the the different submodels. 
-* In addition, the respective ports of the linked objects **MUST** have the same ids.
-* All `comp:Port` elements **SHOULD** hereby follow the id schema: id of the port is `{idRef}_port` for an object with `idRef={idRef}`.
+* **`[DFBA-R0008]`** All `ReplacedBy` and `Replacements` **MUST** be done via `ports` which are identified via `idRef`.
+* **`[DFBA-R0009]`** Objects which are linked via ports in the different submodels **MUST** have identical ids in the the different submodels. 
+* **`[DFBA-R0010]`** In addition, the respective ports of the linked objects **MUST** have the same ids.
+<!-- 
+Matthias: Probably we don't need the naming rules R0009 & R0010, but for now they simplify debugging and make life much simpler.
+-->
+* **`[DFBA-G0001]`** All `Ports` **SHOULD** have the id `{idRef}_port` for an object with `idRef={idRef}`.
 
 ### Units
-
-* All models **SHOULD** contain units. The units of the submodel **SHOULD** be identical and be replaced by the top model.
+* **`[DFBA-G0002]`** All models **SHOULD** contain units. 
+* **`[DFBA-G0003]`** The units of the submodel **SHOULD** be identical and be replaced by the top model.
 
 ## TOP model
-* The `TOP` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
-* The `TOP` model **MUST** have exactly one submodel with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
+* **`[TOP-R0001]`** The `TOP` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
+* **`[TOP-R0002]`** The `TOP` model **MUST** have exactly one submodel with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
 
 ### dt
-* The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. 
-* The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).
-<!--
-Matthias: what is the correct SBOTerm for dt. I used the temporal measurement for now.
--->
+* **`[TOP-R0003]`** The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. 
+* **`[TOP-R0004]`** The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).
+* **`[TOP-R0005]`** If the `dt` parameter has `units`, than they **MUST** be identical to the `timeUnits` of the model.
 
-### Dummy reactions
-* The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1.
+### Dummy reactions & species
+* **`[TOP-R0006]`** The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1. 
 <!--
-Matthias: We should think about moving to L3V2, where there is no more
+Matthias: TOP-R0006/TOP-R0008 We should think about moving to L3V2, where there is no more
 requirement for the dummy species. This would simplify and clarify things, i.e. remove the dummy species rules.
 I have to check if roadrunner is supporting this, if yes we can go to L3V2.
 Also no real SBOTerm fitting for dummy species or reaction. Using empty set for now.
 Leandro: can have separate guidelines for L3V1 and L3V2
 Matthias: good point. Let's finish the L3V1 first. Main differences are the dummy species and the min/max functions between L3V1 and L3V2.
 -->
-* For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP`. Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. The dummy reaction **MUST NOT** have any other reactants, products or modifiers, i.e. `-> dummy_S`. 
-* The id of the dummy reaction **SHOULD** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
-* The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
-* The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
+* **`[TOP-R0007]`** For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP` model.
+* **`[TOP-R0008]`** Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. 
+* **`[TOP-R0009]`** The dummy reaction **MUST NOT** have any other reactants, products or modifiers than `dummy_S`, i.e. `-> dummy_S`. 
+* **`[TOP-G0001]`** The id of the dummy reaction **SHOULD** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
+* **`[TOP-G0002]`** The dummy species **SHOULD NOT** have and `compartment` set.
+* **`[TOP-G0003]`** The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
+* **`[TOP-G0004]`** The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
+* The dummy species **CAN** be in an arbitrary `compartment` of the `TOP` model.
+
+### Exchange Species
+* **`[TOP-R0010]`** The `TOP` model **MUST** contain a species for every species which has an exchange reaction in the FBA model (exchange `species`). 
+* **`[TOP-R0011]`** The exchange `species` **MUST** replace the corresponding species in the `UPDATE` and `BOUNDS` model via `ReplacedElements`.
 
 ###  Flux parameters & Flux AssignmentRules
-* For every dummy `Reaction` in the `TOP` model with id a corresponding flux `Parameter` **MUST** exist in the `TOP` model which is `constant=true`. 
-* The flux parameter **SHOULD** have the id `{rid}` for the corresponding dummy reaction `{dummy_rid}`.
-* For every dummy `Reaction` and corresponding flux `Parameter` in the top model an `AssignmentRule` in the `TOP` model **MUST** exist of form `{rid} = {dummy_rid}`.
-* The flux `Parameters` **SHOULD** have the SBOTerm [`SBO:0000612` (rate of reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000612).
-* The flux `AssignmentRules` **SHOULD** have the SBOTerm [`SBO:0000391` (steady state expression)](http://www.ebi.ac.uk/sbo/main/SBO:0000391).
+* **`[TOP-R0012]`** For every dummy `Reaction` in the `TOP` model with id a corresponding flux `Parameter` **MUST** exist in the `TOP` model which is `constant=true`. 
+* **`[TOP-R0013]`** For every dummy `Reaction` and corresponding flux `Parameter` in the top model an `AssignmentRule` in the `TOP` model **MUST** exist of form `{rid} = {dummy_rid}`.
+* **`[TOP-G0005]`** The flux parameter **SHOULD** have the id `{rid}` for the corresponding dummy reaction `{dummy_rid}`.
+* **`[TOP-G0006]`** The flux `Parameters` **SHOULD** have the SBOTerm [`SBO:0000612` (rate of reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000612).
+* **`[TOP-G0007]`** The flux `AssignmentRules` **SHOULD** have the SBOTerm [`SBO:0000391` (steady state expression)](http://www.ebi.ac.uk/sbo/main/SBO:0000391).
 <!-- What SBOTerm? -->
 
 ### ReplacedBy
-* Every dummy reaction in the `TOP` model with `id="dummy_{rid}"` **MUST** be replaced via a `comp:ReplacedBy` with the corresponding exchange reaction with `id={EX_rid}` from the `FBA` submodel. The `comp:ReplacedBy` uses the `portRef` of the exchange reaction `{EX_rid}_port`.
+* **`[TOP-R0014]`** Every dummy reaction in the `TOP` model with `id="dummy_{rid}"` **MUST** be replaced via a `comp:ReplacedBy` with the corresponding exchange reaction with `id={EX_rid}` from the `FBA` submodel. The `comp:ReplacedBy` uses the `portRef` of the exchange reaction `{EX_rid}_port`.
 These replacements update the ODE fluxes in the `TOP` model by replacing the dummy `Reaction` by the corresponding `FBA` reaction.
 
-
 ### Replacements
-The following replacements are part of the model:
-`TODO:` what are the replacements exactely, list all of them
-- For every parameter that is used to as a flux bound for a reaction in the FBA submodel, there **MUST** be a replacing reaction from the `TOP`.
-- For every species that affect any bound calculation, there **MUST** be a replacing species from the `TOP`.
-- For every species that appear in both the `UPDATE` and `KINETIC` submodels, there **MUST** be a species on the `TOP` model that replaces the corresponding species in each submodel.
+`TODO:` still replacement information missing
+- **`[TOP-R0015]`** For every parameter that is used to as a flux bound for a reaction in the FBA submodel, there **MUST** be a replacing reaction from the `TOP`.
+- **`[TOP-R0016]`** For the `dt` parameter in the `BOUNDS` model there must be a replacemnet with the `TOP` `dt` parameter.
+- **`[TOP-R0017]`** For every species that is used for bounds calculation in the `BOUNDS` model (this includes all exchange species) there **MUST** exist a replacement species in the `TOP` model.
+- **`[TOP-R0018]`** For every species that is updated in the `UPDATE` models there **MUST** exist a replacement species in the `TOP` model.
+- **`[TOP-R0019]`** `TODO:`For every uper and lower bound parameter ... (exchange reactions & kinetic reactions)
 
-<!-- 
-Try to do all replacements in the top model.
--->
 
 ## FBA submodel
-* The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
-* The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
-<!-- 
-Matthias: change to strict=true
--->
-
-* The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
-
+* **`[FBA-R0001]`** The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
+* **`[FBA-R0002]`** The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
+* **`[FBA-R0003]`** The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
 
 ### Objective function
-* The FBA model **MUST** contain at least one objective function.
-* The optimization objective for the DFBA model **MUST** be the active objective in the fba model.
+* **`[FBA-R0004]`** The `FBA` model **MUST** contain at least one objective function.
+* **`[FBA-R0005]`** The objective function for the DFBA model **MUST** be the active objective in the `FBA` model.
 * The objective **CAN** be `maximize` or `minimize`.
 
-### Exchange reaction
-* Unbalanced species in the FBA **MUST** be encoded by creating an exchange reaction for the respective species. The unbalanced species correspond to species in the kinetic model which are changed via the FBA solution fluxes.
+### Exchange reactions (unbalanced species)
+Unbalanced species in the `FBA` model correspond to species in the kinetic model which are changed via the FBA fluxes.
+* **`[FBA-R0006]`** Unbalanced `species` in the FBA **MUST** be encoded by creating an exchange reaction for the respective species. 
 <!--
 Leandro: This is not how I have done the FBA models but it seems it works in our tool. Would need to change my model and verify.
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
-* The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as substrate with stoichiometry `1.0` and have no products, i.e. have the form `1.0 {sid} ->` with `{sid}` being the `Species` id.
-* The exchange `Reactions` **SHOULD** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
-* The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
-<!--
-Matthias: !! directionality changed to be in agreement with SBO, cobra(py) and BiGG models. Also naming adapted. This allows to directly use BiGG models for DFBA simulations. See for instance
-http://bigg.ucsd.edu/models/e_coli_core/reactions/EX_ac_e
+* **`[FBA-R0007]`** The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as substrate with stoichiometry `1.0` and have no products, i.e. have the form `1.0 {sid} ->` with `{sid}` being the `Species` id.
+* **`[FBA-R0008]`** The exchange reactions **MUST** have a port.
+* **`[FBA-G0001]`** The exchange `Reactions` **SHOULD** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
+* **`[FBA-G0002]`** The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
+* **`[FBA-G0003]`** Exchange reactions **SHOULD NOT** have a `compartment`.
 
---@Leandro: Tricky when we use reversible reaction in the FBA model and want to do DFBA with stochastic simulation. 
-Matthias: no stochastic simulations for now, but we have to plan for this.
--->
 ### BoundaryCondition
-* All `Species` in the FBA model **MUST** have `boundaryCondition=False`. FBA models containing species with `boundaryCondition=True` can easily be converted in supported `FBA` models by setting `boundaryCondition=False` and adding a exchange `Reaction` for the corresponding `Species`.
+* **`[FBA-R0009]`** All `Species` in the FBA model **MUST** have `boundaryCondition=False`. 
  
 ### Reaction flux bounds
-<!-- REMOVE
-* SBML `Parameters` for upper and lower bounds **MUST** exist for all reactions and have numerical values, i.e. no `InitialAssignments` or `AssignmentRules` for flux bound parameter are allowed.
-Matthias: This is covered by fbc strict=true
--->
-* All exchange reactions **MUST** have individual `Parameters` for the upper and lower bound which are not used by other reactions. 
-
-<!-- REMOVE
-* The following upper and lower bound default values **MUST** be set in fba models: If no flux bounds are specified the default upper flux bound is `1000`, and the default lower flux bound is `-1000` for reversible and `0` for irreversible reactions. 
-
-Matthias: we should agree that we use -1000, 1000 for all unspecified upper and lower bounds when we encode the models for us. All reactions have flux bounds due to fbc strict=true.
--->
-
-* The `Parameters` for the upper and lower bounds of reactions **SHOULD** have the ids `ub_{rid}` and `lb_{rid}` with `{rid}` being the respective reaction id.
-* The `Parameters` describing the flux bounds **SHOULD** have the SBOTerm [`SBO:0000625` (flux bound)](http://www.ebi.ac.uk/sbo/main/SBO:0000625). 
+* **`[FBA-R0010]`** All exchange reactions **MUST** have individual `Parameters` for the upper and lower bound which are not used by other reactions. 
+* **`[FBA-G0004]`** The `Parameters` for the upper and lower bounds of reactions **SHOULD** have the ids `ub_{rid}` and `lb_{rid}` with `{rid}` being the respective reaction id.
+* **`[FBA-G0005]`** The `Parameters` describing the flux bounds **SHOULD** have the SBOTerm [`SBO:0000625` (flux bound)](http://www.ebi.ac.uk/sbo/main/SBO:0000625). 
 
 ### Ports
-* All exchange reactions **MUST** have a port.
-* All upper and lower bounds of exchange reactions **MUST** have a port.
+* **`[FBA-R0011]`** All exchange reactions **MUST** have a port.
+* **`[FBA-R0012]`** All upper and lower bounds of exchange reactions **MUST** have a port.
 
 
 ## BOUNDS submodel
-The `BOUNDS` submodel calculates the upper and lower bounds for the `FBA` model. For this calculation the `Species` changed via exchange `Reactions` in the FBA and the time step `dt` are required. The `BOUNDS` model can be part of the `TOP` model or a separate submodel (in this case some of the rules are obsolete)
+The `BOUNDS` submodel calculates the upper and lower bounds for the `FBA` model. For this calculation the `Species` changed via exchange `Reactions` in the FBA and the time step `dt` are required. 
+<!-- REMOVE
+The `BOUNDS` model can be part of the `TOP` model or a separate submodel (in this case some of the rules are obsolete)
+-->
 
 The parameter `dt` is used in calculating the upper and lower bounds based on the availability of the species in the exchange `Reactions`. This ensures that the FBA solution cannot take more than the available species amounts in the timestep of duration `dt` and is consistent for the timestep with the available resources.
 
-* The `BOUNDS` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
-* The `BOUNDS` model **MUST** contain the parameter `dt` which defines the step size of the FBA optimizations. The `dt` `Parameter` **MUST** be linked via a port to the `TOP` model `dt`. The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).  
-* The `BOUNDS` submodel **MUST** contain all bounds `Species`, i.e. `Species` which are reactants in `FBA` exchange `Reactions`.
-* All `BOUNDS` submodel **MUST** contain all compartments of bounds `Species`.
-* The `BOUNDS` model **MUST** contain `Parameters` for all upper and lower flux bounds of exchange `Reactions`.
-* The `BOUNDS` model **MUST** contain `FunctionDefinitions` for `min` and `max` of the form  
+* **`[BND-R0001]`** The `BOUNDS` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
+* **`[BND-R0002]`** The `BOUNDS` model **MUST** contain the parameter `dt` which defines the step size of the FBA optimizations. 
+* **`[BND-R0003]`** The `dt` `Parameter` **MUST** be linked via a port to the `TOP` model `dt`. 
+* **`[BND-R0004]`** The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).  
+* **`[BND-R0005]`** The `BOUNDS` submodel **MUST** contain all exchange `Species`, i.e. `Species` which are reactants in `FBA` exchange `Reactions`.
+* **`[BND-R0006]`** The `BOUNDS` submodel **MUST** contain all compartments of exchange `Species`.
+* **`[BND-R0007]`** The `BOUNDS` model **MUST** contain `Parameters` for all upper and lower flux bounds of exchange `Reactions`.
+* **`[BND-R0008]`** The `BOUNDS` model **MUST** contain `FunctionDefinitions` for `min` and `max` of the form  
 `min=lambda( x,y, piecewise(x,lt(x,y),y) )`  
 and  
 `max=lambda( x,y, piecewise(x,gt(x,y),y) )`.
 
-* The `BOUNDS` model **MUST** contain `AssignmentRules` for the update of lower bounds of the exchange reactions of the form
+* **`[BND-R0009]`** The `BOUNDS` model **MUST** contain `AssignmentRules` for the update of lower bounds of the exchange reactions of the form
 `lb_EX_{sid}=max(lb_default, -{sid}*{cid}/dt)` 
 with `{cid}` being the compartment of the species `{sid}`. This ensures that in the time step `dt` not more than the available amounts of the species are used in the `FBA` solution.
-* If there are additional kinetic bounds on the exchange reactions these kinetic bounds must be used for restricting the bounds, i.e. 
+* **`[BND-R0010]`** If there are additional kinetic lower bounds on the exchange reactions these kinetic bounds **MUST** be used for restricting the bounds via 
 `lb_EX_{sid}=max(lb_kinetic, -{sid}*{cid}/dt)` 
+* **`[BND-R0011]`** The `BOUNDS` model **MUST** contain the necessary parameter and assignment rules for the update of additional upper and lower bounds of reactions in the FBA which are not exchange reactions. E.g. if there is a time dependent change in an upper bound of an FBA reaction this belongs in the `BOUNDS` model.
 * The `BOUNDS` submodel **CAN** calculate additional kinetic bounds for exchange reactions via `AssignmentRules`, `RateRules` or `EventAssignments`.
-* The `BOUNDS` model **MUST** contain the necessary parameter and assignment rules for the update of additional upper and lower bounds of reactions in the FBA which are not exchange reactions. E.g. if there is a time dependent change in an upper bound of an FBA reaction this belongs in the `BOUNDS` model.
 
 ## Ports
-* All bound `Species` **MUST** have a port.
-* All `Compartments` of bound `Species` **MUST** have a port.
-* All upper and lower bounds of exchange reactions **MUST** have a port.
+* **`[BND-R0012]`** All `Species` used in the `BOUNDS` model **MUST** have a port.
+* **`[BND-R0013]`** All `Compartments` of bound `Species` **MUST** have a port.
+* **`[BND-R0014]`** All upper and lower bounds of exchange reactions **MUST** have a port.
 
 
 ### ReplacedElements
-* The `TOP` model **MUST** contain parameters with `ReplacedElements` for all upper and lower bounds which are changed via the `BOUNDS` submodel. Every parameter in the `TOP` model contains hereby a `ReplacedElement` for the respective parameter from the `BOUNDS` model and `FBA` model.
-
+* **`[BND-R0015]`** The `TOP` model **MUST** contain parameters with `ReplacedElements` for all upper and lower bounds which are changed via the `BOUNDS` submodel. 
+<!-- ? unclear, remove ?
+Every parameter in the `TOP` model contains hereby a `ReplacedElement` for the respective parameter from the `BOUNDS` model and `FBA` model.
+-->
 
 ## UPDATE submodel
-The `UPDATE` model can be part of the `TOP` model or a separate submodel. The update submodel performs the update of the species which are changed by the FBA, i.e. the species which have exchange reactions.
-* The `UPDATE` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
-* For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain a parameter with id `{pid}={rid}` to store the flux from the FBA solution.
-
-* For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
-
-* The `UPDATE` model **MUST** contain all `Species` which are used in `FBA` exchange `Reactions`.
-* The species in the `UPDATE` submodel **SHOULD** be named identical to the species in the `FBA` submodel.
-* The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
-* The update reaction **MUST** have a `KineticLaw` of the form 
+<!-- remove
+The `UPDATE` model can be part of the `TOP` model or a separate submodel.
+-->
+The update submodel performs the update of the species which are changed by the `FBA`, i.e. the species which have exchange reactions.
+* **`[UPD-R0001]`** The `UPDATE` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
+* **`[UPD-R0002]`** For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain a parameter with id `{pid}={rid}` to store the flux from the FBA solution.
+* **`[UPD-R0003]`** For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
+* **`[UPD-R0004]`** The `UPDATE` model **MUST** contain all `Species` which are used in `FBA` exchange `Reactions`.
+* **`[UPD-G0001]`** The species in the `UPDATE` submodel **SHOULD** be named identical to the species in the `FBA` submodel.
+* **`[UPD-G0002]`** The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
+* **`[UPD-R0005]`** The update reaction **MUST** have a `KineticLaw` of the form 
 $$update_S = f(v_S)$$
 for the `Species` S being updated. In the simplest case when the flux is not scaled the update is performed via 
 $$update_S = -v_S$$
@@ -243,16 +247,13 @@ $$update_S = -v_S$$
 * The update reaction **MUST** have a `KineticLaw` of the form 
 $$update_S = v_S\cdot\frac{S}{Km + S}$$
 for the `Species` S being updated. The Michaelis Menten Term assures that the update of the `Species` by the `FBA` flux does not result in negative concentrations. 
-
 Matthias: The Michaelis-Menten update is not necessary if the flux bounds are correct. This creates more problems than it solves.
 -->
 
-* The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
+* **`[UPD-G0003]`** The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 <!--
 Matthias: The flux units must fit to the species. This is currently a problem in the diauxic growth because things are always normalized with X. I must update the model structure that fluxes and species are compatible, but still have the normalization. Not sure how to handle this best.
 -->
-### ReplacedElements
-- The `UPDATE` submodel **MUST** have `Species` with `ReplacedElements` that appear in the `FBA` submodel.
 
 <!-- --------------------------------------------------------------- -->
 # B) Model Simulation
@@ -298,6 +299,12 @@ if abs(bound_updated)<= absTol:
     bound_updated = 0
 ```
 
+
+
+<!-- Default Flux Bounds
+Matthias: we will use -1000, 1000 for all unspecified upper and lower bounds in reversible reactions and (0,1000) for irreversible reactions when we encode models-
+-->
+
 <!-- --------------------------------------------------------------- -->
 # C) Frequently asked questions (FAQ)
 ## Are multiple kinetic models supported?
@@ -326,6 +333,9 @@ Currently, in `iBioSim` and `sbmlutils` all SBML core constructs are supported i
 
 ## I am a tool developer and have different ideas about DFBA encoding in SBML. How can I contribute?
 You can make suggestions on the [Github Issue Tracker](https://github.com/matthiaskoenig/dfba/issues). Note this does not guarantee that your suggestions will be adopted. However, we welcome good ideas that would improve our proposed data model idea.
+
+## What if the `FBA` model has species with boundaryCondition=True`?
+FBA models containing species with `boundaryCondition=True` can easily be converted in supported `FBA` models by setting `boundaryCondition=False` and adding a exchange `Reaction` for the corresponding `Species`.
 
 <!-- --------------------------------------------------------------- -->
 <!-- text drop -->
