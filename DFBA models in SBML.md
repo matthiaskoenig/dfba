@@ -81,6 +81,7 @@ Matthias: I made the following structure required and removed the parts above, i
     * the `FBA` model defines the FBA submodel using the `fbc` package,
     * the `BOUNDS` model defines all logic for the update of the FBA bounds
     * the `UPDATE` defines the update of the `TOP` model from the `FBA` model.
+* **`[DFBA-G0004]`** The model and submodel should contain their respective function in the `model id`, `model name` and `filename`, i.e. the strings `TOP` or `top`, `FBA` or `fba`, `BOUNDS` or `bounds`, and `UPDATE` or `update`, respectively.
 * The `TOP` model **CAN** contain additional submodels. These submodels must be kinetic submodels and only linked to the `TOP` model via `comp`
 * The DFBA model and all submodels **CAN** have additional packages than `fbc` and `comp`.
 
@@ -105,11 +106,11 @@ Matthias: Probably we don't need the naming rules R0009 & R0010, but for now the
 ### dt
 * **`[TOP-R0003]`** The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. 
 * **`[TOP-R0004]`** The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).
+* **`[TOP-R0021]`** The `dt` Parameter **MUST** be constant.
 * **`[TOP-R0005]`** If the `dt` parameter has `units`, than they **MUST** be identical to the `timeUnits` of the model.
 
 ### Dummy reactions & species
 * **`[TOP-R0006]`** The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1. 
-
 <!--
 Matthias: TOP-R0006/TOP-R0008 We should think about moving to L3V2, where there is no more
 requirement for the dummy species. This would simplify and clarify things, i.e. remove the dummy species rules.
@@ -151,6 +152,7 @@ These replacements update the ODE fluxes in the `TOP` model by replacing the dum
 - **`[TOP-R0018]`** For every species that is updated in the `UPDATE` models there **MUST** exist a replacement species in the `TOP` model.
 - **`[TOP-R0019]`** `TODO:`For every uper and lower bound parameter ... (exchange reactions & kinetic reactions)
 
+
 ## FBA submodel
 * **`[FBA-R0001]`** The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
 * **`[FBA-R0002]`** The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
@@ -168,14 +170,11 @@ Unbalanced species in the `FBA` model correspond to species in the kinetic model
 Leandro: This is not how I have done the FBA models but it seems it works in our tool. Would need to change my model and verify.
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
-
-
 * **`[FBA-R0007]`** The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as substrate with stoichiometry `1.0` and have no products, i.e. have the form `1.0 {sid} ->` with `{sid}` being the `Species` id.
 * **`[FBA-R0008]`** The exchange reactions **MUST** have a port.
 * **`[FBA-G0001]`** The exchange `Reactions` **SHOULD** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
 * **`[FBA-G0002]`** The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
 * **`[FBA-G0003]`** Exchange reactions **SHOULD NOT** have a `compartment`.
-
 
 ### BoundaryCondition
 * **`[FBA-R0009]`** All `Species` in the FBA model **MUST** have `boundaryCondition=False`. 
@@ -200,6 +199,7 @@ The parameter `dt` is used in calculating the upper and lower bounds based on th
 
 * **`[BND-R0001]`** The `BOUNDS` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
 * **`[BND-R0002]`** The `BOUNDS` model **MUST** contain the parameter `dt` which defines the step size of the FBA optimizations. 
+* **`[BND-R0016]`** The `dt` Parameter **MUST** be constant.
 * **`[BND-R0003]`** The `dt` `Parameter` **MUST** be linked via a port to the `TOP` model `dt`. 
 * **`[BND-R0004]`** The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).  
 * **`[BND-R0005]`** The `BOUNDS` submodel **MUST** contain all exchange `Species`, i.e. `Species` which are reactants in `FBA` exchange `Reactions`.
@@ -254,9 +254,8 @@ Matthias: The Michaelis-Menten update is not necessary if the flux bounds are co
 -->
 
 * **`[UPD-G0003]`** The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
-<!--
-Matthias: The flux units must fit to the species. This is currently a problem in the diauxic growth because things are always normalized with X. I must update the model structure that fluxes and species are compatible, but still have the normalization. Not sure how to handle this best.
--->
+* **`[UPD-G0004]`** The update reactions **SHOULD NOT** have a `compartment`.
+
 
 <!-- --------------------------------------------------------------- -->
 # B) Model Simulation
