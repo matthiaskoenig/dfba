@@ -101,8 +101,8 @@ Matthias: Probably we don't need these two nameing rules, but for now they simpl
 Matthias: what is the correct SBOTerm for dt. I used the temporal measurement for now.
 -->
 
-### Dummy reactions
-* The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1. The dummy species **CAN** be in an arbitrary `compartment`.
+### Dummy reactions & species
+* The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1. 
 <!--
 Matthias: We should think about moving to L3V2, where there is no more
 requirement for the dummy species. This would simplify and clarify things, i.e. remove the dummy species rules.
@@ -113,6 +113,8 @@ Matthias: good point. Let's finish the L3V1 first. Main differences are the dumm
 -->
 * For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP` model. Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. The dummy reaction **MUST NOT** have any other reactants, products or modifiers, i.e. `-> dummy_S`. 
 * The id of the dummy reaction **SHOULD** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
+* The dummy species **CAN** be in an arbitrary `compartment`.
+* The dummy species **SHOULD NOT** have and `compartment` set.
 * The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
 * The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
 
@@ -169,6 +171,7 @@ Matthias: This would be great because it simplifies many things for me. Also we 
 * The exchange reactions **MUST** have a port.
 * The exchange `Reactions` **SHOULD** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
 * The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
+* The exchange reactions **SHOULD NOT** have any compartment set.
 <!--
 Matthias: !! directionality changed to be in agreement with SBO, cobra(py) and BiGG models. Also naming adapted. This allows to directly use BiGG models for DFBA simulations. See for instance
 http://bigg.ucsd.edu/models/e_coli_core/reactions/EX_ac_e
