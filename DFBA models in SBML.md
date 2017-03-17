@@ -78,12 +78,15 @@ Matthias: I think you misunderstood and we should clarify. This just says you sh
 
 ### Ports
 Objects in the different submodels are linked via `comp:Ports`.
+* All `ReplacedBy` and `Replacements` **MUST** be done via `ports` which are identified via `idRef`.
+* All `Ports` **SHOULD** have the id `{idRef}_port` for an object with `idRef={idRef}`.
 * Objects which are linked via ports in the different submodels **MUST** have the same ids in the the different submodels. 
 * In addition, the respective ports of the linked objects **MUST** have the same ids.
-* All `comp:Port` elements **SHOULD** hereby follow the id schema: id of the port is `{idRef}_port` for an object with `idRef={idRef}`.
+<!-- 
+Matthias: Probably we don't need these two nameing rules, but for now they simplify debugging and make life much simpler.
+-->
 
 ### Units
-
 * All models **SHOULD** contain units. The units of the submodel **SHOULD** be identical and be replaced by the top model.
 
 ## TOP model
@@ -93,12 +96,13 @@ Objects in the different submodels are linked via `comp:Ports`.
 ### dt
 * The `TOP` DFBA model **MUST** contain a parameter `dt` which defines the step size of the FBA optimizations, i.e. after which time interval the FBA is performed. 
 * The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).
+* If the `dt` parameter has `units`, than they **MUST** be identical to the `timeUnits` of the model.
 <!--
 Matthias: what is the correct SBOTerm for dt. I used the temporal measurement for now.
 -->
 
 ### Dummy reactions
-* The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1.
+* The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1. The dummy species **CAN** be in an arbitrary `compartment`.
 <!--
 Matthias: We should think about moving to L3V2, where there is no more
 requirement for the dummy species. This would simplify and clarify things, i.e. remove the dummy species rules.
@@ -107,10 +111,13 @@ Also no real SBOTerm fitting for dummy species or reaction. Using empty set for 
 Leandro: can have separate guidelines for L3V1 and L3V2
 Matthias: good point. Let's finish the L3V1 first. Main differences are the dummy species and the min/max functions between L3V1 and L3V2.
 -->
-* For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP`. Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. The dummy reaction **MUST NOT** have any other reactants, products or modifiers, i.e. `-> dummy_S`. 
+* For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP` model. Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. The dummy reaction **MUST NOT** have any other reactants, products or modifiers, i.e. `-> dummy_S`. 
 * The id of the dummy reaction **SHOULD** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
 * The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
 * The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
+
+### Exchange Species
+* The `TOP` model  contain one species for every species which has an exchange reaction in the FBA model. These species **MUST** replace the corresponding species in the `UPDATE` and `BOUNDS` model.
 
 ###  Flux parameters & Flux AssignmentRules
 * For every dummy `Reaction` in the `TOP` model with id a corresponding flux `Parameter` **MUST** exist in the `TOP` model which is `constant=true`. 
@@ -129,6 +136,7 @@ These replacements update the ODE fluxes in the `TOP` model by replacing the dum
 The following replacements are part of the model:
 `TODO:` what are the replacements exactely, list all of them
 - For every parameter that is used to as a flux bound for a reaction in the FBA submodel, there **MUST** be a replacing reaction from the `TOP`.
+- For the `dt` parameter in the `BOUNDS` model there must be a replacemnet with the `TOP` `dt` parameter.
 - For every species that affect any bound calculation, there **MUST** be a replacing species from the `TOP`.
 - For every species that appear in both the `UPDATE` and `KINETIC` submodels, there **MUST** be a species on the `TOP` model that replaces the corresponding species in each submodel.
 
@@ -158,6 +166,7 @@ Leandro: This is not how I have done the FBA models but it seems it works in our
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
 * The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as substrate with stoichiometry `1.0` and have no products, i.e. have the form `1.0 {sid} ->` with `{sid}` being the `Species` id.
+* The exchange reactions **MUST** have a port.
 * The exchange `Reactions` **SHOULD** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
 * The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
 <!--
