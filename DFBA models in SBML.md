@@ -87,8 +87,8 @@ Matthias: I made the following structure required and removed the parts above, i
 
 ### fbc
 * **`[DFBA-R0008]`** There **MUST** exist exactly one submodel with the `fbc` package. 
-* **`[DFBA-R0009]`** The submodel with the `fbc` package **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
-* **`[DFBA-R0010]`** The submodel with the `fbc` package MUST have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
+* **`[DFBA-R0009]`** The submodel with the `fbc` package **MUST** be encoded using `fbc-v2` with `strict=true`.
+* **`[DFBA-R0010]`** The submodel with the `fbc` package MUST have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `model` element.
 
 ### Ports
 Objects in the different submodels are linked via `comp:Ports`.
@@ -203,10 +203,11 @@ The `BOUNDS` model can be part of the `TOP` model or a separate submodel (in thi
 The parameter `dt` is used in calculating the upper and lower bounds based on the availability of the species in the exchange `Reactions`. This ensures that the FBA solution cannot take more than the available species amounts in the timestep of duration `dt` and is consistent for the timestep with the available resources.
 
 * **`[BND-R0001]`** The `BOUNDS` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
+### dt
 * **`[BND-R0002]`** The `BOUNDS` model **MUST** contain the parameter `dt` which defines the step size of the FBA optimizations. 
-* **`[BND-R0016]`** The `dt` Parameter **MUST** be constant.
-* **`[BND-R0003]`** The `dt` `Parameter` **MUST** be linked via a port to the `TOP` model `dt`. 
-* **`[BND-R0004]`** The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).  
+* **`[BND-R0016]`** The `dt` Parameter **MUST** be constant. 
+* **`[BND-R0004]`** The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).
+### Bounds species & assignmen rules
 * **`[BND-R0005]`** The `BOUNDS` submodel **MUST** contain all exchange `Species`, i.e. `Species` which are reactants in `FBA` exchange `Reactions`.
 * **`[BND-R0006]`** The `BOUNDS` submodel **MUST** contain all compartments of exchange `Species`.
 * **`[BND-R0007]`** The `BOUNDS` model **MUST** contain `Parameters` for all upper and lower flux bounds of exchange `Reactions`.
@@ -220,17 +221,23 @@ and
 with `{cid}` being the compartment of the species `{sid}`. This ensures that in the time step `dt` not more than the available amounts of the species are used in the `FBA` solution.
 * **`[BND-R0010]`** If there are additional kinetic lower bounds on the exchange reactions these kinetic bounds **MUST** be used for restricting the bounds via 
 `lb_EX_{sid}=max(lb_kinetic, -{sid}*{cid}/dt)` 
+<!--
+TODO: update and describe the cases when species are in amounts and concentrations.
+-->
+
 * **`[BND-R0011]`** The `BOUNDS` model **MUST** contain the necessary parameter and assignment rules for the update of additional upper and lower bounds of reactions in the FBA which are not exchange reactions. E.g. if there is a time dependent change in an upper bound of an FBA reaction this belongs in the `BOUNDS` model.
 * The `BOUNDS` submodel **CAN** calculate additional kinetic bounds for exchange reactions via `AssignmentRules`, `RateRules` or `EventAssignments`.
 
-## Ports
-* **`[BND-R0012]`** All `Species` used in the `BOUNDS` model **MUST** have a port.
-* **`[BND-R0013]`** All `Compartments` of bound `Species` **MUST** have a port.
-* **`[BND-R0014]`** All upper and lower bounds of exchange reactions **MUST** have a port.
+### Ports
+* **`[BND-R0003]`** The `dt` `Parameter` **MUST** have a `Port`.
+* **`[BND-R0012]`** All bound `Species` used in the `BOUNDS` model **MUST** have a `Port`.
+* **`[BND-R0013]`** All `Compartments` of bound `Species` **MUST** have a `Port`.
+* **`[BND-R0014]`** All upper and lower bounds of exchange reactions **MUST** have a `Port`.
+* **`[BND-R0015]`** All additional kinetic bounds parameter changed in the `BOUNDS` model **MUST** have a `Port`.
 
 
 ### ReplacedElements
-* **`[BND-R0015]`** The `TOP` model **MUST** contain parameters with `ReplacedElements` for all upper and lower bounds which are changed via the `BOUNDS` submodel. 
+* **`[BND-R0016]`** The `TOP` model **MUST** contain parameters with `ReplacedElements` for all upper and lower bounds which are changed via the `BOUNDS` submodel. 
 <!-- ? unclear, remove ?
 Every parameter in the `TOP` model contains hereby a `ReplacedElement` for the respective parameter from the `BOUNDS` model and `FBA` model.
 -->
@@ -241,16 +248,17 @@ The `UPDATE` model can be part of the `TOP` model or a separate submodel.
 -->
 The update submodel performs the update of the species which are changed by the `FBA`, i.e. the species which have exchange reactions.
 * **`[UPD-R0001]`** The `UPDATE` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
-* **`[UPD-R0002]`** For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain a parameter with id `{pid}={rid}` to store the flux from the FBA solution.
-* **`[UPD-R0003]`** For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
-* **`[UPD-R0004]`** The `UPDATE` model **MUST** contain all `Species` which are used in `FBA` exchange `Reactions`.
+* **`[UPD-R0002]`** The `UPDATE` model **MUST** contain all `Species`
+ which are used in `FBA` exchange `Reactions`.
+* **`[UPD-R0003]`** The `UPDATE` model **MUST** contain all `compartments` for `Species` which are used in `FBA` exchange `Reactions`.
 * **`[UPD-G0001]`** The species in the `UPDATE` submodel **SHOULD** be named identical to the species in the `FBA` submodel.
-* **`[UPD-G0002]`** The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
-* **`[UPD-R0005]`** The update reaction **MUST** have a `KineticLaw` of the form 
+### Update reactions & update parameters
+* **`[UPD-R0004]`** For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain an update `parameter` with id `{pid}={rid}`. The parameter is used to store the flux from the FBA solution.
+* **`[UPD-R0005]`** For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
+* **`[UPD-R0006]`** The update reaction **MUST** have a `KineticLaw` of the form 
 $$update_S = f(v_S)$$
 for the `Species` S being updated. In the simplest case when the flux is not scaled the update is performed via 
 $$update_S = -v_S$$
-
 <!--
 * The update reaction **MUST** have a `KineticLaw` of the form 
 $$update_S = v_S\cdot\frac{S}{Km + S}$$
@@ -258,9 +266,15 @@ for the `Species` S being updated. The Michaelis Menten Term assures that the up
 Matthias: The Michaelis-Menten update is not necessary if the flux bounds are correct. This creates more problems than it solves.
 -->
 
-* **`[UPD-G0003]`** The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
-* **`[UPD-G0004]`** The update reactions **SHOULD NOT** have a `compartment`.
+* **`[UPD-G0002]`** The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
+* **`[UPD-G0003]`** The update parameters **SHOULD** have the SBOTerm [`SBO:0000613` (reaction parameter)](http://www.ebi.ac.uk/sbo/main/SBO:0000613).
+* **`[UPD-G0004]`** The update reactions **SHOULD** have no `Compartment` set.
+* **`[UPD-G0005]`** The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
 
+### Ports
+* **`[UPD-R0007]`** All `Species` used in the `UPDATE` model **MUST** have a port.
+* **`[UPD-R0008]`** All `Compartments` of bound `Species` **MUST** have a port.
+* **`[UPD-R0009]`** All update `Parameters` **MUST** have a port.
 
 <!-- --------------------------------------------------------------- -->
 # B) Model Simulation
