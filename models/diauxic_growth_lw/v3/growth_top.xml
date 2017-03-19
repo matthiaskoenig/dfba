@@ -1,22 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core"
+      comp:required="true" layout:required="false" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
   <comp:listOfExternalModelDefinitions xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
     <comp:externalModelDefinition comp:id="growth_fba" comp:source="growth_fba.xml"/>
     <comp:externalModelDefinition comp:id="growth_update" comp:source="growth_update.xml"/>
-    <comp:externalModelDefinition comp:id="growth_bounds" comp:md5="e62afdd42bf3782e0556c232e2be17ac" comp:source="growth_bounds.xml"/>
+    <comp:externalModelDefinition comp:id="growth_bounds" comp:md5="e03e0b6935f59a68600ffe131c74b8f9" comp:source="growth_bounds.xml"/>
   </comp:listOfExternalModelDefinitions>
-  <model fbc:strict="false" id="growth_top" metaid="iBioSim15" sboTerm="SBO:0000293">
+  <model id="growth_top" metaid="iBioSim14" sboTerm="SBO:0000293">
     <comp:listOfSubmodels xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
-      <comp:submodel comp:id="C1" comp:modelRef="growth_fba" metaid="iBioSim4"/>
-      <comp:submodel comp:id="C2" comp:modelRef="growth_update" metaid="iBioSim10"/>
-      <comp:submodel comp:id="C3" comp:modelRef="growth_bounds" metaid="iBioSim11"/>
+      <comp:submodel comp:id="C1" comp:modelRef="growth_fba" metaid="iBioSim15"/>
+      <comp:submodel comp:id="C2" comp:modelRef="growth_update" metaid="iBioSim18"/>
+      <comp:submodel comp:id="C3" comp:modelRef="growth_bounds" metaid="iBioSim20"/>
     </comp:listOfSubmodels>
     <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
-      <comp:port comp:idRef="Cell" id="compartment__Cell" sboTerm="SBO:0000601"/>
-      <comp:port comp:idRef="C1" id="compartment__Cell__C1" sboTerm="SBO:0000601">
+      <comp:port comp:id="compartment__Cell" comp:idRef="Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="compartment__Cell__C1" comp:idRef="C1" sboTerm="SBO:0000601">
         <comp:sBaseRef comp:portRef="compartment__Cell"/>
       </comp:port>
-      <comp:port comp:idRef="C2" id="compartment__Cell__C2" sboTerm="SBO:0000601">
+      <comp:port comp:id="compartment__Cell__C2" comp:idRef="C2" sboTerm="SBO:0000601">
         <comp:sBaseRef comp:portRef="compartment__Cell"/>
       </comp:port>
     </comp:listOfPorts>
