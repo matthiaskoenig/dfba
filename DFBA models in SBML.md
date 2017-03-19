@@ -81,9 +81,14 @@ Matthias: I made the following structure required and removed the parts above, i
     * the `FBA` model defines the FBA submodel using the `fbc` package,
     * the `BOUNDS` model defines all logic for the update of the FBA bounds
     * the `UPDATE` defines the update of the `TOP` model from the `FBA` model.
-* **`[DFBA-G0004]`** The model and submodel should contain their respective function in the `model id`, `model name` and `filename`, i.e. the strings `TOP` or `top`, `FBA` or `fba`, `BOUNDS` or `bounds`, and `UPDATE` or `update`, respectively.
+* **`[DFBA-G0004]`** The model and submodels **SHOULD** contain their respective function in the `model id`, `model name` and `filename`, i.e. the strings `TOP` or `top`, `FBA` or `fba`, `BOUNDS` or `bounds`, and `UPDATE` or `update`.
 * The `TOP` model **CAN** contain additional submodels. These submodels must be kinetic submodels and only linked to the `TOP` model via `comp`
 * The DFBA model and all submodels **CAN** have additional packages than `fbc` and `comp`.
+
+### fbc
+* **`[DFBA-R0008]`** There **MUST** exist exactly one submodel with the `fbc` package. 
+* **`[DFBA-R0009]`** The submodel with the `fbc` package **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
+* **`[DFBA-R0010]`** The submodel with the `fbc` package MUST have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
 
 ### Ports
 Objects in the different submodels are linked via `comp:Ports`.
@@ -155,7 +160,7 @@ These replacements update the ODE fluxes in the `TOP` model by replacing the dum
 
 ## FBA submodel
 * **`[FBA-R0001]`** The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
-* **`[FBA-R0002]`** The `FBA` models **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
+* **`[FBA-R0002]`** The `FBA` model **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
 * **`[FBA-R0003]`** The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
 
 ### Objective function
