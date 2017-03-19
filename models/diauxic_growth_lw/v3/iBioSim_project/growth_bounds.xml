@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" arrays:required="true" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:arrays="http://www.sbml.org/sbml/level3/version1/arrays/version1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
-  <model fbc:strict="false" id="growth_bounds" metaid="iBioSim1" sboTerm="SBO:0000293">
+  <model fbc:strict="false" id="growth_bounds" metaid="iBioSim6" sboTerm="SBO:0000293">
     <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
-      <comp:port comp:idRef="Cell" id="compartment__Cell" sboTerm="SBO:0000601"/>
-      <comp:port comp:idRef="Ac" id="input__Ac" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="O2" id="input__O2" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="Glcxt" id="input__Glcxt" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="dt" id="input__dt" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="max_glcxt" id="input__max_glcxt" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="max_o2" id="input__max_o2" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="max_ac" id="input__max_ac" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="X" id="input__X" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="compartment__Cell" comp:idRef="Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="input__Ac" comp:idRef="Ac" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__O2" comp:idRef="O2" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__Glcxt" comp:idRef="Glcxt" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__dt" comp:idRef="dt" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__max_glcxt" comp:idRef="max_glcxt" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__max_o2" comp:idRef="max_o2" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__max_ac" comp:idRef="max_ac" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__X" comp:idRef="X" sboTerm="SBO:0000600"/>
     </comp:listOfPorts>
     <layout:listOfLayouts xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <layout:layout layout:id="iBioSim">

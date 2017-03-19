@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" arrays:required="true" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:arrays="http://www.sbml.org/sbml/level3/version1/arrays/version1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
-  <model fbc:strict="false" id="growth_fba" metaid="iBioSim1" sboTerm="SBO:0000624">
+  <model fbc:strict="false" id="growth_fba" metaid="iBioSim5" sboTerm="SBO:0000624">
     <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
-      <comp:port comp:idRef="Cell" id="compartment__Cell" sboTerm="SBO:0000601"/>
-      <comp:port comp:idRef="o_uptake" id="reaction__o_uptake" sboTerm="SBO:0000601"/>
-      <comp:port comp:idRef="g_uptake" id="reaction__g_uptake" sboTerm="SBO:0000601"/>
-      <comp:port comp:idRef="g_uptake_max" id="input__g_uptake_max" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="o_uptake_max" id="input__o_uptake_max" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="a_uptake_max" id="input__a_uptake_max" sboTerm="SBO:0000600"/>
-      <comp:port comp:idRef="a_uptake" id="reaction__a_uptake" sboTerm="SBO:0000601"/>
-      <comp:port comp:idRef="growth" id="reaction__growth" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="compartment__Cell" comp:idRef="Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="reaction__o_uptake" comp:idRef="o_uptake" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="reaction__g_uptake" comp:idRef="g_uptake" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="input__g_uptake_max" comp:idRef="g_uptake_max" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__o_uptake_max" comp:idRef="o_uptake_max" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__a_uptake_max" comp:idRef="a_uptake_max" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="reaction__a_uptake" comp:idRef="a_uptake" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="reaction__growth" comp:idRef="growth" sboTerm="SBO:0000601"/>
     </comp:listOfPorts>
     <fbc:listOfObjectives xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" fbc:activeObjective="maxGrowth">
       <fbc:objective fbc:id="maxGrowth" fbc:type="maximize">
@@ -431,7 +431,7 @@
       <parameter constant="false" id="o_uptake_max" metaid="growth_fba__iBioSim15" value="15"/>
       <parameter constant="true" id="default_neg_min" metaid="iBioSim4" value="-1000"/>
     </listOfParameters>
-            <listOfReactions>
+        <listOfReactions>
       <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="v1" metaid="growth_fba__iBioSim1" reversible="false">
         <listOfReactants>
           <speciesReference constant="true" species="Ac" stoichiometry="39.43"/>
@@ -440,17 +440,17 @@
         <listOfProducts>
           <speciesReference constant="true" species="X" stoichiometry="1"/>
         </listOfProducts>
-              </reaction>
+      </reaction>
       <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="o_uptake_max" id="o_uptake" metaid="growth_fba__iBioSim16" reversible="false">
-                <listOfProducts>
+        <listOfProducts>
           <speciesReference constant="true" species="O2" stoichiometry="1"/>
         </listOfProducts>
-              </reaction>
+      </reaction>
       <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="growth" metaid="iBioSim3" reversible="false">
         <listOfReactants>
           <speciesReference constant="true" species="X" stoichiometry="1"/>
         </listOfReactants>
-                      </reaction>
+      </reaction>
       <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="v4" metaid="growth_fba__iBioSim8" reversible="false">
         <listOfReactants>
           <speciesReference constant="true" species="Glcxt" stoichiometry="19.23"/>
@@ -459,7 +459,7 @@
           <speciesReference constant="true" species="Ac" stoichiometry="12.12"/>
           <speciesReference constant="true" species="X" stoichiometry="1"/>
         </listOfProducts>
-              </reaction>
+      </reaction>
       <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="v3" metaid="growth_fba__iBioSim9" reversible="false">
         <listOfReactants>
           <speciesReference constant="true" species="Glcxt" stoichiometry="9.84"/>
@@ -469,7 +469,7 @@
           <speciesReference constant="true" species="Ac" stoichiometry="1.24"/>
           <speciesReference constant="true" species="X" stoichiometry="1"/>
         </listOfProducts>
-              </reaction>
+      </reaction>
       <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="v2" metaid="growth_fba__iBioSim7" reversible="false">
         <listOfReactants>
           <speciesReference constant="true" species="Glcxt" stoichiometry="9.46"/>
@@ -478,17 +478,17 @@
         <listOfProducts>
           <speciesReference constant="true" species="X" stoichiometry="1"/>
         </listOfProducts>
-              </reaction>
+      </reaction>
       <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="g_uptake_max" id="g_uptake" metaid="growth_fba__iBioSim17" reversible="false">
-                <listOfProducts>
+        <listOfProducts>
           <speciesReference constant="true" species="Glcxt" stoichiometry="1"/>
         </listOfProducts>
-              </reaction>
+      </reaction>
       <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_neg_min" fbc:upperFluxBound="a_uptake_max" id="a_uptake" metaid="iBioSim2" reversible="true">
-                <listOfProducts>
+        <listOfProducts>
           <speciesReference constant="true" species="Ac" stoichiometry="1"/>
         </listOfProducts>
-              </reaction>
+      </reaction>
     </listOfReactions>
       </model>
 </sbml>
