@@ -86,9 +86,10 @@ Matthias: I made the following structure required and removed the parts above, i
 * The DFBA model and all submodels **CAN** have additional packages than `fbc` and `comp`.
 
 ### fbc
-* **`[DFBA-R0008]`** There **MUST** exist exactly one submodel with the `fbc` package. 
+* **`[DFBA-R0008]`** There **MUST** exist exactly one submodel with the `fbc` package and the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `model` element.
 * **`[DFBA-R0009]`** The submodel with the `fbc` package **MUST** be encoded using `fbc-v2` with `strict=true`.
-* **`[DFBA-R0010]`** The submodel with the `fbc` package MUST have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `model` element.
+* There **CAN** be other submodels with the `fbc` package, but not with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the model element. These submodels **CAN** be `strict=True` or `strict=False`.
+
 
 ### Ports
 Objects in the different submodels are linked via `comp:Ports`.
@@ -159,7 +160,7 @@ These replacements update the ODE fluxes in the `TOP` model by replacing the dum
 
 
 ## FBA submodel
-* **`[FBA-R0001]`** The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624).
+* **`[FBA-R0001]`** The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
 * **`[FBA-R0002]`** The `FBA` model **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
 * **`[FBA-R0003]`** The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
 
