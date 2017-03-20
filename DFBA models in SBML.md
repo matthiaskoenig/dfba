@@ -51,7 +51,7 @@ The DFBA models consists of different components performing parts of the DFBA ta
 * **`[DFBA-R0003]`** The DFBA submodels **MUST** be defined via `comp:ExternalModelDefinitions`.
 <!-- 
 Matthias: I am currently only supporting ExternalModelDefinitions. I can implement the additional direct definition of submodels. Than we can change this rule from **MUST** to **SHOULD** .
-Matthias: Too many issues with ModelDefinitions, we will only allow ExternalModelDefinitions for now. This makes things cleaner.
+Matthias: Too many issues with ModelDefinitions, we will only allow ExternalModelDefinitions for now. This makes things cleaner. We probably can relax this one.
 -->
 
 * **`[DFBA-R0004]`** The DFBA model and all submodels **MUST** be encoded in `SBML L3V1` or higher.
@@ -82,13 +82,13 @@ Matthias: I made the following structure required and removed the parts above, i
     * the `BOUNDS` model defines all logic for the update of the FBA bounds
     * the `UPDATE` defines the update of the `TOP` model from the `FBA` model.
 * **`[DFBA-G0004]`** The model and submodels **SHOULD** contain their respective function in the `model id`, `model name` and `filename`, i.e. the strings `TOP` or `top`, `FBA` or `fba`, `BOUNDS` or `bounds`, and `UPDATE` or `update`.
-* The `TOP` model **CAN** contain additional submodels. These submodels must be kinetic submodels and only linked to the `TOP` model via `comp`
+* The `TOP` model **CAN** contain additional submodels.
 * The DFBA model and all submodels **CAN** have additional packages than `fbc` and `comp`.
 
 ### fbc
-* **`[DFBA-R0008]`** There **MUST** exist exactly one submodel with the `fbc` package and the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `model` element.
-* **`[DFBA-R0009]`** The submodel with the `fbc` package **MUST** be encoded using `fbc-v2` with `strict=true`.
-* There **CAN** be other submodels with the `fbc` package, but not with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the model element. These submodels **CAN** be `strict=True` or `strict=False`.
+* **`[DFBA-R0008]`** There **MUST** exist exactly one submodel with the `fbc` package and the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `model` element. This model is called the `FBA` submodel for the `DFBA`.
+* **`[DFBA-R0009]`** The `FBA` submodel **MUST** be encoded using `fbc-v2` with `strict=true`.
+* There **CAN** be other submodels with the `fbc` package, but not with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the model element. These submodels **CAN** be either `strict=True` or `strict=False`.
 
 
 ### Ports
