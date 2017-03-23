@@ -132,14 +132,14 @@ Matthias: good point. Let's finish the L3V1 first. Main differences are the dumm
 * **`[TOP-G0002]`** The dummy species **SHOULD NOT** have and `compartment` set.
 * **`[TOP-G0003]`** The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
 * **`[TOP-G0004]`** The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
-* The dummy species **CAN** be in an arbitrary `compartment` of the `TOP` model.
+* **`[TOP-G0005]`** The dummy species **CAN** be in an arbitrary `compartment` of the `TOP` model.
 
 ### Exchange Species
-* **`[TOP-R0010]`** The `TOP` model **MUST** contain a species for every species which has an exchange reaction in the FBA model (exchange `species`). 
+* **`[TOP-R0010]`** The `TOP` model **MUST** contain a species for every species which has an exchange reaction in the `FBA` model (exchange `species`). 
 * **`[TOP-R0011]`** The exchange `species` **MUST** replace the corresponding species in the `UPDATE` and `BOUNDS` model via `ReplacedElements`.
 
 ###  Flux parameters & Flux AssignmentRules
-* **`[TOP-R0012]`** For every dummy `Reaction` in the `TOP` model with id a corresponding flux `Parameter` **MUST** exist in the `TOP` model which is `constant=true`. 
+* **`[TOP-R0012]`** For every dummy `Reaction` in the `TOP` model, a corresponding flux `Parameter` **MUST** exist in the `TOP` model which is `constant=true`. 
 * **`[TOP-R0013]`** For every dummy `Reaction` and corresponding flux `Parameter` in the top model an `AssignmentRule` in the `TOP` model **MUST** exist of form `{rid} = {dummy_rid}`.
 * **`[TOP-G0005]`** The flux parameter **SHOULD** have the id `{rid}` for the corresponding dummy reaction `{dummy_rid}`.
 * **`[TOP-G0006]`** The flux `Parameters` **SHOULD** have the SBOTerm [`SBO:0000612` (rate of reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000612).
@@ -152,10 +152,11 @@ These replacements update the ODE fluxes in the `TOP` model by replacing the dum
 
 ### Replacements
 `TODO:` still replacement information missing
-- **`[TOP-R0015]`** For every parameter that is used to as a flux bound for a reaction in the FBA submodel, there **MUST** be a replacing reaction from the `TOP`.
-- **`[TOP-R0016]`** For the `dt` parameter in the `BOUNDS` model there must be a replacemnet with the `TOP` `dt` parameter.
+- **`[TOP-R0015]`** For every parameter that is used as a flux bound, other than default ones, for a reaction in the `FBA` submodel, there **MUST** be a replacing parameter in the `TOP` model.
+- **`[TOP-R0016]`** For the `dt` parameter in the `BOUNDS` model there must be a replacement with the `TOP` `dt` parameter.
 - **`[TOP-R0017]`** For every species that is used for bounds calculation in the `BOUNDS` model (this includes all exchange species) there **MUST** exist a replacement species in the `TOP` model.
 - **`[TOP-R0018]`** For every species that is updated in the `UPDATE` models there **MUST** exist a replacement species in the `TOP` model.
+- **`[TOP-R****]`** The replaced species in the `BOUNDS` and `UPDATE` submodels should be connected via the same replacing species in the `TOP` model.
 - **`[TOP-R0019]`** `TODO:`For every uper and lower bound parameter ... (exchange reactions & kinetic reactions)
 
 
@@ -165,9 +166,8 @@ These replacements update the ODE fluxes in the `TOP` model by replacing the dum
 * **`[FBA-R0003]`** The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
 
 ### Objective function
-* **`[FBA-R0004]`** The `FBA` model **MUST** contain at least one objective function.
+* **`[FBA-R0004]`** The `FBA` model **MUST** contain at least one objective function.  Objective functions **CAN** be `maximize` or `minimize`.
 * **`[FBA-R0005]`** The objective function for the DFBA model **MUST** be the active objective in the `FBA` model.
-* The objective **CAN** be `maximize` or `minimize`.
 
 ### Exchange reactions (unbalanced species)
 Unbalanced species in the `FBA` model correspond to species in the kinetic model which are changed via the FBA fluxes.
@@ -186,7 +186,7 @@ Matthias: This would be great because it simplifies many things for me. Also we 
 * **`[FBA-R0009]`** All `Species` in the FBA model **MUST** have `boundaryCondition=False`. 
  
 ### Reaction flux bounds
-* **`[FBA-R0010]`** All exchange reactions **MUST** have individual `Parameters` for the upper and lower bound which are not used by other reactions. 
+* **`[FBA-R0010]`** All exchange reactions **MUST** have individual `Parameters` for the upper and lower bound which are not used by other reactions (unless using default bounds). 
 * **`[FBA-G0004]`** The `Parameters` for the upper and lower bounds of reactions **SHOULD** have the ids `ub_{rid}` and `lb_{rid}` with `{rid}` being the respective reaction id.
 * **`[FBA-G0005]`** The `Parameters` describing the flux bounds **SHOULD** have the SBOTerm [`SBO:0000625` (flux bound)](http://www.ebi.ac.uk/sbo/main/SBO:0000625). 
 
