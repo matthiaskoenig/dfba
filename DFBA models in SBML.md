@@ -1,5 +1,5 @@
 # DFBA models in SBML
-**version: 0.1-draft**
+**version: 0.2-draft**
 <!--
 Please edit this file ONLY on hackmd.io for now and commit the file when finished with editing to the dfba git via Menu -> Download -> Markdown. Than we have the latest version available on github. Comments in this text via the comment syntax.
 -->
@@ -177,10 +177,10 @@ Leandro: This is not how I have done the FBA models but it seems it works in our
 Matthias: This would be great because it simplifies many things for me. Also we could easily use FBA models which are encoded in this way, like the BiGG models. 
 -->
 * **`[FBA-R0007]`** The exchange `Reactions` **MUST** have the `Species` which is changed by the reaction (unbalanced `Species` in FBA) as substrate with stoichiometry `1.0` and have no products, i.e. have the form `1.0 {sid} ->` with `{sid}` being the `Species` id.
-* **`[FBA-R0008]`** The exchange reactions **MUST** have a port.
 * **`[FBA-G0001]`** The exchange `Reactions` **SHOULD** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
 * **`[FBA-G0002]`** The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
 * **`[FBA-G0003]`** Exchange reactions **SHOULD NOT** have a `compartment`.
+* **`[FBA-R0006]`** The exchange reactions **SHOULD** be `reversible=True`.
 
 ### BoundaryCondition
 * **`[FBA-R0009]`** All `Species` in the FBA model **MUST** have `boundaryCondition=False`. 
@@ -208,9 +208,10 @@ The parameter `dt` is used in calculating the upper and lower bounds based on th
 * **`[BND-R0002]`** The `BOUNDS` model **MUST** contain the parameter `dt` which defines the step size of the FBA optimizations. 
 * **`[BND-R0016]`** The `dt` Parameter **MUST** be constant. 
 * **`[BND-R0004]`** The `dt` parameter **MUST** be annotated with the SBOTerm [`SBO:0000346` (temporal measure)](http://www.ebi.ac.uk/sbo/main/SBO:0000346).
-### Bounds species & assignmen rules
+
+### Bounds species & assignment rules
 * **`[BND-R0005]`** The `BOUNDS` submodel **MUST** contain all exchange `Species`, i.e. `Species` which are reactants in `FBA` exchange `Reactions`.
-* **`[BND-R0006]`** The `BOUNDS` submodel **MUST** contain all compartments of exchange `Species`.
+* **`[BND-R0006]`** The `BOUNDS` submodel **MUST** contain all `Compartments` of exchange `Species`.
 * **`[BND-R0007]`** The `BOUNDS` model **MUST** contain `Parameters` for all upper and lower flux bounds of exchange `Reactions`.
 * **`[BND-R0008]`** The `BOUNDS` model **MUST** contain `FunctionDefinitions` for `min` and `max` of the form  
 `min=lambda( x,y, piecewise(x,lt(x,y),y) )`  
@@ -227,7 +228,9 @@ TODO: update and describe the cases when species are in amounts and concentratio
 -->
 
 * **`[BND-R0011]`** The `BOUNDS` model **MUST** contain the necessary parameter and assignment rules for the update of additional upper and lower bounds of reactions in the FBA which are not exchange reactions. E.g. if there is a time dependent change in an upper bound of an FBA reaction this belongs in the `BOUNDS` model.
+* **`[BND-G0001]`** The `Parameters` describing the flux bounds **SHOULD** have the SBOTerm [`SBO:0000625` (flux bound)](http://www.ebi.ac.uk/sbo/main/SBO:0000625).
 * The `BOUNDS` submodel **CAN** calculate additional kinetic bounds for exchange reactions via `AssignmentRules`, `RateRules` or `EventAssignments`.
+
 
 ### Ports
 * **`[BND-R0003]`** The `dt` `Parameter` **MUST** have a `Port`.
@@ -312,6 +315,10 @@ while (time <= tend){
 * The fluxes in the kinetic model **MUST** be set before the kinetic simulation is run.
 
 * For the execution of the kinetic models the comp model is flattend and the flattened model is simulated.
+
+### FBA optimization
+* For the FBA optimization the `reversible` attribute of `Reactions` does not influence the fba solution, Only the upper and lower bounds restrict the possible direction of flux for a reaction.
+* The FBA optimization is performed using pFBA (parsimonous FBA) resulting in a Flux distribution with minimal total flux.
 
 ## Tolerances
 For the DFBA simulation absolute tolerances `absTol` and `relTol` are defined. These tolerances are used for the kinetic integration. 
