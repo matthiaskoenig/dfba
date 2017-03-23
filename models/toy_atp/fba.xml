@@ -1,23 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" arrays:required="true" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:arrays="http://www.sbml.org/sbml/level3/version1/arrays/version1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
-  <model fbc:strict="false" id="fba" metaid="iBioSim21" sboTerm="SBO:0000624">
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+  <model fbc:strict="true" id="fba" metaid="iBioSim21" sboTerm="SBO:0000624">
     <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
-      <comp:port comp:id="input__R1_rate" comp:idRef="R1_rate" sboTerm="SBO:0000600"/>
-      <comp:port comp:id="input__fb_R1_lessEqual" comp:idRef="fb_R1_lessEqual" sboTerm="SBO:0000600"/>
-      <comp:port comp:id="reaction__R7" comp:idRef="R7" sboTerm="SBO:0000601"/>
-      <comp:port comp:id="reaction__R0" comp:idRef="R0" sboTerm="SBO:0000601"/>
-      <comp:port comp:id="reaction__R3" comp:idRef="R3" sboTerm="SBO:0000601"/>
-      <comp:port comp:id="reaction__R4" comp:idRef="R4" sboTerm="SBO:0000601"/>
-      <comp:port comp:id="reaction__R1" comp:idRef="R1" sboTerm="SBO:0000601"/>
-      <comp:port comp:id="reaction__R5" comp:idRef="R5" sboTerm="SBO:0000601"/>
-      <comp:port comp:id="reaction__R6" comp:idRef="R6" sboTerm="SBO:0000601"/>
-      <comp:port comp:id="reaction__R2" comp:idRef="R2" sboTerm="SBO:0000601"/>
-      <comp:port comp:id="compartment__Cell" comp:idRef="Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:idRef="ATP_Ex" id="reaction__ATP_Ex" sboTerm="SBO:0000601"/>
+      <comp:port comp:idRef="Glucose_Ex" id="reaction__Glucose_Ex" sboTerm="SBO:0000601"/>
+      <comp:port comp:idRef="ADP_Ex" id="reaction__ADP_Ex" sboTerm="SBO:0000601"/>
+      <comp:port comp:idRef="Cell" id="compartment__Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:idRef="Pyruvate_Ex" id="reaction__Pyruvate_Ex" sboTerm="SBO:0000601"/>
+      <comp:port comp:idRef="max_glcxt" id="input__max_glcxt" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="max_adp" id="input__max_adp" sboTerm="SBO:0000600"/>
     </comp:listOfPorts>
-    <fbc:listOfObjectives xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" fbc:activeObjective="maxR7">
-      <fbc:objective fbc:id="maxR7" fbc:type="maximize">
+    <fbc:listOfObjectives xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" fbc:activeObjective="max">
+      <fbc:objective fbc:id="max" fbc:type="maximize">
         <fbc:listOfFluxObjectives>
-          <fbc:fluxObjective fbc:coefficient="1" fbc:reaction="R7"/>
+          <fbc:fluxObjective fbc:coefficient="1" fbc:reaction="ATP_Ex"/>
         </fbc:listOfFluxObjectives>
       </fbc:objective>
     </fbc:listOfObjectives>
@@ -25,9 +21,15 @@
       <layout:layout layout:id="iBioSim">
         <layout:dimensions layout:height="410" layout:width="1020"/>
         <layout:listOfAdditionalGraphicalObjects>
-          <layout:generalGlyph layout:id="Glyph__fb_R1_lessEqual" layout:reference="fb_R1_lessEqual">
+          <layout:generalGlyph layout:id="Glyph__max_glcxt" layout:reference="max_glcxt">
             <layout:boundingBox>
-              <layout:position layout:x="400" layout:y="280"/>
+              <layout:position layout:x="470" layout:y="350"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__max_adp" layout:reference="max_adp">
+            <layout:boundingBox>
+              <layout:position layout:x="380" layout:y="350"/>
               <layout:dimensions layout:height="30" layout:width="30"/>
             </layout:boundingBox>
           </layout:generalGlyph>
@@ -41,27 +43,9 @@
           </layout:compartmentGlyph>
         </layout:listOfCompartmentGlyphs>
         <layout:listOfSpeciesGlyphs>
-          <layout:speciesGlyph layout:id="Glyph__GlucoseIn" layout:species="GlucoseIn">
-            <layout:boundingBox>
-              <layout:position layout:x="70" layout:y="110"/>
-              <layout:dimensions layout:height="30" layout:width="100"/>
-            </layout:boundingBox>
-          </layout:speciesGlyph>
-          <layout:speciesGlyph layout:id="Glyph__ATPIn" layout:species="ATPIn">
-            <layout:boundingBox>
-              <layout:position layout:x="465" layout:y="340"/>
-              <layout:dimensions layout:height="30" layout:width="100"/>
-            </layout:boundingBox>
-          </layout:speciesGlyph>
           <layout:speciesGlyph layout:id="Glyph__ATP" layout:species="ATP">
             <layout:boundingBox>
               <layout:position layout:x="525" layout:y="240"/>
-              <layout:dimensions layout:height="30" layout:width="100"/>
-            </layout:boundingBox>
-          </layout:speciesGlyph>
-          <layout:speciesGlyph layout:id="Glyph__ADPIn" layout:species="ADPIn">
-            <layout:boundingBox>
-              <layout:position layout:x="720" layout:y="30"/>
               <layout:dimensions layout:height="30" layout:width="100"/>
             </layout:boundingBox>
           </layout:speciesGlyph>
@@ -97,13 +81,7 @@
           </layout:speciesGlyph>
           <layout:speciesGlyph layout:id="Glyph__Pyruvate" layout:species="Pyruvate">
             <layout:boundingBox>
-              <layout:position layout:x="865" layout:y="340"/>
-              <layout:dimensions layout:height="30" layout:width="100"/>
-            </layout:boundingBox>
-          </layout:speciesGlyph>
-          <layout:speciesGlyph layout:id="Glyph__ATPOut" layout:species="ATPOut">
-            <layout:boundingBox>
-              <layout:position layout:x="595" layout:y="340"/>
+              <layout:position layout:x="865" layout:y="320"/>
               <layout:dimensions layout:height="30" layout:width="100"/>
             </layout:boundingBox>
           </layout:speciesGlyph>
@@ -284,7 +262,7 @@
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xsi:type="LineSegment">
                       <layout:start layout:x="915" layout:y="285"/>
-                      <layout:end layout:x="915" layout:y="355"/>
+                      <layout:end layout:x="915" layout:y="335"/>
                     </layout:curveSegment>
                   </layout:listOfCurveSegments>
                 </layout:curve>
@@ -301,27 +279,17 @@
               </layout:speciesReferenceGlyph>
             </layout:listOfSpeciesReferenceGlyphs>
           </layout:reactionGlyph>
-          <layout:reactionGlyph layout:id="Glyph__R0" layout:reaction="R0">
+          <layout:reactionGlyph layout:id="Glyph__Glucose_Ex" layout:reaction="Glucose_Ex">
             <layout:boundingBox>
-              <layout:position layout:x="110" layout:y="175"/>
+              <layout:position layout:x="95" layout:y="175"/>
               <layout:dimensions layout:height="20" layout:width="20"/>
             </layout:boundingBox>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="Glyph__R0__substrate__GlucoseIn" layout:role="substrate" layout:speciesGlyph="Glyph__GlucoseIn">
+              <layout:speciesReferenceGlyph layout:id="Glyph__Glucose_Ex__product__Glucose" layout:role="product" layout:speciesGlyph="Glyph__Glucose">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xsi:type="LineSegment">
-                      <layout:start layout:x="120" layout:y="125"/>
-                      <layout:end layout:x="120" layout:y="185"/>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="Glyph__R0__product__Glucose" layout:role="product" layout:speciesGlyph="Glyph__Glucose">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xsi:type="LineSegment">
-                      <layout:start layout:x="120" layout:y="185"/>
+                      <layout:start layout:x="105" layout:y="185"/>
                       <layout:end layout:x="210" layout:y="185"/>
                     </layout:curveSegment>
                   </layout:listOfCurveSegments>
@@ -329,51 +297,13 @@
               </layout:speciesReferenceGlyph>
             </layout:listOfSpeciesReferenceGlyphs>
           </layout:reactionGlyph>
-          <layout:reactionGlyph layout:id="Glyph__R1" layout:reaction="R1">
-            <layout:boundingBox>
-              <layout:position layout:x="505" layout:y="285"/>
-              <layout:dimensions layout:height="20" layout:width="20"/>
-            </layout:boundingBox>
-            <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="Glyph__R1__substrate__ATPIn" layout:role="substrate" layout:speciesGlyph="Glyph__ATPIn">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xsi:type="LineSegment">
-                      <layout:start layout:x="515" layout:y="355"/>
-                      <layout:end layout:x="515" layout:y="295"/>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="Glyph__R1__product__ATP" layout:role="product" layout:speciesGlyph="Glyph__ATP">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xsi:type="LineSegment">
-                      <layout:start layout:x="515" layout:y="295"/>
-                      <layout:end layout:x="575" layout:y="255"/>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-            </layout:listOfSpeciesReferenceGlyphs>
-          </layout:reactionGlyph>
-          <layout:reactionGlyph layout:id="Glyph__R2" layout:reaction="R2">
+          <layout:reactionGlyph layout:id="Glyph__ADP_Ex" layout:reaction="ADP_Ex">
             <layout:boundingBox>
               <layout:position layout:x="905" layout:y="35"/>
               <layout:dimensions layout:height="20" layout:width="20"/>
             </layout:boundingBox>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="Glyph__R2__substrate__ADPIn" layout:role="substrate" layout:speciesGlyph="Glyph__ADPIn">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xsi:type="LineSegment">
-                      <layout:start layout:x="770" layout:y="45"/>
-                      <layout:end layout:x="915" layout:y="45"/>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="Glyph__R2__product__ADP" layout:role="product" layout:speciesGlyph="Glyph__ADP">
+              <layout:speciesReferenceGlyph layout:id="Glyph__ADP_Ex__product__ADP" layout:role="product" layout:speciesGlyph="Glyph__ADP">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xsi:type="LineSegment">
@@ -385,28 +315,36 @@
               </layout:speciesReferenceGlyph>
             </layout:listOfSpeciesReferenceGlyphs>
           </layout:reactionGlyph>
-          <layout:reactionGlyph layout:id="Glyph__R7" layout:reaction="R7">
+          <layout:reactionGlyph layout:id="Glyph__ATP_Ex" layout:reaction="ATP_Ex">
             <layout:boundingBox>
-              <layout:position layout:x="635" layout:y="285"/>
+              <layout:position layout:x="565" layout:y="300"/>
               <layout:dimensions layout:height="20" layout:width="20"/>
             </layout:boundingBox>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="Glyph__R7__substrate__ATP" layout:role="substrate" layout:speciesGlyph="Glyph__ATP">
+              <layout:speciesReferenceGlyph layout:id="Glyph__ATP_Ex__substrate__ATP" layout:role="substrate" layout:speciesGlyph="Glyph__ATP">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xsi:type="LineSegment">
                       <layout:start layout:x="575" layout:y="255"/>
-                      <layout:end layout:x="645" layout:y="295"/>
+                      <layout:end layout:x="575" layout:y="310"/>
                     </layout:curveSegment>
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="Glyph__R7__product__ATPOut" layout:role="product" layout:speciesGlyph="Glyph__ATPOut">
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__Pyruvate_Ex" layout:reaction="Pyruvate_Ex">
+            <layout:boundingBox>
+              <layout:position layout:x="905" layout:y="365"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__Pyruvate_Ex__substrate__Pyruvate" layout:role="substrate" layout:speciesGlyph="Glyph__Pyruvate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xsi:type="LineSegment">
-                      <layout:start layout:x="645" layout:y="295"/>
-                      <layout:end layout:x="645" layout:y="355"/>
+                      <layout:start layout:x="915" layout:y="335"/>
+                      <layout:end layout:x="915" layout:y="375"/>
                     </layout:curveSegment>
                   </layout:listOfCurveSegments>
                 </layout:curve>
@@ -421,27 +359,9 @@
               <layout:dimensions layout:height="400" layout:width="970"/>
             </layout:boundingBox>
           </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__GlucoseIn" layout:id="TextGlyph__GlucoseIn" layout:text="GlucoseIn">
-            <layout:boundingBox>
-              <layout:position layout:x="70" layout:y="110"/>
-              <layout:dimensions layout:height="30" layout:width="100"/>
-            </layout:boundingBox>
-          </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__ATPIn" layout:id="TextGlyph__ATPIn" layout:text="ATPIn">
-            <layout:boundingBox>
-              <layout:position layout:x="465" layout:y="340"/>
-              <layout:dimensions layout:height="30" layout:width="100"/>
-            </layout:boundingBox>
-          </layout:textGlyph>
           <layout:textGlyph layout:graphicalObject="Glyph__ATP" layout:id="TextGlyph__ATP" layout:text="ATP">
             <layout:boundingBox>
               <layout:position layout:x="525" layout:y="240"/>
-              <layout:dimensions layout:height="30" layout:width="100"/>
-            </layout:boundingBox>
-          </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__ADPIn" layout:id="TextGlyph__ADPIn" layout:text="ADPIn">
-            <layout:boundingBox>
-              <layout:position layout:x="720" layout:y="30"/>
               <layout:dimensions layout:height="30" layout:width="100"/>
             </layout:boundingBox>
           </layout:textGlyph>
@@ -495,7 +415,7 @@
           </layout:textGlyph>
           <layout:textGlyph layout:graphicalObject="Glyph__Pyruvate" layout:id="TextGlyph__Pyruvate" layout:text="Pyruvate">
             <layout:boundingBox>
-              <layout:position layout:x="865" layout:y="340"/>
+              <layout:position layout:x="865" layout:y="320"/>
               <layout:dimensions layout:height="30" layout:width="100"/>
             </layout:boundingBox>
           </layout:textGlyph>
@@ -505,82 +425,66 @@
               <layout:dimensions layout:height="30" layout:width="30"/>
             </layout:boundingBox>
           </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__ATPOut" layout:id="TextGlyph__ATPOut" layout:text="ATPOut">
+          <layout:textGlyph layout:graphicalObject="Glyph__Glucose_Ex" layout:id="TextGlyph__Glucose_Ex" layout:text="Glucose_Ex">
             <layout:boundingBox>
-              <layout:position layout:x="595" layout:y="340"/>
-              <layout:dimensions layout:height="30" layout:width="100"/>
-            </layout:boundingBox>
-          </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__R0" layout:id="TextGlyph__R0" layout:text="R0">
-            <layout:boundingBox>
-              <layout:position layout:x="110" layout:y="175"/>
+              <layout:position layout:x="95" layout:y="175"/>
               <layout:dimensions layout:height="20" layout:width="20"/>
             </layout:boundingBox>
           </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__R1" layout:id="TextGlyph__R1" layout:text="R1">
-            <layout:boundingBox>
-              <layout:position layout:x="505" layout:y="285"/>
-              <layout:dimensions layout:height="20" layout:width="20"/>
-            </layout:boundingBox>
-          </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__R2" layout:id="TextGlyph__R2" layout:text="R2">
+          <layout:textGlyph layout:graphicalObject="Glyph__ADP_Ex" layout:id="TextGlyph__ADP_Ex" layout:text="ADP_Ex">
             <layout:boundingBox>
               <layout:position layout:x="905" layout:y="35"/>
               <layout:dimensions layout:height="20" layout:width="20"/>
             </layout:boundingBox>
           </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__R7" layout:id="TextGlyph__R7" layout:text="R7">
+          <layout:textGlyph layout:graphicalObject="Glyph__ATP_Ex" layout:id="TextGlyph__ATP_Ex" layout:text="ATP_Ex">
             <layout:boundingBox>
-              <layout:position layout:x="635" layout:y="285"/>
+              <layout:position layout:x="565" layout:y="300"/>
               <layout:dimensions layout:height="20" layout:width="20"/>
             </layout:boundingBox>
           </layout:textGlyph>
-          <layout:textGlyph layout:graphicalObject="Glyph__fb_R1_lessEqual" layout:id="TextGlyph__fb_R1_lessEqual" layout:text="fb_R1_lessEqual">
+          <layout:textGlyph layout:graphicalObject="Glyph__Pyruvate_Ex" layout:id="TextGlyph__Pyruvate_Ex" layout:text="Pyruvate_Ex">
             <layout:boundingBox>
-              <layout:position layout:x="400" layout:y="280"/>
+              <layout:position layout:x="905" layout:y="365"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__max_glcxt" layout:id="TextGlyph__max_glcxt" layout:text="max_glcxt">
+            <layout:boundingBox>
+              <layout:position layout:x="470" layout:y="350"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__max_adp" layout:id="TextGlyph__max_adp" layout:text="max_adp">
+            <layout:boundingBox>
+              <layout:position layout:x="380" layout:y="350"/>
               <layout:dimensions layout:height="30" layout:width="30"/>
             </layout:boundingBox>
           </layout:textGlyph>
         </layout:listOfTextGlyphs>
       </layout:layout>
     </layout:listOfLayouts>
-    <listOfCompartments>
+            <listOfCompartments>
       <compartment constant="true" id="Cell" size="1" spatialDimensions="3"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species boundaryCondition="true" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="GlucoseIn" initialAmount="0" metaid="iBioSim1"/>
-      <species boundaryCondition="true" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ATPIn" initialAmount="0" metaid="iBioSim4"/>
       <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ATP" initialAmount="0" metaid="iBioSim5"/>
-      <species boundaryCondition="true" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ADPIn" initialAmount="0" metaid="iBioSim6"/>
       <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ADP" initialAmount="0" metaid="iBioSim7"/>
       <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Glucose" initialAmount="0" metaid="iBioSim8"/>
       <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Fructose" initialAmount="0" metaid="iBioSim9"/>
       <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="GADP" initialAmount="0" metaid="iBioSim11"/>
       <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Phosphoglycerate" initialAmount="0" metaid="iBioSim13"/>
-      <species boundaryCondition="true" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Pyruvate" initialAmount="0" metaid="iBioSim15"/>
-      <species boundaryCondition="true" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ATPOut" initialAmount="0" metaid="iBioSim17"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Pyruvate" initialAmount="0" metaid="iBioSim15"/>
     </listOfSpecies>
     <listOfParameters>
-      <parameter constant="true" id="fb_R0_greaterEqual" metaid="iBioSim18" sboTerm="SBO:0000625" value="0"/>
-      <parameter constant="true" id="fb_R0_lessEqual" metaid="iBioSim23" sboTerm="SBO:0000625" value="1"/>
-      <parameter constant="true" id="fb_R1_greaterEqual" metaid="iBioSim24" sboTerm="SBO:0000625" value="0"/>
-      <parameter constant="false" id="fb_R1_lessEqual" metaid="iBioSim25" sboTerm="SBO:0000625" value="2"/>
-      <parameter constant="true" id="fb_R2_greaterEqual" metaid="iBioSim26" sboTerm="SBO:0000625" value="0"/>
-      <parameter constant="true" id="fb_R2_lessEqual" metaid="iBioSim27" sboTerm="SBO:0000625" value="1000"/>
-      <parameter constant="true" id="fb_R3_greaterEqual" metaid="iBioSim28" sboTerm="SBO:0000625" value="0"/>
-      <parameter constant="true" id="fb_R3_lessEqual" metaid="iBioSim29" sboTerm="SBO:0000625" value="1000"/>
-      <parameter constant="true" id="fb_R4_greaterEqual" metaid="iBioSim30" sboTerm="SBO:0000625" value="0"/>
-      <parameter constant="true" id="fb_R4_lessEqual" metaid="iBioSim31" sboTerm="SBO:0000625" value="1000"/>
-      <parameter constant="true" id="fb_R5_greaterEqual" metaid="iBioSim32" sboTerm="SBO:0000625" value="0"/>
-      <parameter constant="true" id="fb_R5_lessEqual" metaid="iBioSim33" sboTerm="SBO:0000625" value="1000"/>
-      <parameter constant="true" id="fb_R6_greaterEqual" metaid="iBioSim34" sboTerm="SBO:0000625" value="0"/>
-      <parameter constant="true" id="fb_R6_lessEqual" metaid="iBioSim35" sboTerm="SBO:0000625" value="1000"/>
-      <parameter constant="true" id="fb_R7_greaterEqual" metaid="iBioSim36" sboTerm="SBO:0000625" value="0"/>
-      <parameter constant="true" id="fb_R7_lessEqual" metaid="iBioSim37" sboTerm="SBO:0000625" value="1000"/>
-      <parameter constant="false" id="R1_rate" metaid="iBioSim41" value="0"/>
+      <parameter constant="false" id="max_glcxt" metaid="iBioSim23" sboTerm="SBO:0000625" value="10"/>
+      <parameter constant="true" id="default_min" metaid="iBioSim4" value="0"/>
+      <parameter constant="true" id="default_max" metaid="iBioSim17" value="1000"/>
+      <parameter constant="false" id="max_adp" metaid="iBioSim1" sboTerm="SBO:0000625" value="10"/>
+      <parameter constant="true" id="default_neg_min" metaid="iBioSim18" value="-1000"/>
     </listOfParameters>
-    <listOfReactions>
-      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="fb_R5_greaterEqual" fbc:upperFluxBound="fb_R5_lessEqual" id="R5" metaid="iBioSim14" reversible="false">
+            <listOfReactions>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="R5" metaid="iBioSim14" reversible="false">
         <listOfReactants>
           <speciesReference constant="true" species="GADP" stoichiometry="1"/>
           <speciesReference constant="true" species="ADP" stoichiometry="1"/>
@@ -589,8 +493,8 @@
           <speciesReference constant="true" species="Phosphoglycerate" stoichiometry="1"/>
           <speciesReference constant="true" species="ATP" stoichiometry="1"/>
         </listOfProducts>
-      </reaction>
-      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="fb_R6_greaterEqual" fbc:upperFluxBound="fb_R6_lessEqual" id="R6" metaid="iBioSim16" reversible="false">
+              </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="R6" metaid="iBioSim16" reversible="false">
         <listOfReactants>
           <speciesReference constant="true" species="Phosphoglycerate" stoichiometry="1"/>
           <speciesReference constant="true" species="ADP" stoichiometry="1"/>
@@ -599,24 +503,33 @@
           <speciesReference constant="true" species="Pyruvate" stoichiometry="1"/>
           <speciesReference constant="true" species="ATP" stoichiometry="1"/>
         </listOfProducts>
-      </reaction>
-      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="fb_R1_greaterEqual" fbc:upperFluxBound="fb_R1_lessEqual" id="R1" metaid="iBioSim3" reversible="false">
+              </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="R3" metaid="iBioSim10" reversible="false">
         <listOfReactants>
-          <speciesReference constant="true" species="ATPIn" stoichiometry="1"/>
-        </listOfReactants>
-        <listOfProducts>
+          <speciesReference constant="true" species="Glucose" stoichiometry="1"/>
           <speciesReference constant="true" species="ATP" stoichiometry="1"/>
-        </listOfProducts>
-      </reaction>
-      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="fb_R2_greaterEqual" fbc:upperFluxBound="fb_R2_lessEqual" id="R2" metaid="iBioSim19" reversible="false">
-        <listOfReactants>
-          <speciesReference constant="true" species="ADPIn" stoichiometry="1"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference constant="true" species="ADP" stoichiometry="1"/>
+          <speciesReference constant="true" species="Fructose" stoichiometry="1"/>
         </listOfProducts>
-      </reaction>
-      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="fb_R4_greaterEqual" fbc:upperFluxBound="fb_R4_lessEqual" id="R4" metaid="iBioSim12" reversible="false">
+              </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="max_adp" id="ADP_Ex" metaid="iBioSim19" reversible="false">
+                <listOfProducts>
+          <speciesReference constant="true" species="ADP" stoichiometry="1"/>
+        </listOfProducts>
+              </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="max_glcxt" id="Glucose_Ex" metaid="iBioSim2" reversible="false">
+                <listOfProducts>
+          <speciesReference constant="true" species="Glucose" stoichiometry="1"/>
+        </listOfProducts>
+              </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="Pyruvate_Ex" metaid="iBioSim3" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Pyruvate" stoichiometry="1"/>
+        </listOfReactants>
+                      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="R4" metaid="iBioSim12" reversible="false">
         <listOfReactants>
           <speciesReference constant="true" species="Fructose" stoichiometry="1"/>
           <speciesReference constant="true" species="ATP" stoichiometry="1"/>
@@ -625,33 +538,12 @@
           <speciesReference constant="true" species="GADP" stoichiometry="2"/>
           <speciesReference constant="true" species="ADP" stoichiometry="1"/>
         </listOfProducts>
-      </reaction>
-      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="fb_R0_greaterEqual" fbc:upperFluxBound="fb_R0_lessEqual" id="R0" metaid="iBioSim2" reversible="false">
-        <listOfReactants>
-          <speciesReference constant="true" species="GlucoseIn" stoichiometry="1"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference constant="true" species="Glucose" stoichiometry="1"/>
-        </listOfProducts>
-      </reaction>
-      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="fb_R3_greaterEqual" fbc:upperFluxBound="fb_R3_lessEqual" id="R3" metaid="iBioSim10" reversible="false">
-        <listOfReactants>
-          <speciesReference constant="true" species="Glucose" stoichiometry="1"/>
-          <speciesReference constant="true" species="ATP" stoichiometry="1"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference constant="true" species="ADP" stoichiometry="1"/>
-          <speciesReference constant="true" species="Fructose" stoichiometry="1"/>
-        </listOfProducts>
-      </reaction>
-      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="fb_R7_greaterEqual" fbc:upperFluxBound="fb_R7_lessEqual" id="R7" metaid="iBioSim20" reversible="false">
+              </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_neg_min" fbc:upperFluxBound="default_max" id="ATP_Ex" metaid="iBioSim20" reversible="true">
         <listOfReactants>
           <speciesReference constant="true" species="ATP" stoichiometry="1"/>
         </listOfReactants>
-        <listOfProducts>
-          <speciesReference constant="true" species="ATPOut" stoichiometry="1"/>
-        </listOfProducts>
-      </reaction>
+                      </reaction>
     </listOfReactions>
-  </model>
+      </model>
 </sbml>
