@@ -50,8 +50,14 @@ The DFBA models consists of different components performing parts of the DFBA ta
 * **`[DFBA-R0002]`** The DFBA submodels **MUST** be encoded in the DFBA model via `comp:SubModels`. 
 * **`[DFBA-R0003]`** The DFBA submodels **MUST** be defined via `comp:ExternalModelDefinitions`.
 <!-- 
-Matthias: I am currently only supporting ExternalModelDefinitions. I can implement the additional direct definition of submodels. Than we can change this rule from **MUST** to **SHOULD** .
+Matthias: I am currently only supporting ExternalModelDefinitions. I will implement the additional direct definition of submodels. Than we can change this rule from **MUST** to **SHOULD** .
 Matthias: Too many issues with ModelDefinitions, we will only allow ExternalModelDefinitions for now. This makes things cleaner. We probably can relax this one.
+
+V2: support ModelDefinition/ExternalModelDefinition
+
+Discuss the flag.
+- 
+
 -->
 
 * **`[DFBA-R0004]`** The DFBA model and all submodels **MUST** be encoded in `SBML L3V1` or higher.
@@ -81,29 +87,31 @@ Matthias: I made the following structure required and removed the parts above, i
     * the `FBA` model defines the FBA submodel using the `fbc` package,
     * the `BOUNDS` model defines all logic for the update of the FBA bounds
     * the `UPDATE` defines the update of the `TOP` model from the `FBA` model.
-* **`[DFBA-G0004]`** The model and submodels **SHOULD** contain their respective function in the `model id`, `model name` and `filename`, i.e. the strings `TOP` or `top`, `FBA` or `fba`, `BOUNDS` or `bounds`, and `UPDATE` or `update`.
+* **`[DFBA-G0001]`** The model and submodels **SHOULD** contain their respective function in the `model id`, `model name` and `filename`, i.e. the strings `TOP` or `top`, `FBA` or `fba`, `BOUNDS` or `bounds`, and `UPDATE` or `update`.
+* **`[DFBA-G0002]`** The SBOTerms on the `submodel` object **SHOULD** be identical to the SBOTerm on the `Model` object of all submodels.
 * The `TOP` model **CAN** contain additional submodels.
 * The DFBA model and all submodels **CAN** have additional packages than `fbc` and `comp`.
 
 ### fbc
 * **`[DFBA-R0008]`** There **MUST** exist exactly one submodel with the `fbc` package and the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `model` element. This model is called the `FBA` submodel for the `DFBA`.
 * **`[DFBA-R0009]`** The `FBA` submodel **MUST** be encoded using `fbc-v2` with `strict=true`.
+<!-- strict = false but SBO term FBA on the model should apply the same rules as if it was true? -->
 * There **CAN** be other submodels with the `fbc` package, but not with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the model element. These submodels **CAN** be either `strict=True` or `strict=False`.
 
 
 ### Ports
 Objects in the different submodels are linked via `comp:Ports`.
-* **`[DFBA-R0008]`** All `ReplacedBy` and `Replacements` **MUST** be done via `ports` which are identified via `idRef`.
-* **`[DFBA-R0009]`** Objects which are linked via ports in the different submodels **MUST** have identical ids in the the different submodels. 
-* **`[DFBA-R0010]`** In addition, the respective ports of the linked objects **MUST** have the same ids.
+* **`[DFBA-R0010]`** All `ReplacedBy` and `Replacements` **MUST** be done via `ports` which are identified via `idRef`.
+* **`[DFBA-R0011]`** Objects which are linked via ports in the different submodels **MUST** have identical ids in the the different submodels. 
+* **`[DFBA-R0012]`** In addition, the respective ports of the linked objects **MUST** have the same ids.
 <!-- 
 Matthias: Probably we don't need the naming rules R0009 & R0010, but for now they simplify debugging and make life much simpler.
 -->
-* **`[DFBA-G0001]`** All `Ports` **SHOULD** have the id `{idRef}_port` for an object with `idRef={idRef}`.
+* **`[DFBA-G0003]`** All `Ports` **SHOULD** have the id `{idRef}_port` for an object with `idRef={idRef}`.
 
 ### Units
-* **`[DFBA-G0002]`** All models **SHOULD** contain units. 
-* **`[DFBA-G0003]`** The units of the submodel **SHOULD** be identical and be replaced by the top model.
+* **`[DFBA-G0004]`** All models **SHOULD** contain units. 
+* **`[DFBA-G0005]`** The units of the submodel **SHOULD** be identical and be replaced by the top model.
 
 ## TOP model
 * **`[TOP-R0001]`** The `TOP` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
@@ -327,8 +335,6 @@ In addition `absTol` is used in the update of the bounds. If the updated bounds 
 if abs(bound_updated)<= absTol:
     bound_updated = 0
 ```
-
-
 
 <!-- Default Flux Bounds
 Matthias: we will use -1000, 1000 for all unspecified upper and lower bounds in reversible reactions and (0,1000) for irreversible reactions when we encode models-
