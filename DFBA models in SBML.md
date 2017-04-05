@@ -123,7 +123,7 @@ Matthias: Probably we don't need the naming rules R0009 & R0010, but for now the
 * **`[TOP-R0021]`** The `dt` Parameter **MUST** be constant.
 * **`[TOP-R0005]`** If the `dt` parameter has `units`, than they **MUST** be identical to the `timeUnits` of the model.
 
-### Dummy reactions & species
+### Dummy species & Exchange reactions
 * **`[TOP-R0006]`** The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1. 
 <!--
 Matthias: TOP-R0006/TOP-R0008 We should think about moving to L3V2, where there is no more
@@ -133,10 +133,10 @@ Also no real SBOTerm fitting for dummy species or reaction. Using empty set for 
 Leandro: can have separate guidelines for L3V1 and L3V2
 Matthias: good point. Let's finish the L3V1 first. Main differences are the dummy species and the min/max functions between L3V1 and L3V2.
 -->
-* **`[TOP-R0007]`** For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy reaction in the `TOP` model.
-* **`[TOP-R0008]`** Each dummy reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. 
-* **`[TOP-R0009]`** The dummy reaction **MUST NOT** have any other reactants, products or modifiers than `dummy_S`, i.e. `-> dummy_S`. 
-* **`[TOP-G0001]`** The id of the dummy reaction **SHOULD** be `id="dummy_{rid}"` for the respective exchange reaction with `id="{rid}"` in the `FBA` submodel.
+* **`[TOP-R0007]`** For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy exchange reaction in the `TOP` model.
+* **`[TOP-R0008]`** Each dummy exchange reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. 
+* **`[TOP-R0009]`** The dummy exchange reaction **MUST NOT** have any other reactants, products or modifiers than `dummy_S`, i.e. `-> dummy_S`. 
+* **`[TOP-G0001]`** The id of the dummy reaction **SHOULD** be identical to the respective exchange reaction, i.e. `id="{rid}"` for the exchange reaction with `id="{rid}"` in the `FBA` submodel.
 * **`[TOP-G0002]`** The dummy species **SHOULD NOT** have and `compartment` set.
 * **`[TOP-G0003]`** The dummy species **SHOULD** have the SBOTerm [`SBO:0000291` (empty set)](http://www.ebi.ac.uk/sbo/main/SBO:0000291). 
 * **`[TOP-G0004]`** The dummy reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
@@ -147,12 +147,11 @@ Matthias: good point. Let's finish the L3V1 first. Main differences are the dumm
 * **`[TOP-R0011]`** The exchange `species` **MUST** replace the corresponding species in the `UPDATE` and `BOUNDS` model via `ReplacedElements`.
 
 ###  Flux parameters & Flux AssignmentRules
-* **`[TOP-R0012]`** For every dummy `Reaction` in the `TOP` model, a corresponding flux `Parameter` **MUST** exist in the `TOP` model which is `constant=true`. 
-* **`[TOP-R0013]`** For every dummy `Reaction` and corresponding flux `Parameter` in the top model an `AssignmentRule` in the `TOP` model **MUST** exist of form `{rid} = {dummy_rid}`.
-* **`[TOP-G0005]`** The flux parameter **SHOULD** have the id `{rid}` for the corresponding dummy reaction `{dummy_rid}`.
+* **`[TOP-R0012]`** For every dummy `Reaction` in the `TOP` model, a corresponding flux `Parameter` **MUST** exist in the `TOP` model which is `constant=true` with the id `{pid}`. 
+* **`[TOP-R0013]`** For every dummy exchange `Reaction` with `id={rid}` and corresponding flux `Parameter` with `id={pid}` in the top model an `AssignmentRule` in the `TOP` model **MUST** exist of the form `{pid} = {rid}`.
+* **`[TOP-G0005]`** The flux parameter **SHOULD** have the id `p{rid}` for the corresponding dummy reaction `{dummy_rid}`, e.g. `pEX_Glc` for `EX_Glc`.
 * **`[TOP-G0006]`** The flux `Parameters` **SHOULD** have the SBOTerm [`SBO:0000612` (rate of reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000612).
 * **`[TOP-G0007]`** The flux `AssignmentRules` **SHOULD** have the SBOTerm [`SBO:0000391` (steady state expression)](http://www.ebi.ac.uk/sbo/main/SBO:0000391).
-<!-- What SBOTerm? -->
 
 ### ReplacedBy
 * **`[TOP-R0014]`** Every dummy reaction in the `TOP` model with `id="dummy_{rid}"` **MUST** be replaced via a `comp:ReplacedBy` with the corresponding exchange reaction with `id={EX_rid}` from the `FBA` submodel. The `comp:ReplacedBy` uses the `portRef` of the exchange reaction `{EX_rid}_port`.
@@ -188,7 +187,6 @@ Matthias: This would be great because it simplifies many things for me. Also we 
 * **`[FBA-G0001]`** The exchange `Reactions` **SHOULD** have the SBOterm [`SBO:0000627` (exchange reaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000627).
 * **`[FBA-G0002]`** The exchange `Reactions` **SHOULD** be named `EX_{sid}`, i.e. consist of the prefix `EX_` and the `Species` id `{sid}`.
 * **`[FBA-G0003]`** Exchange reactions **SHOULD NOT** have a `compartment`.
-* **`[FBA-R0006]`** The exchange reactions **SHOULD** be `reversible=True`.
 
 ### BoundaryCondition
 * **`[FBA-R0009]`** All `Species` in the FBA model **MUST** have `boundaryCondition=False`. 
@@ -260,17 +258,19 @@ The `UPDATE` model can be part of the `TOP` model or a separate submodel.
 -->
 The update submodel performs the update of the species which are changed by the `FBA`, i.e. the species which have exchange reactions.
 * **`[UPD-R0001]`** The `UPDATE` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
-* **`[UPD-R0002]`** The `UPDATE` model **MUST** contain all `Species`
- which are used in `FBA` exchange `Reactions`.
-* **`[UPD-R0003]`** The `UPDATE` model **MUST** contain all `compartments` for `Species` which are used in `FBA` exchange `Reactions`.
-* **`[UPD-G0001]`** The species in the `UPDATE` submodel **SHOULD** be named identical to the species in the `FBA` submodel.
-### Update reactions & update parameters
-* **`[UPD-R0004]`** For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain an update `parameter` with id `{pid}={rid}`. The parameter is used to store the flux from the FBA solution.
-* **`[UPD-R0005]`** For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
-* **`[UPD-R0006]`** The update reaction **MUST** have a `KineticLaw` of the form 
-$$update_S = f(v_S)$$
-for the `Species` S being updated. In the simplest case when the flux is not scaled the update is performed via 
-$$update_S = -v_S$$
+* **`[UPD-R0002]`** The `UPDATE` model **MUST** contain corresponding dynamic `Species` for all `Species` which are reactants in `FBA` exchange `Reactions`.
+* **`[UPD-R0003]`** The `UPDATE` model **MUST** contain corresponding `compartments` for all `Species` which are reactants in `FBA` exchange `Reactions`.
+* **`[UPD-G0001]`** The species in the `UPDATE` submodel **SHOULD** have identical ids to the species in the `FBA` submodel.
+### Update reactions & flux parameters
+* **`[UPD-R0004]`** For every `FBA` exchange reaction with id `{rid}` the `UPDATE` model **MUST** contain a respective flux parameter with id `{pid}`. 
+* **`[UPD-R0005]`** The every flux parameter in the `UPDATE` submodel the `TOP` model **MUST** have a corresponding flux parameter with a `replacedElement` for the flux parameter in the `UPDATE` model.
+* **`[UPD-R0006]`** For every `FBA` exchange `Reaction` the `UPDATE` model **MUST** contain an update `reaction` with identical reaction equation than the corresponding exchange reaction, i.e. `S ->`.
+* **`[UPD-R0007]`** The update reaction **MUST** have a `KineticLaw` which depends on the flux parameter `{pid_S}`
+$$f(pid_S)$$
+for the `Species` S being updated. In the simplest case the update is performed via 
+$$update_S = -pid_S$$
+i.e. the resulting change in Species via the update reaction is than
+$$dS/dt = -pid_S$$
 <!--
 * The update reaction **MUST** have a `KineticLaw` of the form 
 $$update_S = v_S\cdot\frac{S}{Km + S}$$
@@ -279,14 +279,15 @@ Matthias: The Michaelis-Menten update is not necessary if the flux bounds are co
 -->
 
 * **`[UPD-G0002]`** The update reactions **SHOULD** have the SBOTerm [`SBO:0000631` (pseudoreaction)](http://www.ebi.ac.uk/sbo/main/SBO:0000631).
-* **`[UPD-G0003]`** The update parameters **SHOULD** have the SBOTerm [`SBO:0000613` (reaction parameter)](http://www.ebi.ac.uk/sbo/main/SBO:0000613).
+* **`[UPD-G0003]`** The flux parameters **SHOULD** have the SBOTerm [`SBO:0000613` (reaction parameter)](http://www.ebi.ac.uk/sbo/main/SBO:0000613).
 * **`[UPD-G0004]`** The update reactions **SHOULD** have no `Compartment` set.
 * **`[UPD-G0005]`** The update `Reactions` **SHOULD** have ids of the form `update_{sid}` with `{sid}` being the id of the `Species` which is updated.
+* **`[UPD-G0006]`** The flux `Parameters` in the `UPDATE` model **SHOULD** have identical ids to the flux parameters in the top model.
 
 ### Ports
-* **`[UPD-R0007]`** All `Species` used in the `UPDATE` model **MUST** have a port.
-* **`[UPD-R0008]`** All `Compartments` of bound `Species` **MUST** have a port.
-* **`[UPD-R0009]`** All update `Parameters` **MUST** have a port.
+* **`[UPD-R0008]`** All `Species` used in the `UPDATE` model **MUST** have a port.
+* **`[UPD-R0009]`** All `Compartments` of bound `Species` **MUST** have a port.
+* **`[UPD-R0010]`** All flux `Parameters` **MUST** have a port.
 
 <!-- --------------------------------------------------------------- -->
 # B) Model Simulation
