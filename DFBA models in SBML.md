@@ -289,6 +289,12 @@ Matthias: The Michaelis-Menten update is not necessary if the flux bounds are co
 * **`[UPD-R0009]`** All `Compartments` of bound `Species` **MUST** have a port.
 * **`[UPD-R0010]`** All flux `Parameters` **MUST** have a port.
 
+## Flux Weighting
+One main open issue is how to encode the flux weighting by biomass X.
+This is mainly the problem discussed here
+https://docs.google.com/document/d/1KqERrNr7Iptos6cyYekIOkx9L3ZBVb4SWav8vrn4GAY/edit#
+
+
 <!-- --------------------------------------------------------------- -->
 # B) Model Simulation
 In this section we describe how models in the DFBA SBML formalism described in section A should be simulated by software. The described simulation and update strategy was implemented in two DFBA simulators: `iBioSim` and `sbmlutils`.
