@@ -1,0 +1,417 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" arrays:required="true" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:arrays="http://www.sbml.org/sbml/level3/version1/arrays/version1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+  <model fbc:strict="false" id="update" metaid="iBioSim15" sboTerm="SBO:0000293">
+    <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:port comp:idRef="Cell" comp:id="compartment__Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:idRef="rateOfATP" comp:id="input__rateOfATP" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="rateOfADP" comp:id="input__rateOfADP" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="rateOfGlcxt" comp:id="input__rateOfGlcxt" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="rateOfPyruvate" comp:id="input__rateOfPyruvate" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="ATP" comp:id="input__ATP" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="ADP" comp:id="input__ADP" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="Glucose" comp:id="input__Glucose" sboTerm="SBO:0000600"/>
+      <comp:port comp:idRef="Pyruvate" comp:id="input__Pyruvate" sboTerm="SBO:0000600"/>
+    </comp:listOfPorts>
+    <layout:listOfLayouts xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <layout:layout layout:id="iBioSim">
+        <layout:dimensions layout:depth="0" layout:height="430" layout:width="950"/>
+        <layout:listOfAdditionalGraphicalObjects>
+          <layout:generalGlyph layout:id="Glyph__rateOfATP" layout:reference="rateOfATP">
+            <layout:boundingBox>
+              <layout:position layout:x="195" layout:y="205"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__R0" layout:id="Glyph__V0__product__R0" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="210" layout:y="195"/>
+                      <layout:end layout:x="210" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__R0" layout:id="Glyph__rateOfATP__product__R0" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="210" layout:y="195"/>
+                      <layout:end layout:x="210" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfADP" layout:reference="rateOfADP">
+            <layout:boundingBox>
+              <layout:position layout:x="305" layout:y="200"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__R1" layout:id="Glyph__V1__product__R1" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="320" layout:y="195"/>
+                      <layout:end layout:x="320" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__R1" layout:id="Glyph__rateOfADP__product__R1" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="320" layout:y="195"/>
+                      <layout:end layout:x="320" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfGlcxt" layout:reference="rateOfGlcxt">
+            <layout:boundingBox>
+              <layout:position layout:x="415" layout:y="200"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__R2" layout:id="Glyph__V2__product__R2" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="430" layout:y="195"/>
+                      <layout:end layout:x="430" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__R2" layout:id="Glyph__rateOfGlcxt__product__R2" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="430" layout:y="195"/>
+                      <layout:end layout:x="430" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__rateOfPyruvate" layout:reference="rateOfPyruvate">
+            <layout:boundingBox>
+              <layout:position layout:x="525" layout:y="200"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+            <layout:listOfReferenceGlyphs>
+              <layout:referenceGlyph layout:glyph="Glyph__R3" layout:id="Glyph__V3__product__R3" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="540" layout:y="195"/>
+                      <layout:end layout:x="540" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+              <layout:referenceGlyph layout:glyph="Glyph__R3" layout:id="Glyph__rateOfPyruvate__product__R3" layout:role="product">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="540" layout:y="195"/>
+                      <layout:end layout:x="540" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:referenceGlyph>
+            </layout:listOfReferenceGlyphs>
+          </layout:generalGlyph>
+        </layout:listOfAdditionalGraphicalObjects>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:compartment="Cell" layout:id="Glyph__Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0"/>
+              <layout:dimensions layout:height="430" layout:width="950"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="Glyph__ATP" layout:species="ATP">
+            <layout:boundingBox>
+              <layout:position layout:x="160" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__ADP" layout:species="ADP">
+            <layout:boundingBox>
+              <layout:position layout:x="270" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__Glucose" layout:species="Glucose">
+            <layout:boundingBox>
+              <layout:position layout:x="380" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__Pyruvate" layout:species="Pyruvate">
+            <layout:boundingBox>
+              <layout:position layout:x="490" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfReactionGlyphs>
+          <layout:reactionGlyph layout:id="Glyph__R0" layout:reaction="R0">
+            <layout:boundingBox>
+              <layout:position layout:x="200" layout:y="160"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R0__substrate__ATP" layout:role="substrate" layout:speciesGlyph="Glyph__ATP">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="210" layout:y="125"/>
+                      <layout:end layout:x="210" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R1" layout:reaction="R1">
+            <layout:boundingBox>
+              <layout:position layout:x="310" layout:y="160"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R1__substrate__ADP" layout:role="substrate" layout:speciesGlyph="Glyph__ADP">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="320" layout:y="125"/>
+                      <layout:end layout:x="320" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R2" layout:reaction="R2">
+            <layout:boundingBox>
+              <layout:position layout:x="420" layout:y="160"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R2__substrate__Glucose" layout:role="substrate" layout:speciesGlyph="Glyph__Glucose">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="430" layout:y="125"/>
+                      <layout:end layout:x="430" layout:y="170"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="Glyph__R3" layout:reaction="R3">
+            <layout:boundingBox>
+              <layout:position layout:x="530" layout:y="160"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="Glyph__R3__product__Pyruvate" layout:role="product" layout:speciesGlyph="Glyph__Pyruvate">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment xsi:type="LineSegment">
+                      <layout:start layout:x="540" layout:y="170"/>
+                      <layout:end layout:x="540" layout:y="125"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+        </layout:listOfReactionGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:graphicalObject="Glyph__Cell" layout:id="TextGlyph__Cell" layout:text="Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0"/>
+              <layout:dimensions layout:height="430" layout:width="950"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__ATP" layout:id="TextGlyph__ATP" layout:text="ATP">
+            <layout:boundingBox>
+              <layout:position layout:x="160" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__ADP" layout:id="TextGlyph__ADP" layout:text="ADP">
+            <layout:boundingBox>
+              <layout:position layout:x="270" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__Glucose" layout:id="TextGlyph__Glucose" layout:text="Glucose">
+            <layout:boundingBox>
+              <layout:position layout:x="380" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__Pyruvate" layout:id="TextGlyph__Pyruvate" layout:text="Pyruvate">
+            <layout:boundingBox>
+              <layout:position layout:x="490" layout:y="110"/>
+              <layout:dimensions layout:height="30" layout:width="100"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R0" layout:id="TextGlyph__R0" layout:text="R0">
+            <layout:boundingBox>
+              <layout:position layout:x="200" layout:y="160"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R1" layout:id="TextGlyph__R1" layout:text="R1">
+            <layout:boundingBox>
+              <layout:position layout:x="310" layout:y="160"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R2" layout:id="TextGlyph__R2" layout:text="R2">
+            <layout:boundingBox>
+              <layout:position layout:x="420" layout:y="160"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__R3" layout:id="TextGlyph__R3" layout:text="R3">
+            <layout:boundingBox>
+              <layout:position layout:x="530" layout:y="160"/>
+              <layout:dimensions layout:height="20" layout:width="20"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfATP" layout:id="TextGlyph__rateOfATP" layout:text="rateOfATP">
+            <layout:boundingBox>
+              <layout:position layout:x="195" layout:y="205"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfADP" layout:id="TextGlyph__rateOfADP" layout:text="rateOfADP">
+            <layout:boundingBox>
+              <layout:position layout:x="305" layout:y="200"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfGlcxt" layout:id="TextGlyph__rateOfGlcxt" layout:text="rateOfGlcxt">
+            <layout:boundingBox>
+              <layout:position layout:x="415" layout:y="200"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:graphicalObject="Glyph__rateOfPyruvate" layout:id="TextGlyph__rateOfPyruvate" layout:text="rateOfPyruvate">
+            <layout:boundingBox>
+              <layout:position layout:x="525" layout:y="200"/>
+              <layout:dimensions layout:height="30" layout:width="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+        </layout:listOfTextGlyphs>
+      </layout:layout>
+    </layout:listOfLayouts>
+            <listOfCompartments>
+      <compartment constant="true" id="Cell" size="1" spatialDimensions="3"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ATP" initialAmount="0" metaid="iBioSim1"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ADP" initialAmount="0" metaid="iBioSim3"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Glucose" initialAmount="0" metaid="iBioSim4"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Pyruvate" initialAmount="0" metaid="iBioSim5"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="rateOfATP" metaid="iBioSim10" value="0"/>
+      <parameter constant="false" id="rateOfADP" metaid="iBioSim11" value="0"/>
+      <parameter constant="false" id="rateOfGlcxt" metaid="iBioSim12" value="0"/>
+      <parameter constant="false" id="rateOfPyruvate" metaid="iBioSim13" value="0"/>
+      <parameter constant="true" id="Km" metaid="iBioSim14" value="0.1"/>
+    </listOfParameters>
+        <listOfReactions>
+      <reaction compartment="Cell" fast="false" id="R2" metaid="iBioSim8" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Glucose" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> rateOfGlcxt </ci>
+                <ci> Glucose </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km </ci>
+                <ci> Glucose </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R0" metaid="iBioSim6" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="ATP" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> rateOfATP </ci>
+                <ci> ATP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km </ci>
+                <ci> ATP </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R3" metaid="iBioSim9" reversible="false">
+        <listOfProducts>
+          <speciesReference constant="true" species="Pyruvate" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> rateOfPyruvate </ci>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="R1" metaid="iBioSim7" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="ADP" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> rateOfADP </ci>
+                <ci> ADP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km </ci>
+                <ci> ADP </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+    </listOfReactions>
+      </model>
+</sbml>
