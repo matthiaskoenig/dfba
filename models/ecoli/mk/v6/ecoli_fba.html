@@ -214,7 +214,7 @@
   <body xmlns="http://www.w3.org/1999/xhtml">
     <h1>E.coli core DFBA model</h1>
     <p>
-      <strong>Model version: 4</strong>
+      <strong>Model version: 6</strong>
     </p>
     <p>DFBA FBA submodel.</p>
     <h2>Description</h2>
@@ -303,7 +303,7 @@
         <table id="table_units" class="table table-condensed table-nonfluid table-hover">
             <thead>
             <tr>    <th scope="col" class="hidden">type</th>
-	<th scope="col" class="warning">UnitDefinitions [13]</th>
+	<th scope="col" class="warning">UnitDefinitions [14]</th>
 	<th scope="col">name</th>
 	<th scope="col">units</th>
     <th scope="col">sbo</th>
@@ -459,6 +459,36 @@
     </apply>
     <apply>
       <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math></td>
+	<td></td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">UnitDefinition</td>
+	<td class="active">mmol_per_hg</td>
+	<td></td>
+	<td><?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <ci> g </ci>
       <cn> 3600 </cn>
       <ci> s </ci>
     </apply>
@@ -632,7 +662,7 @@
         <table id="table_species" class="table table-condensed table-nonfluid table-hover">
             <thead>
             <tr>    <th scope="col" class="hidden">type</th>
-	<th scope="col" class="warning">Species [72]</th>
+	<th scope="col" class="warning">Species [73]</th>
     <th scope="col">name</th>
 	<th scope="col">compartment</th>
 	<th scope="col">boundary condition</th>
@@ -3670,6 +3700,40 @@
 	<td>       <div class="cvterm"><b>BQB_IS</b><br /><a href="http://identifiers.org/bigg.metabolite/xu5p__D" target="_blank">xu5p__D</a><br /><a href="http://identifiers.org/ncbigi/312945639" target="_blank">312945639</a><br /><a href="http://identifiers.org/seed.compound/cpd00198" target="_blank">cpd00198</a><br /><a href="http://identifiers.org/metanetx.chemical/MNXM186" target="_blank">MNXM186</a><br /><a href="http://identifiers.org/kegg.compound/C00231" target="_blank">C00231</a><br /><a href="http://identifiers.org/hmdb/HMDB00868" target="_blank">HMDB00868</a><br /><a href="http://identifiers.org/hmdb/HMDB06212" target="_blank">HMDB06212</a><br /><a href="http://identifiers.org/chebi/CHEBI:13036" target="_blank">CHEBI:13036</a><br /><a href="http://identifiers.org/chebi/CHEBI:16332" target="_blank">CHEBI:16332</a><br /><a href="http://identifiers.org/chebi/CHEBI:21121" target="_blank">CHEBI:21121</a><br /><a href="http://identifiers.org/chebi/CHEBI:27354" target="_blank">CHEBI:27354</a><br /><a href="http://identifiers.org/chebi/CHEBI:4269" target="_blank">CHEBI:4269</a><br /><a href="http://identifiers.org/chebi/CHEBI:57737" target="_blank">CHEBI:57737</a><br /><a href="http://identifiers.org/unipathway.compound/UPC00231" target="_blank">UPC00231</a><br /><a href="http://identifiers.org/biocyc/META:XYLULOSE-5-PHOSPHATE" target="_blank">META:XYLULOSE-5-PHOSPHATE</a><br /><a href="http://identifiers.org/metanetx.reaction/MNXR82401" target="_blank">MNXR82401</a></div>
 </td>
 </tr>
+                <tr>    <td class="hidden">Species</td>
+	<td class="active">X</td>
+	<td>biomass<br />
+        <span class="cvterm blue"></span></td>
+	<td>c</td>
+            <td class="danger"><span class="glyphicon glyphicon-remove red"><span class="invisible">F</span></span></td>
+
+            <td class="danger"><span class="glyphicon glyphicon-remove red"><span class="invisible">F</span></span></td>
+
+	<td>
+            0.001
+    </td>
+	<td>
+    </td>
+	<td>mmol</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <times/>
+    <apply>
+      <power/>
+      <cn type="integer"> 10 </cn>
+      <apply>
+        <minus/>
+        <cn type="integer"> 3 </cn>
+      </apply>
+    </apply>
+    <ci> mole </ci>
+  </apply>
+</math>
+</td>
+	<td></td>
+	<td></td>
+</tr>
             </tbody>
         </table>
         <hr/>
@@ -3681,7 +3745,7 @@
         <table id="table_parameters" class="table table-condensed table-nonfluid table-hover">
             <thead>
             <tr>    <th scope="col" class="hidden">type</th>
-	<th scope="col" class="warning">Parameters [45]</th>
+	<th scope="col" class="warning">Parameters [47]</th>
 	<th scope="col">name</th>
 	<th scope="col">value</th>
 	<th scope="col">unit</th>
@@ -3812,7 +3876,7 @@
                 <tr>    <td class="hidden">Parameter</td>
 	<td class="active">R_ATPM_lower_bound</td>
 	<td>R ATPM lower - bound</td>
-	<td>            8.39
+	<td>            0.0
     </td>
 	<td>mmol_per_gDW_per_hr</td>
 	<td>        <?xml version="1.0" encoding="UTF-8"?>
@@ -3888,766 +3952,6 @@
 	<td></td>
 </tr>
                 <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_pi_e</td>
-	<td></td>
-	<td>            -1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_pi_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_for_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_for_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_h_e</td>
-	<td></td>
-	<td>            -1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_h_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_o2_e</td>
-	<td></td>
-	<td>            -1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_o2_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_lac__D_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_lac__D_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_pyr_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_pyr_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_etoh_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_etoh_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_gln__L_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_gln__L_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_akg_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_akg_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_co2_e</td>
-	<td></td>
-	<td>            -1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_co2_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
 	<td class="active">lb_EX_acald_e</td>
 	<td></td>
 	<td>            0.0
@@ -4687,310 +3991,6 @@
 </tr>
                 <tr>    <td class="hidden">Parameter</td>
 	<td class="active">ub_EX_acald_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_glu__L_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_glu__L_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_mal__L_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_mal__L_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_fum_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_fum_e</td>
-	<td></td>
-	<td>            1000.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_fru_e</td>
-	<td></td>
-	<td>            0.0
-    </td>
-	<td>mmol_per_h</td>
-	<td>        <?xml version="1.0" encoding="UTF-8"?>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <apply>
-    <divide/>
-    <apply>
-      <times/>
-      <apply>
-        <power/>
-        <cn type="integer"> 10 </cn>
-        <apply>
-          <minus/>
-          <cn type="integer"> 3 </cn>
-        </apply>
-      </apply>
-      <ci> mole </ci>
-    </apply>
-    <apply>
-      <times/>
-      <cn> 3600 </cn>
-      <ci> s </ci>
-    </apply>
-  </apply>
-</math>
-</td>
-            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
-
-	<td>        <div class="cvterm">
-        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
-        </div>
-</td>
-	<td></td>
-</tr>
-                <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_fru_e</td>
 	<td></td>
 	<td>            1000.0
     </td>
@@ -5104,6 +4104,310 @@
 	<td></td>
 </tr>
                 <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_etoh_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_etoh_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_o2_e</td>
+	<td></td>
+	<td>            -1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_o2_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_glc__D_e</td>
+	<td></td>
+	<td>            -10.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_glc__D_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_fru_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_fru_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
 	<td class="active">lb_EX_h2o_e</td>
 	<td></td>
 	<td>            -1000.0
@@ -5180,7 +4484,159 @@
 	<td></td>
 </tr>
                 <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_nh4_e</td>
+	<td class="active">lb_EX_gln__L_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_gln__L_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_glu__L_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_glu__L_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_co2_e</td>
 	<td></td>
 	<td>            -1000.0
     </td>
@@ -5218,7 +4674,159 @@
 	<td></td>
 </tr>
                 <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_nh4_e</td>
+	<td class="active">ub_EX_co2_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_h_e</td>
+	<td></td>
+	<td>            -1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_h_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_mal__L_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_mal__L_e</td>
 	<td></td>
 	<td>            1000.0
     </td>
@@ -5332,9 +4940,9 @@
 	<td></td>
 </tr>
                 <tr>    <td class="hidden">Parameter</td>
-	<td class="active">lb_EX_glc__D_e</td>
+	<td class="active">lb_EX_nh4_e</td>
 	<td></td>
-	<td>            -10.0
+	<td>            -1000.0
     </td>
 	<td>mmol_per_h</td>
 	<td>        <?xml version="1.0" encoding="UTF-8"?>
@@ -5370,7 +4978,539 @@
 	<td></td>
 </tr>
                 <tr>    <td class="hidden">Parameter</td>
-	<td class="active">ub_EX_glc__D_e</td>
+	<td class="active">ub_EX_nh4_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_pi_e</td>
+	<td></td>
+	<td>            -1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_pi_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_fum_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_fum_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_pyr_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_pyr_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_akg_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_akg_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_lac__D_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_lac__D_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_for_e</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_for_e</td>
+	<td></td>
+	<td>            1000.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">lb_EX_X</td>
+	<td></td>
+	<td>            0.0
+    </td>
+	<td>mmol_per_h</td>
+	<td>        <?xml version="1.0" encoding="UTF-8"?>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <divide/>
+    <apply>
+      <times/>
+      <apply>
+        <power/>
+        <cn type="integer"> 10 </cn>
+        <apply>
+          <minus/>
+          <cn type="integer"> 3 </cn>
+        </apply>
+      </apply>
+      <ci> mole </ci>
+    </apply>
+    <apply>
+      <times/>
+      <cn> 3600 </cn>
+      <ci> s </ci>
+    </apply>
+  </apply>
+</math>
+</td>
+            <td class="success"><span class="glyphicon glyphicon-ok green"></span><span class="invisible">T</span></td>
+
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000625" target="_blank">SBO:0000625</a>
+        </div>
+</td>
+	<td></td>
+</tr>
+                <tr>    <td class="hidden">Parameter</td>
+	<td class="active">ub_EX_X</td>
 	<td></td>
 	<td>            1000.0
     </td>
@@ -5430,7 +5570,7 @@
         <table id="table_reactions" class="table table-condensed table-nonfluid table-hover">
             <thead>
             <tr>    <th scope="col" class="hidden">type</th>
-	<th scope="col" class="warning">Reactions [95]</th>
+	<th scope="col" class="warning">Reactions [96]</th>
 	<th scope="col">name</th>
 	<th scope="col"></th>
 	<th scope="col">equation</th>
@@ -5638,7 +5778,7 @@
 	<td class="active">BIOMASS_Ecoli_core_w_GAM</td>
 	<td>Biomass Objective Function with GAM</td>
 	    <td class="danger">&#10142;</td>
-	<td>1.496 M_3pg_c + 3.7478 accoa_c + 59.81 atp_c + 0.361 e4p_c + 0.0709 f6p_c + 0.129 g3p_c + 0.205 g6p_c + 0.2557 gln__L_c + 4.9414 glu__L_c + 59.81 h2o_c + 3.547 nad_c + 13.0279 nadph_c + 1.7867 oaa_c + 0.5191 pep_c + 2.8328 pyr_c + 0.8977 r5p_c &#10142; 59.81 adp_c + 4.1182 akg_c + 3.7478 coa_c + 59.81 h_c + 3.547 nadh_c + 13.0279 nadp_c + 59.81 pi_c</td>
+	<td>1.496 M_3pg_c + 3.7478 accoa_c + 59.81 atp_c + 0.361 e4p_c + 0.0709 f6p_c + 0.129 g3p_c + 0.205 g6p_c + 0.2557 gln__L_c + 4.9414 glu__L_c + 59.81 h2o_c + 3.547 nad_c + 13.0279 nadph_c + 1.7867 oaa_c + 0.5191 pep_c + 2.8328 pyr_c + 0.8977 r5p_c &#10142; 59.81 adp_c + 4.1182 akg_c + 3.7478 coa_c + 59.81 h_c + 3.547 nadh_c + 13.0279 nadp_c + 59.81 pi_c + X</td>
 	<td>
     </td>
 	<td></td>
@@ -5749,8 +5889,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_ac_e</td>
 	<td>Acetate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>ac_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>ac_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5765,8 +5905,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_acald_e</td>
 	<td>Acetaldehyde exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>acald_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>acald_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5781,8 +5921,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_akg_e</td>
 	<td>2-Oxoglutarate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>akg_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>akg_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5813,8 +5953,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_etoh_e</td>
 	<td>Ethanol exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>etoh_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>etoh_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5829,8 +5969,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_for_e</td>
 	<td>Formate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>for_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>for_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5845,8 +5985,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_fru_e</td>
 	<td>D-Fructose exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>fru_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>fru_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5861,8 +6001,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_fum_e</td>
 	<td>Fumarate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>fum_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>fum_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5893,8 +6033,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_gln__L_e</td>
 	<td>L-Glutamine exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>gln__L_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>gln__L_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5909,8 +6049,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_glu__L_e</td>
 	<td>L-Glutamate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>glu__L_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>glu__L_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5957,8 +6097,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_lac__D_e</td>
 	<td>D-lactate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>lac__D_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>lac__D_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -5973,8 +6113,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_mal__L_e</td>
 	<td>L-Malate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>mal__L_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>mal__L_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -6037,8 +6177,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_pyr_e</td>
 	<td>Pyruvate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>pyr_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>pyr_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -6053,8 +6193,8 @@
                 <tr>    <td class="hidden">Reaction</td>
 	<td class="active">EX_succ_e</td>
 	<td>Succinate exchange</td>
-	    <td class="danger">&#10142;</td>
-	<td>succ_e &#10142; </td>
+        <td class="success">&#8646;</td>
+	<td>succ_e &#8646; </td>
 	<td>
     </td>
 	<td></td>
@@ -6961,6 +7101,21 @@
 </td>
 	<td>       <div class="cvterm"><b>BQB_IS</b><br /><a href="http://identifiers.org/bigg.reaction/TPI" target="_blank">TPI</a></div>
 </td>
+</tr>
+                <tr>    <td class="hidden">Reaction</td>
+	<td class="active">EX_X</td>
+	<td></td>
+        <td class="success">&#8646;</td>
+	<td>X &#8646; </td>
+	<td>
+    </td>
+	<td></td>
+    <td></td>
+	<td>        <div class="cvterm">
+        <a href="http://identifiers.org/biomodels.sbo/SBO:0000627" target="_blank">SBO:0000627</a>
+        </div>
+</td>
+	<td></td>
 </tr>
             </tbody>
         </table>
