@@ -14,9 +14,33 @@ The models can be simulated either with [iBioSim](http://www.async.ece.utah.edu/
 ## Manuscript
 https://www.overleaf.com/6382003zbbpfy#/21488847/
 
-## Guidelines
+## DFBA SBML Encoding Guidelines
 **Editable version**  
 https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both
 
 **Repository version**  
-[DFBA models in SBML.md](DFBA models in SBML.md)
+[DFBA models in SBML.md](./DFBA models in SBML.md)
+
+## Setup
+To run the ipython notebooks setup a virtual environment via
+```
+# clone repository
+git clone https://github.com/matthiaskoenig/dfba.git
+cd dfba
+
+# setup virtual environment
+mkvirtualenv dfba
+(dfba) pip install -r requirements.txt
+
+# install kernel for ipython
+(dfba) python -m ipykernel install --user --name=dfba
+
+# start jupyter notbook
+jupyter notebook
+
+# select notebook for model (dfba/models/*/*.ipynb) and run notbook with the dfba kernel
+Kernel -> Change kernel -> dfba
+Kernel -> Restart & Run All
+```
+
+

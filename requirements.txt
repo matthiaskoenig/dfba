@@ -1,0 +1,6 @@
+-e git+https://github.com/matthiaskoenig/sbmlutils.git@dfba-flux-weighting#egg=sbmlutils
+# sbmlutils>=0.1.5a2
+
+
+# jupyter notebook kernel
+ipykernel>=4.6.1
