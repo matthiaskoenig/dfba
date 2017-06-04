@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core"
+      comp:required="true" fbc:required="false" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2">
+  <model fbc:strict="false" id="fba" metaid="iBioSim28" sboTerm="SBO:0000624">
+    <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:port comp:id="reaction__ATP_Ex" comp:idRef="ATP_Ex" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="reaction__Glucose_Ex" comp:idRef="Glucose_Ex" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="reaction__ADP_Ex" comp:idRef="ADP_Ex" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="compartment__Cell" comp:idRef="Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="reaction__Pyruvate_Ex" comp:idRef="Pyruvate_Ex" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="input__max_adp" comp:idRef="max_adp" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__min_atp" comp:idRef="min_atp" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__max_atp" comp:idRef="max_atp" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__min_adp" comp:idRef="min_adp" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__min_pyruvate" comp:idRef="min_pyruvate" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__max_pyruvate" comp:idRef="max_pyruvate" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__min_glucose" comp:idRef="min_glucose" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__max_glucose" comp:idRef="max_glucose" sboTerm="SBO:0000600"/>
+    </comp:listOfPorts>
+    <fbc:listOfObjectives xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" fbc:activeObjective="max">
+      <fbc:objective fbc:id="max" fbc:type="maximize">
+        <fbc:listOfFluxObjectives>
+          <fbc:fluxObjective fbc:coefficient="1" fbc:reaction="ATP_Ex"/>
+        </fbc:listOfFluxObjectives>
+      </fbc:objective>
+    </fbc:listOfObjectives>
+            <listOfCompartments>
+      <compartment constant="true" id="Cell" size="1" spatialDimensions="3"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ATP" initialAmount="0" metaid="iBioSim5"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ADP" initialAmount="0" metaid="iBioSim7"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Glucose" initialAmount="0" metaid="iBioSim8"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Fructose" initialAmount="0" metaid="iBioSim9"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="GADP" initialAmount="0" metaid="iBioSim11"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Phosphoglycerate" initialAmount="0" metaid="iBioSim13"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Pyruvate" initialAmount="0" metaid="iBioSim15"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="max_glucose" metaid="iBioSim23" sboTerm="SBO:0000625" value="10"/>
+      <parameter constant="false" id="max_adp" metaid="iBioSim1" sboTerm="SBO:0000625" value="10"/>
+      <parameter constant="false" id="min_adp" metaid="iBioSim21" value="0"/>
+      <parameter constant="false" id="min_glucose" metaid="iBioSim22" value="0"/>
+      <parameter constant="false" id="max_atp" metaid="iBioSim24" value="0"/>
+      <parameter constant="false" id="min_atp" metaid="iBioSim25" value="0"/>
+      <parameter constant="false" id="max_pyruvate" metaid="iBioSim26" value="0"/>
+      <parameter constant="false" id="min_pyruvate" metaid="iBioSim27" value="0"/>
+      <parameter constant="true" id="default_min" metaid="iBioSim6" value="0"/>
+      <parameter constant="true" id="default_max" metaid="iBioSim17" value="1000"/>
+      <parameter constant="true" id="default_rv_min" metaid="iBioSim18" value="-1000"/>
+    </listOfParameters>
+        <listOfReactions>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="R5" metaid="iBioSim14" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="GADP" stoichiometry="1"/>
+          <speciesReference constant="true" species="ADP" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="Phosphoglycerate" stoichiometry="1"/>
+          <speciesReference constant="true" species="ATP" stoichiometry="1"/>
+        </listOfProducts>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="R6" metaid="iBioSim16" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Phosphoglycerate" stoichiometry="1"/>
+          <speciesReference constant="true" species="ADP" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="Pyruvate" stoichiometry="1"/>
+          <speciesReference constant="true" species="ATP" stoichiometry="1"/>
+        </listOfProducts>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="R4" metaid="iBioSim12" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Fructose" stoichiometry="1"/>
+          <speciesReference constant="true" species="ATP" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="GADP" stoichiometry="2"/>
+          <speciesReference constant="true" species="ADP" stoichiometry="1"/>
+        </listOfProducts>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="default_min" fbc:upperFluxBound="default_max" id="R3" metaid="iBioSim10" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Glucose" stoichiometry="1"/>
+          <speciesReference constant="true" species="ATP" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="ADP" stoichiometry="1"/>
+          <speciesReference constant="true" species="Fructose" stoichiometry="1"/>
+        </listOfProducts>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="min_glucose" fbc:upperFluxBound="max_glucose" id="Glucose_Ex" metaid="iBioSim2" reversible="false">
+                <listOfProducts>
+          <speciesReference constant="true" species="Glucose" stoichiometry="1"/>
+        </listOfProducts>
+              </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="min_adp" fbc:upperFluxBound="max_adp" id="ADP_Ex" metaid="iBioSim19" reversible="false">
+        <listOfProducts>
+          <speciesReference constant="true" species="ADP" stoichiometry="1"/>
+        </listOfProducts>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="min_pyruvate" fbc:upperFluxBound="max_pyruvate" id="Pyruvate_Ex" metaid="iBioSim3" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Pyruvate" stoichiometry="1"/>
+        </listOfReactants>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="min_atp" fbc:upperFluxBound="max_atp" id="ATP_Ex" metaid="iBioSim20" reversible="true">
+        <listOfReactants>
+          <speciesReference constant="true" species="ATP" stoichiometry="1"/>
+        </listOfReactants>
+      </reaction>
+    </listOfReactions>
+      </model>
+</sbml>
