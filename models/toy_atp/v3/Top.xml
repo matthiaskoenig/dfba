@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" comp:required="true" fbc:required="false" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" >
+  <comp:listOfExternalModelDefinitions xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+    <comp:externalModelDefinition comp:id="fba" comp:md5="e3ec36e6b79d68ee739cd202959cc09e" comp:source="fba.xml"/>
+    <comp:externalModelDefinition comp:id="update" comp:md5="edf316328dd6232a347caae3152728c8" comp:source="update.xml"/>
+    <comp:externalModelDefinition comp:id="bounds" comp:md5="9a0a56e7e25f9b0b52afcd473111f71a" comp:source="bounds.xml"/>
+  </comp:listOfExternalModelDefinitions>
+  <model fbc:strict="false" id="Top" metaid="iBioSim11" sboTerm="SBO:0000293">
+    <comp:listOfSubmodels xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:submodel comp:id="C1" comp:modelRef="fba" metaid="iBioSim27"/>
+      <comp:submodel comp:id="C2" comp:modelRef="update" metaid="iBioSim28"/>
+      <comp:submodel comp:id="C3" comp:modelRef="bounds" metaid="iBioSim29"/>
+    </comp:listOfSubmodels>
+    <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:port comp:id="output__max_adp" comp:idRef="max_adp" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="output__max_atp" comp:idRef="max_atp" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="output__max_glucose" comp:idRef="max_glucose" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="output__max_pyruvate" comp:idRef="max_pyruvate" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="output__min_adp" comp:idRef="min_adp" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="output__min_atp" comp:idRef="min_atp" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="output__min_glucose" comp:idRef="min_glucose" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="output__min_pyruvate" comp:idRef="min_pyruvate" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="compartment__Cell__C1" comp:idRef="C1" sboTerm="SBO:0000601">
+        <comp:sBaseRef comp:portRef="compartment__Cell"/>
+      </comp:port>
+      <comp:port comp:id="initialAssignment__min_pyruvate__C3" comp:idRef="C3" sboTerm="SBO:0000601">
+        <comp:sBaseRef comp:portRef="initialAssignment__min_pyruvate"/>
+      </comp:port>
+      <comp:port comp:id="initialAssignment__min_glucose__C3" comp:idRef="C3" sboTerm="SBO:0000601">
+        <comp:sBaseRef comp:portRef="initialAssignment__min_glucose"/>
+      </comp:port>
+    </comp:listOfPorts>
+            <listOfCompartments>
+      <compartment constant="true" id="Cell" size="1" spatialDimensions="3">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="compartment__Cell" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="compartment__Cell" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ATP" initialAmount="2" metaid="iBioSim1">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__ATP" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__ATP" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="dummy" initialAmount="0" metaid="iBioSim19"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="ADP" initialAmount="1" metaid="iBioSim5">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__ADP" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__ADP" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Pyruvate" initialAmount="0" metaid="iBioSim4">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__Pyruvate" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__Pyruvate" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Glucose" initialAmount="1" metaid="iBioSim12">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__Glucose" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__Glucose" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="rateOfADP" metaid="iBioSim8" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfADP" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfATP" metaid="iBioSim20" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfATP" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfPy" metaid="iBioSim21" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfPyruvate" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="rateOfGlcxt" metaid="iBioSim22" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfGlcxt" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="true" id="dt" metaid="iBioSim15" value="1">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__dt" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="max_glucose" metaid="iBioSim2" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__max_glucose" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="input__max_glucose" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="min_glucose" metaid="iBioSim16" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__min_glucose" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="input__min_glucose" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="max_atp" metaid="iBioSim17" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__max_atp" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="input__max_atp" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="min_atp" metaid="iBioSim18" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__min_atp" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="input__min_atp" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="max_pyruvate" metaid="iBioSim23" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__max_pyruvate" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="input__max_pyruvate" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="min_pyruvate" metaid="iBioSim24" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__min_pyruvate" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="input__min_pyruvate" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="max_adp" metaid="iBioSim25" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__max_adp" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="input__max_adp" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="min_adp" metaid="iBioSim26" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__min_adp" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="input__min_adp" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule metaid="rule0" variable="rateOfADP">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> ADP_Ex </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule2" variable="rateOfATP">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> ATP_Ex </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule3" variable="rateOfPy">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> Pyruvate_Ex </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule4" variable="rateOfGlcxt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> Glucose_Ex </ci>
+        </math>
+            </assignmentRule>
+    </listOfRules>
+        <listOfReactions>
+      <reaction compartment="Cell" fast="false" id="ADP_Ex" metaid="iBioSim7" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__ADP_Ex" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 0 </cn>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="ATP_Ex" metaid="iBioSim9" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__ATP_Ex" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 0 </cn>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="Glucose_Ex" metaid="iBioSim14" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__Glucose_Ex" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 0 </cn>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="Pyruvate_Ex" metaid="iBioSim13" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__Pyruvate_Ex" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <cn type="integer"> 0 </cn>
+          </math>
+                </kineticLaw>
+      </reaction>
+    </listOfReactions>
+      </model>
+</sbml>
