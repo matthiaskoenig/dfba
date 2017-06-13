@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
-  <model fbc:strict="false" id="growth_bounds" metaid="iBioSim16" sboTerm="SBO:0000293">
+  <model fbc:strict="false" id="growth_bounds" metaid="iBioSim18" sboTerm="SBO:0000293">
     <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
       <comp:port comp:id="compartment__Cell" comp:idRef="Cell" sboTerm="SBO:0000601"/>
       <comp:port comp:id="input__Ac" comp:idRef="Ac" sboTerm="SBO:0000600"/>
@@ -18,8 +18,8 @@
       <comp:port comp:id="output__min_glxct" comp:idRef="min_glxct" sboTerm="SBO:0000601"/>
       <comp:port comp:id="input__rateOfX" comp:idRef="rateOfX" sboTerm="SBO:0000600"/>
     </comp:listOfPorts>
-    <listOfFunctionDefinitions>
-      <functionDefinition id="min">
+       <listOfFunctionDefinitions>
+      <functionDefinition id="def_min">
         <math xmlns="http://www.w3.org/1998/Math/MathML">        
           <lambda>
             <bvar>
@@ -44,7 +44,7 @@
           </lambda>
         </math>
             </functionDefinition>
-      <functionDefinition id="max">
+      <functionDefinition id="def_max">
         <math xmlns="http://www.w3.org/1998/Math/MathML">        
           <lambda>
             <bvar>
@@ -93,11 +93,11 @@
       <parameter constant="false" id="max_X" metaid="iBioSim6" value="0"/>
       <parameter constant="false" id="rateOfX" metaid="iBioSim17" value="0"/>
     </listOfParameters>
-        <listOfRules>
+    <listOfRules>
       <assignmentRule metaid="rule0" variable="max_glcxt">
         <math xmlns="http://www.w3.org/1998/Math/MathML">        
           <apply>
-            <min/>
+            <ci> def_min </ci>
             <apply>
               <divide/>
               <apply>
@@ -126,7 +126,7 @@
       <assignmentRule metaid="rule1" variable="max_ac">
         <math xmlns="http://www.w3.org/1998/Math/MathML">        
           <apply>
-            <min/>
+            <ci> def_min </ci>
             <cn type="integer"> 1000 </cn>
             <apply>
               <divide/>
@@ -143,7 +143,7 @@
       <assignmentRule metaid="rule2" variable="max_o2">
         <math xmlns="http://www.w3.org/1998/Math/MathML">        
           <apply>
-            <min/>
+            <ci> def_min </ci>
             <cn type="integer"> 15 </cn>
             <apply>
               <divide/>
