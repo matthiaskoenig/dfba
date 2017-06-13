@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+  <comp:listOfExternalModelDefinitions xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+    <comp:externalModelDefinition comp:id="growth_fba" comp:source="growth_fba.xml"/>
+    <comp:externalModelDefinition comp:id="growth_update" comp:source="growth_update.xml"/>
+    <comp:externalModelDefinition comp:id="growth_bounds" comp:md5="abc67529c6995b3d7baa189b6dc5bb45" comp:source="growth_bounds.xml"/>
+  </comp:listOfExternalModelDefinitions>
+  <model fbc:strict="false" id="growth_top" metaid="iBioSim4" sboTerm="SBO:0000293">
+    <comp:listOfSubmodels xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:submodel comp:id="C1" comp:modelRef="growth_fba" metaid="iBioSim10"/>
+      <comp:submodel comp:id="C2" comp:modelRef="growth_update" metaid="iBioSim11"/>
+      <comp:submodel comp:id="C3" comp:modelRef="growth_bounds" metaid="iBioSim14"/>
+    </comp:listOfSubmodels>
+    <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:port comp:id="compartment__Cell" comp:idRef="Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="compartment__Cell__C1" comp:idRef="C1" sboTerm="SBO:0000601">
+        <comp:sBaseRef comp:portRef="compartment__Cell"/>
+      </comp:port>
+      <comp:port comp:id="compartment__Cell__C2" comp:idRef="C2" sboTerm="SBO:0000601">
+        <comp:sBaseRef comp:portRef="compartment__Cell"/>
+      </comp:port>
+    </comp:listOfPorts>
+                <listOfCompartments>
+      <compartment constant="false" id="Cell" size="1" spatialDimensions="3">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="compartment__Cell" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="O2" initialAmount="0.21" metaid="iBioSim1">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__O2" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__O2" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Ac" initialAmount="0.4" metaid="iBioSim3">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__Ac" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__Ac" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Glcxt" initialAmount="10.8" metaid="iBioSim5">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__Glcxt" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__Glcxt" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="dummy" initialAmount="0" metaid="iBioSim16"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="X" initialAmount="0.001" metaid="iBioSim21">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__X" comp:submodelRef="C3"/>
+          <comp:replacedElement comp:portRef="input__X" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="a_rate_uptake" metaid="iBioSim8" value="0">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="input__rateOfAc" comp:submodelRef="C2"/>
+      </parameter>
+      <parameter constant="false" id="x_rate_growth" metaid="iBioSim9" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__rateOfX" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="input__rateOfX" comp:submodelRef="C2"/>
+      </parameter>
+      <parameter constant="true" id="Km" metaid="iBioSim6" value="0.015"/>
+      <parameter constant="false" id="dt" metaid="iBioSim2" value="0.01">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__dt" comp:submodelRef="C3"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter constant="false" id="g_rate_uptake" metaid="iBioSim48" value="0">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="input__rateOfGlcxt" comp:submodelRef="C2"/>
+      </parameter>
+      <parameter constant="false" id="g_uptake_max" metaid="iBioSim49" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__g_uptake_max" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="output__max_glcxt" comp:submodelRef="C3"/>
+      </parameter>
+      <parameter constant="false" id="o_rate_uptake" metaid="iBioSim50" value="0">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="input__rateOfO2" comp:submodelRef="C2"/>
+      </parameter>
+      <parameter constant="false" id="o_uptake_max" metaid="iBioSim7" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__o_uptake_max" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="output__max_o2" comp:submodelRef="C3"/>
+      </parameter>
+      <parameter constant="false" id="a_uptake_max" metaid="iBioSim17" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__a_uptake_max" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="output__max_ac" comp:submodelRef="C3"/>
+      </parameter>
+      <parameter constant="false" id="g_uptake_min" metaid="iBioSim15" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__g_uptake_min" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="output__min_glxct" comp:submodelRef="C3"/>
+      </parameter>
+      <parameter constant="false" id="o_uptake_min" metaid="iBioSim18" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__o_uptake_min" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="output__min_o2" comp:submodelRef="C3"/>
+      </parameter>
+      <parameter constant="false" id="a_uptake_min" metaid="iBioSim20" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__a_uptake_min" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="output__min_ac" comp:submodelRef="C3"/>
+      </parameter>
+      <parameter constant="false" id="X_min" metaid="iBioSim24" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__X_min" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="output__X_min" comp:submodelRef="C3"/>
+      </parameter>
+      <parameter constant="false" id="X_max" metaid="iBioSim25" value="0">
+        <comp:listOfReplacedElements xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+          <comp:replacedElement comp:portRef="input__X_max" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="output__X_max" comp:submodelRef="C3"/>
+      </parameter>
+    </listOfParameters>
+        <listOfRules>
+      <assignmentRule metaid="rule1" variable="a_rate_uptake">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> a_uptake </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule2" variable="x_rate_growth">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> growth </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule5" variable="g_rate_uptake">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> g_uptake </ci>
+        </math>
+            </assignmentRule>
+      <assignmentRule metaid="rule6" variable="o_rate_uptake">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> o_uptake </ci>
+        </math>
+            </assignmentRule>
+    </listOfRules>
+        <listOfReactions>
+      <reaction compartment="Cell" fast="false" id="growth" metaid="iBioSim13" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__growth" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="g_uptake" metaid="iBioSim19" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__g_uptake" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="o_uptake" metaid="iBioSim22" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__o_uptake" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="a_uptake" metaid="iBioSim12" reversible="false">
+        <comp:replacedBy xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" comp:portRef="reaction__a_uptake" comp:submodelRef="C1"/>
+        <listOfReactants>
+          <speciesReference constant="true" species="dummy" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> kf </ci>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kf" value="0.1"/>
+            <localParameter id="kr" value="1"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="o2_transport" metaid="iBioSim23" reversible="false">
+        <listOfProducts>
+          <speciesReference constant="true" species="O2" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> kLa </ci>
+              <apply>
+                <minus/>
+                <cn> 0.21 </cn>
+                <ci> O2 </ci>
+              </apply>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="kLa" metaid="R8___kLa" value="7.5"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+      </model>
+</sbml>

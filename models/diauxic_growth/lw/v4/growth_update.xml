@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" comp:required="true" fbc:required="false" layout:required="false" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+  <model fbc:strict="false" id="growth_update" metaid="iBioSim5" sboTerm="SBO:0000293">
+    <comp:listOfPorts xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+      <comp:port comp:id="compartment__Cell" comp:idRef="Cell" sboTerm="SBO:0000601"/>
+      <comp:port comp:id="input__Ac" comp:idRef="Ac" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__X" comp:idRef="X" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__Glcxt" comp:idRef="Glcxt" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__O2" comp:idRef="O2" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__rateOfAc" comp:idRef="rateOfAc" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__rateOfO2" comp:idRef="rateOfO2" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__rateOfGlcxt" comp:idRef="rateOfGlcxt" sboTerm="SBO:0000600"/>
+      <comp:port comp:id="input__rateOfX" comp:idRef="rateOfX" sboTerm="SBO:0000600"/>
+    </comp:listOfPorts>
+             <listOfCompartments>
+      <compartment constant="true" id="Cell" size="1" spatialDimensions="3"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Glcxt" initialAmount="0" metaid="growth_update__iBioSim2"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="O2" initialAmount="0" metaid="growth_update__iBioSim3"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="Ac" initialAmount="0" metaid="growth_update__iBioSim4"/>
+      <species boundaryCondition="false" compartment="Cell" constant="false" hasOnlySubstanceUnits="true" id="X" initialAmount="0" metaid="growth_update__iBioSim5"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="rateOfX" metaid="growth_update__iBioSim23" value="0"/>
+      <parameter constant="false" id="rateOfAc" metaid="growth_update__iBioSim25" value="0"/>
+      <parameter constant="false" id="rateOfGlcxt" metaid="growth_update__iBioSim10" value="0"/>
+      <parameter constant="false" id="rateOfO2" metaid="growth_update__iBioSim15" value="0"/>
+      <parameter constant="true" id="Km" metaid="iBioSim1" value="0.001"/>
+    </listOfParameters>
+        <listOfReactions>
+      <reaction compartment="Cell" fast="false" id="o_uptake" metaid="iBioSim2" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="O2" stoichiometry="1"/>
+        </listOfReactants>
+                <listOfModifiers>
+          <modifierSpeciesReference species="X"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> rateOfO2 </ci>
+              <ci> X </ci>
+            </apply>
+          </math>
+                          </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="g_uptake" metaid="iBioSim4" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Glcxt" stoichiometry="1"/>
+        </listOfReactants>
+                <listOfModifiers>
+          <modifierSpeciesReference species="X"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> X </ci>
+              <ci> rateOfGlcxt </ci>
+            </apply>
+          </math>
+                          </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" id="a_uptake" metaid="growth_update__iBioSim8" reversible="false">
+        <listOfReactants>
+          <speciesReference constant="true" species="Ac" stoichiometry="1"/>
+        </listOfReactants>
+                <listOfModifiers>
+          <modifierSpeciesReference species="X"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> rateOfAc </ci>
+              <ci> X </ci>
+            </apply>
+          </math>
+                          </kineticLaw>
+      </reaction>
+      <reaction compartment="Cell" fast="false" fbc:lowerFluxBound="v3_min" fbc:upperFluxBound="v3_max" id="growth" metaid="growth_update__iBioSim9" reversible="false">
+        <listOfProducts>
+          <speciesReference constant="true" species="X" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> X </ci>
+              <ci> rateOfX </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+    </listOfReactions>
+      </model>
+</sbml>
