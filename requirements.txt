@@ -1,5 +1,5 @@
--e git+https://github.com/matthiaskoenig/sbmlutils.git@develop#egg=sbmlutils
-# sbmlutils>=0.1.5a2
+# -e git+https://github.com/matthiaskoenig/sbmlutils.git@develop#egg=sbmlutils
+sbmlutils>=0.1.7a0
 
 # jupyter notebook kernel
 ipykernel>=4.6.1

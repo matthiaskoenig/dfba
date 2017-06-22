@@ -19,7 +19,7 @@ https://www.overleaf.com/6382003zbbpfy#/21488847/
 https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both
 
 **Repository version**  
-[DFBA models in SBML.md](./DFBA models in SBML.md)
+[DFBA models in SBML.md](DFBA_models_in_SBML.md)
 
 ## Setup
 To run the ipython notebooks setup a virtual environment via
