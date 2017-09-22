@@ -31,15 +31,6 @@
   revised         = {2014-06-12},
 }
 
-@MISC{sbmlutils,
-  author        = {Matthias König},
-  title         = {sbmlutils: python utilities for SBML},
-  month         = {Mar.},
-  year          = {2017},
-  doi           = "{10.5281/zenodo.439006}",
-  url           = "{http://dx.doi.org/10.5281/zenodo.439006}"
-}
-
 @Article{Varma1994,
   author          = {Varma, A and Palsson, B O},
   title           = {Stoichiometric flux balance models quantitatively predict growth and metabolic by-product secretion in wild-type Escherichia coli W3110.},
@@ -260,6 +251,15 @@
   pubmodel        = {Electronic-Print},
   pubstatus       = {epublish},
   revised         = {2015-04-26},
+}
+
+@Misc{sbmlutils,
+  author = {Matthias König},
+  title  = {sbmlutils: python utilities for SBML},
+  month  = {Mar.},
+  year   = {2017},
+  doi    = {{10.5281/zenodo.439006}},
+  url    = {{http://dx.doi.org/10.5281/zenodo.439006}},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
