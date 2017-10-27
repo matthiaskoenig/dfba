@@ -1,6 +1,6 @@
 # Guidelines for encoding DFBA models in SBML
 *Matthias König, Leandro Watanabe, and Chris Myers*  
-**version: 0.3.0**  
+**version: 0.3.1**  
 
 # Introduction
 This document describes rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in the Systems Biology Markup Language ([SBML](http://sbml.org/Main_Page)), a free and open interchange format for computer models of biological processes.
