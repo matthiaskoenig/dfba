@@ -311,6 +311,19 @@ This is mainly the problem discussed here
 https://docs.google.com/document/d/1KqERrNr7Iptos6cyYekIOkx9L3ZBVb4SWav8vrn4GAY/edit#
 
 
+<!-------------------------------->
+## A.6 SED-ML and COMBINE archive
+<!-------------------------------->
+DFBA models **SHOULD** be exchanged as COMBINE archives containing all SBML submodels. 
+A simulation experiment description for the DFBA simulation **SHOULD** be provdided in ([SED-ML](http://www.sed-ml.org)) in the COMBINE archive demonstrating core behavior of the DFBA model, i.e., simple timecourse simulations. In the SED-ML the simulation algorithm **MUST** be provided with the simulation algorithm being from the subset of KISAO terms
+* [KISAO:0000499](http://bioportal.bioontology.org/ontologies/KISAO/?p=classes&conceptid=http%3A%2F%2Fwww.biomodels.net%2Fkisao%2FKISAO%23KISAO_0000499&jump_to_nav=true) dynamic flux balance analysis (DFBA)
+    * [KISAO:0000500](http://bioportal.bioontology.org/ontologies/KISAO/?p=classes&conceptid=http%3A%2F%2Fwww.biomodels.net%2Fkisao%2FKISAO%23KISAO_0000500&jump_to_nav=true) static optimization approach dynamic flux balance analysis (SOA-DFBA)
+    * [KISAO:0000501](http://bioportal.bioontology.org/ontologies/KISAO/?p=classes&conceptid=http%3A%2F%2Fwww.biomodels.net%2Fkisao%2FKISAO%23KISAO_0000501&jump_to_nav=true) dynamic optimization approach dynamic flux balance analysis (DOA-DFBA)
+    * [KISAO:0000502](http://bioportal.bioontology.org/ontologies/KISAO/?p=classes&conceptid=http%3A%2F%2Fwww.biomodels.net%2Fkisao%2FKISAO%23KISAO_0000502&jump_to_nav=true) direct approach dynamics flux balance analysis (DA-DFBA)
+
+The examples and implementations are all based on the static optimization approach (SOA-DFBA).
+
+
 <!-- --------------------------------------------------------------- -->
 # B) Model Simulation
 In this section we describe how models in the DFBA SBML formalism described in section A should be simulated by software. The described simulation and update strategy was implemented in two DFBA simulators: `iBioSim` and `sbmlutils`.
