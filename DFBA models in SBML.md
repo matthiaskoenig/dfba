@@ -217,7 +217,7 @@ The parameter `dt` is used in calculating the upper and lower bounds based on th
 
 ### Bounds species & assignment rules
 * **`[BND-R0005]`** The `BOUNDS` submodel **MUST** contain all exchange `Species`, i.e. `Species` which are reactants in `FBA` exchange `Reactions`.
-* **`[BND-R0006]`** The `BOUNDS` submodel **MUST** contain all `Compartments` of exchange `Species`.
+* **`[BND-R0006]`** The `BOUNDS` submodel **MUST** contain all `Compartments` which are used in exchange `Species`.
 * **`[BND-R0007]`** The `BOUNDS` model **MUST** contain `Parameters` for all upper and lower flux bounds of exchange `Reactions`.
 * **`[BND-R0008]`** The `BOUNDS` model **MUST** contain `FunctionDefinitions` for `min` and `max` of the form  
 `min=lambda( x,y, piecewise(x,lt(x,y),y) )`  

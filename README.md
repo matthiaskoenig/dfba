@@ -15,10 +15,6 @@ The models can be simulated either with [iBioSim](http://www.async.ece.utah.edu/
 https://www.overleaf.com/6382003zbbpfy#/21488847/
 
 ## DFBA SBML Encoding Guidelines
-**Editable version**  
-https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both
-
-**Repository version**  
 [DFBA models in SBML.md](DFBA_models_in_SBML.md)
 
 ## Setup
