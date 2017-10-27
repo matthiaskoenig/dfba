@@ -2,10 +2,9 @@
 
 ## Guidelines
 - create updated guidelines 
-  - KISAO terms
   - remove requirements for ids
 - publish guidelines in the repository, i.e. create a github.io where the guidelines are visible
-- and create a release version which can be tragged (release version, zenodo)
+- release on github
 
 ## Combine archives
 - create combine archives for DFBA simulations (simple SED-ML timecourse + SBML files + some documentation)

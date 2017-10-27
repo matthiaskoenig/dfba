@@ -15,6 +15,8 @@ The document is structured into the following sections
 DFBA Implementation based on these rules and guidelines are provided by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
 All supplementary information, including the latest version of this document as well as example models implementing the DFBA rules and guidelines, are provided in at [https://github.com/matthiaskoenig/dfba](https://github.com/matthiaskoenig/dfba).
 
+The rules and guidelines for DFBA encoding were developed for models using the stationary optimization approach (SOA-DFBA).
+
 We expect readers to be familiar with the concepts of SBML and the `fbc` and `comp` packages and refer to the respective specifications [http://sbml.org/Documents/Specifications](http://sbml.org/Documents/Specifications) for additional information. Also we expect readers to be familiar with the concepts of DFBA and refer to the respective literature.
 
 The following conventions are used throughout this document:
@@ -40,60 +42,28 @@ Two main links are required between the FBA model and the kinetic models:
 * Update of reaction fluxes in the kinetic model from the FBA solution
 
 The DFBA models consists of different components performing parts of the DFBA task:
-* `TOP`: DFBA comp model that includes all submodels and their corresponding connections
-* `KINETIC`: kinetic part of the DFBA model
-* `FBA`: FBA part of the DFBA model
-* `BOUNDS`: calculation of the upper and lower bounds for the `FBA` model
-* `UPDATE`: calculation of the updated `KINETIC` part from the `FBA` solution
+* `TOP` model: DFBA comp model that includes all submodels and their corresponding connections. The `TOP` model is the main SBML model, containing the other submodels. The `TOP` model encodes the kinetic model parts of the DFBA (besides bounds calculation and updates from FBA).
+* `KINETIC` submodel: kinetic part of the DFBA model
+* `FBA` submodel: FBA part of the DFBA model. The `FBA` model defines the FBA submodel using the `fbc` package.
+* `BOUNDS` submodel: calculation of the upper and lower bounds for the `FBA` model. The `BOUNDS` model defines all logic for the update of the FBA bounds.
+* `UPDATE` submodel: calculation of the updated `KINETIC` part from the `FBA` solution
+
 
 An overview of the different submodels and their connections is provided in the following diagram:
 <a href="http://sed-ml.org" title="SED-ML"><img src="../docs/images/diagram.png" width=500/></a>&nbsp;
 ![DOI](../docs/diagram.png)
  
 <!---------------------->
-## A.1 DFBA model
+## A.1 `DFBA` model
 <!---------------------->
+In this subsection general rules and guidelines are defined.
 * **`[DFBA-R0001]`** The DFBA model **MUST** be a single SBML `comp` model.
 * **`[DFBA-R0002]`** The DFBA submodels **MUST** be encoded in the DFBA model via `comp:SubModels`. 
 * **`[DFBA-R0003]`** The DFBA submodels **MUST** be defined via `comp:ExternalModelDefinitions`.
-<!-- 
-Matthias: I am currently only supporting ExternalModelDefinitions. I will implement the additional direct definition of submodels. Than we can change this rule from **MUST** to **SHOULD** .
-Matthias: Too many issues with ModelDefinitions, we will only allow ExternalModelDefinitions for now. This makes things cleaner. We probably can relax this one.
-
-V2: support ModelDefinition/ExternalModelDefinition
-
-Discuss the flag.
-- 
-
--->
-
 * **`[DFBA-R0004]`** The DFBA model and all submodels **MUST** be encoded in `SBML L3V1` or higher.
 * **`[DFBA-R0005]`** The DFBA model and all submodels **MUST** be valid SBML.
 * **`[DFBA-R0006]`** The DFBA model **MUST** be encoded using SBML `core` and the SBML packages `comp` and `fbc`.
-<!--
-* All DFBA model and submodels **SHOULD** only use released SBML packages.
-Matthias: removing this. Not necessary, does not provide additional information.
--->
-<!-- 
-Leandro: This is tricky because we don't support all packages. I think we should require the bare minimum to make a simulatable model for our tools. 
-Matthias: I think you misunderstood and we should clarify. This just says you should only use released packages to encode the DFBA, nothing more. It does not say anything about what you have to support.
-Matthias: We can just ignore all packages besides fbc & comp for now.
--->
-
-<!--
-* The DFBA model **MUST** consist of the `comp` model and at least one `comp:SubModel`
-    * a `TOP` kinetic model (main DFBA `comp` model)
-    * a `FBA` FBA submodel, which defines the FBA submodel using the `fbc` package
-    * In the case of a single `FBA` submodel, the `TOP` model performs multiple functions, i.e. the `KINETIC` part of the model, the calculation of the flux bounds (`BOUNDS`) and the update of the kinetic model from the FBA solution (`UPDATE`)
-
-Matthias: I made the following structure required and removed the parts above, i.e. TOP, BOUNDS, UPDATE, FBA. This has many advantages like simplificatin of the guidelines, clear mapping of the submodels to parts of simulation algorithm, better validation, separation of logic, ...
--->
-
-* **`[DFBA-R0007]`** The DFBA model **MUST** consist of the `TOP` model and at least three `submodels` (`FBA`, `BOUNDS`, `UPDATE`).
-    * the `TOP` model is the main SBML model, containing the other submodels. The `TOP` model encodes the kinetic model parts of the DFBA (besides bounds calculation and updates from FBA).
-    * the `FBA` model defines the FBA submodel using the `fbc` package,
-    * the `BOUNDS` model defines all logic for the update of the FBA bounds
-    * the `UPDATE` defines the update of the `TOP` model from the `FBA` model.
+* **`[DFBA-R0007]`** The DFBA model **MUST** consist of the `TOP` model and at least three submodels, the required`FBA`, `BOUNDS` and `UPDATE` submodel.
 * **`[DFBA-G0001]`** The model and submodels **SHOULD** contain their respective function in the `model id`, `model name` and `filename`, i.e. the strings `TOP` or `top`, `FBA` or `fba`, `BOUNDS` or `bounds`, and `UPDATE` or `update`.
 * **`[DFBA-G0002]`** The SBOTerms on the `submodel` object **SHOULD** be identical to the SBOTerm on the `Model` object of all submodels.
 * The `TOP` model **CAN** contain additional submodels.
@@ -102,27 +72,26 @@ Matthias: I made the following structure required and removed the parts above, i
 ### fbc
 * **`[DFBA-R0008]`** There **MUST** exist exactly one submodel with the `fbc` package and the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `model` element. This model is called the `FBA` submodel for the `DFBA`.
 * **`[DFBA-R0009]`** The `FBA` submodel **MUST** be encoded using `fbc-v2` with `strict=true`.
-<!-- strict = false but SBO term FBA on the model should apply the same rules as if it was true? -->
 * There **CAN** be other submodels with the `fbc` package, but not with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the model element. These submodels **CAN** be either `strict=True` or `strict=False`.
 
-
-### Ports
+### ports
 Objects in the different submodels are linked via `comp:Ports`.
 * **`[DFBA-R0010]`** All `ReplacedBy` and `Replacements` **MUST** be done via `ports` which are identified via `idRef`.
 * **`[DFBA-R0011]`** Objects which are linked via ports in the different submodels **MUST** have identical ids in the the different submodels. 
 * **`[DFBA-R0012]`** In addition, the respective ports of the linked objects **MUST** have the same ids.
 <!-- 
-Matthias: Probably we don't need the naming rules R0009 & R0010, but for now they simplify debugging and make life much simpler.
+mkoenig: The id rules R0011 & R0012 are very strict and not required, but simplify debugging and implementation. The respective rules could be relaxed in later versions.
 -->
 * **`[DFBA-G0003]`** All `Ports` **SHOULD** have the id `{idRef}_port` for an object with `idRef={idRef}`.
 
-### Units
+### units
 * **`[DFBA-G0004]`** All models **SHOULD** contain units. 
 * **`[DFBA-G0005]`** The units of the submodel **SHOULD** be identical and be replaced by the top model.
 
 <!---------------------->
-## A.2 TOP model
+## A.2 `TOP` model
 <!---------------------->
+In this subsection the rules and guidelines for the `TOP` model are defined.
 * **`[TOP-R0001]`** The `TOP` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
 * **`[TOP-R0002]`** The `TOP` model **MUST** have exactly one submodel with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
 
@@ -135,12 +104,7 @@ Matthias: Probably we don't need the naming rules R0009 & R0010, but for now the
 ### Dummy species & Exchange reactions
 * **`[TOP-R0006]`** The top model **MUST** have a dummy species with `id="dummy_S"`. The dummy species is required for the definition of the dummy reactions in SBML L3V1. 
 <!--
-Matthias: TOP-R0006/TOP-R0008 We should think about moving to L3V2, where there is no more
-requirement for the dummy species. This would simplify and clarify things, i.e. remove the dummy species rules.
-I have to check if roadrunner is supporting this, if yes we can go to L3V2.
-Also no real SBOTerm fitting for dummy species or reaction. Using empty set for now.
-Leandro: can have separate guidelines for L3V1 and L3V2
-Matthias: good point. Let's finish the L3V1 first. Main differences are the dummy species and the min/max functions between L3V1 and L3V2.
+mkoenig: TOP-R0006/TOP-R0008 SBML L3V2 does not have any requirements for dummy species. This will simplify and clarify things, i.e. remove the dummy species rules.
 -->
 * **`[TOP-R0007]`** For every exchange reaction in the `FBA` submodel, there **MUST** exist a dummy exchange reaction in the `TOP` model.
 * **`[TOP-R0008]`** Each dummy exchange reaction **MUST** include the dummy species `dummy_S` as product with stochiometry `1.0`. 
@@ -172,13 +136,14 @@ These replacements update the ODE fluxes in the `TOP` model by replacing the dum
 - **`[TOP-R0016]`** For the `dt` parameter in the `BOUNDS` model there must be a replacement with the `TOP` `dt` parameter.
 - **`[TOP-R0017]`** For every species that is used for bounds calculation in the `BOUNDS` model (this includes all exchange species) there **MUST** exist a replacement species in the `TOP` model.
 - **`[TOP-R0018]`** For every species that is updated in the `UPDATE` models there **MUST** exist a replacement species in the `TOP` model.
-- **`[TOP-R****]`** The replaced species in the `BOUNDS` and `UPDATE` submodels should be connected via the same replacing species in the `TOP` model.
 - **`[TOP-R0019]`** `TODO:`For every uper and lower bound parameter ... (exchange reactions & kinetic reactions)
+- **`[TOP-G0008]`** The replaced species in the `BOUNDS` and `UPDATE` submodels **SHOULD** be connected via the same replacing species in the `TOP` model.
 
 
 <!---------------------->
-## A.3 FBA submodel
+## A.3 `FBA` submodel
 <!---------------------->
+In this subsection the rules and guidelines for the `FBA` model are defined.
 * **`[FBA-R0001]`** The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
 * **`[FBA-R0002]`** The `FBA` model **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
 * **`[FBA-R0003]`** The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
@@ -213,8 +178,9 @@ Matthias: This would be great because it simplifies many things for me. Also we 
 
 
 <!---------------------->
-## A.4 BOUNDS submodel
+## A.4 `BOUNDS` submodel
 <!---------------------->
+In this subsection the rules and guidelines for the `BOUNDS` model are defined.
 The `BOUNDS` submodel calculates the upper and lower bounds for the `FBA` model. For this calculation the `Species` changed via exchange `Reactions` in the FBA and the time step `dt` are required. 
 <!-- REMOVE
 The `BOUNDS` model can be part of the `TOP` model or a separate submodel (in this case some of the rules are obsolete)
@@ -250,14 +216,12 @@ TODO: update and describe the cases when species are in amounts and concentratio
 * **`[BND-G0001]`** The `Parameters` describing the flux bounds **SHOULD** have the SBOTerm [`SBO:0000625` (flux bound)](http://www.ebi.ac.uk/sbo/main/SBO:0000625).
 * The `BOUNDS` submodel **CAN** calculate additional kinetic bounds for exchange reactions via `AssignmentRules`, `RateRules` or `EventAssignments`.
 
-
 ### Ports
 * **`[BND-R0003]`** The `dt` `Parameter` **MUST** have a `Port`.
 * **`[BND-R0012]`** All bound `Species` used in the `BOUNDS` model **MUST** have a `Port`.
 * **`[BND-R0013]`** All `Compartments` of bound `Species` **MUST** have a `Port`.
 * **`[BND-R0014]`** All upper and lower bounds of exchange reactions **MUST** have a `Port`.
 * **`[BND-R0015]`** All additional kinetic bounds parameter changed in the `BOUNDS` model **MUST** have a `Port`.
-
 
 ### ReplacedElements
 * **`[BND-R0016]`** The `TOP` model **MUST** contain parameters with `ReplacedElements` for all upper and lower bounds which are changed via the `BOUNDS` submodel. 
@@ -267,11 +231,9 @@ Every parameter in the `TOP` model contains hereby a `ReplacedElement` for the r
 
 
 <!---------------------->
-## A.5 UPDATE submodel
+## A.5 `UPDATE` submodel
 <!---------------------->
-<!-- remove
-The `UPDATE` model can be part of the `TOP` model or a separate submodel.
--->
+In this subsection the rules and guidelines for the `UPDATE` model are defined.
 The update submodel performs the update of the species which are changed by the `FBA`, i.e. the species which have exchange reactions.
 * **`[UPD-R0001]`** The `UPDATE` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
 * **`[UPD-R0002]`** The `UPDATE` model **MUST** contain corresponding dynamic `Species` for all `Species` which are reactants in `FBA` exchange `Reactions`.
@@ -318,9 +280,10 @@ DFBA models **SHOULD** be exchanged as COMBINE archives containing all SBML subm
 A simulation experiment description for the DFBA simulation **SHOULD** be provdided in ([SED-ML](http://www.sed-ml.org)) in the COMBINE archive demonstrating core behavior of the DFBA model, i.e., simple timecourse simulations. In the SED-ML the simulation algorithm **MUST** be provided with the simulation algorithm being from the subset of KISAO terms
 * [KISAO:0000499](http://bioportal.bioontology.org/ontologies/KISAO/?p=classes&conceptid=http%3A%2F%2Fwww.biomodels.net%2Fkisao%2FKISAO%23KISAO_0000499&jump_to_nav=true) dynamic flux balance analysis (DFBA)
     * [KISAO:0000500](http://bioportal.bioontology.org/ontologies/KISAO/?p=classes&conceptid=http%3A%2F%2Fwww.biomodels.net%2Fkisao%2FKISAO%23KISAO_0000500&jump_to_nav=true) static optimization approach dynamic flux balance analysis (SOA-DFBA)
+<!--
     * [KISAO:0000501](http://bioportal.bioontology.org/ontologies/KISAO/?p=classes&conceptid=http%3A%2F%2Fwww.biomodels.net%2Fkisao%2FKISAO%23KISAO_0000501&jump_to_nav=true) dynamic optimization approach dynamic flux balance analysis (DOA-DFBA)
     * [KISAO:0000502](http://bioportal.bioontology.org/ontologies/KISAO/?p=classes&conceptid=http%3A%2F%2Fwww.biomodels.net%2Fkisao%2FKISAO%23KISAO_0000502&jump_to_nav=true) direct approach dynamics flux balance analysis (DA-DFBA)
-
+-->
 The examples and implementations are all based on the static optimization approach (SOA-DFBA).
 
 
