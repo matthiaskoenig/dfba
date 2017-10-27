@@ -1,29 +1,26 @@
-# DFBA models in SBML
-**version: 0.2-draft**
-<!--
-Please edit this file ONLY on hackmd.io for now and commit the file when finished with editing to the dfba git via Menu -> Download -> Markdown. Than we have the latest version available on github. Comments in this text via the comment syntax.
--->
-<!-- Discuss this during the next Harmony meeting -->
-* **[latest editable version](https://hackmd.io/IYUwDATAjAZgxiAtAZmFAJogLAdi8xUdJZMZAIyhDjnJzHSA?both)**
-* **[github repository](https://github.com/matthiaskoenig/dfba)**
+# Guidelines for encoding DFBA models in SBML
+**version: 0.3.0**
 
-This document describes the rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in the Systems Biology Markup Language ([SBML](http://sbml.org/Main_Page)), a free and open interchange format for computer models of biological processes.
+# Introduction
+This document describes rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in the Systems Biology Markup Language ([SBML](http://sbml.org/Main_Page)), a free and open interchange format for computer models of biological processes.
 
-Note that the guidelines have been proposed by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) as ground rules to simulate DFBA models in these tools. It is by no means a community agreement. However, we highly encourage everyone who wants to encode DFBA models and tool developers to follow these rules.
+Note that these guidelines have been proposed by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) as ground rules for encoding and simulating DFBA models in these tools in an interchangeable and reproducible manner. It is by no means a community agreement. However, we highly encourage everyone who wants to encode DFBA models and tool developers to follow these guidelines.
 
-The document is structured in
+The document is structured into the following sections
 * **Section A**: describes how to encode DFBA models in SBML.
-* **Section B**: provides information on how simulators should execute models provided in the format of Section A). DFBA Implementation are provided by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
+* **Section B**: provides information on how simulators should execute models provided in the format of Section A).
 * **Section C**: provides answers to frequently asked questions.
 
-The following conventions are used throughout this document.
-* Required rules are stated via **MUST**, i.e. DFBA models in SBML must implement these rules.
-* Guidelines which are recommended to be followed are indicated by **SHOULD**, i.e. it is good practice to follow these guidelines, but they are not required for an executable DFBA model in SBML. [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) will run the DFBA even if these recommendations are not followed.
-* Additional information for clarification is provided by **CAN**, i.e. it is clarified that this is allowed.
-* Curly brackets function as place holders. For instance the reaction id `{rid}` means that `{rid}` is replaced with the actual id of the reaction.
+DFBA Implementation based on these rules and guidelines are provided by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
+All supplementary information, including the latest version of this document as well as example models implementing the DFBA rules and guidelines, are provided in at [https://github.com/matthiaskoenig/dfba](https://github.com/matthiaskoenig/dfba).
 
-Example models implementing the rules and guidelines of this document are provided in the `dfba/models` folder of the [github repository](https://github.com/matthiaskoenig/dfba).
+The following conventions are used throughout this document:
+* Required rules are stated via **MUST**, i.e., DFBA models in SBML must implement these rules.
+* Guidelines which are recommended to be followed are indicated by **SHOULD**, i.e., it is good practice to follow these guidelines, but they are not required for an executable and reproducible DFBA model encoded in SBML. The provided implmentations by [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) will run the DFBA even if these recommendations are not followed.
+* Additional information for clarification is provided by **CAN**, i.e., it is clarified that this is allowed to remove ambiguities.
+* Curly brackets, i.e, `{ }` functions as place holders which are instantiated with actual information. For instance the reaction id `{rid}` means that `{rid}` is replaced with the actual id of the reaction.
 
+## List of abbreviations
 The following abbreviations are used in this document
 * DFBA : Dynamic Flux Balance Analysis
 * FBA : Flux Balance Analysis
@@ -32,7 +29,10 @@ The following abbreviations are used in this document
 
 <!------------------------------------------------------------------->
 # A) Encoding DFBA models in SBML
-This section describes how DFBA models can be encoded in SBML. Two main links are hereby required between the FBA model and the kinetic models: 
+This section describes rules and guidelines for encodeing DFBA models in SBML. The proposed schema uses SBML `core`, SBML `comp` for model compositions, and SBML `fbc` to encode FBA related information. We expect readers to be familiar with the concepts of SBML and the respective packages and refer to the respective specifications available from [http://sbml.org/Documents/Specifications](http://sbml.org/Documents/Specifications) for additional information. 
+The core concept behind the presented guidelines and rules is to encode models with different modeling frameworks, i.e., kinetic models and FBA models, as well as models with different functions, i.e., updating or calculation of flux bounds within separate submodels. These submodels are subsequently connected and combined using hierarchical model composition based on `comp`.
+
+Two main links are hereby required between the FBA model and the kinetic models: 
 * Update of flux bounds in the FBA model from the kinetic model. 
 * Update of reaction fluxes in the kinetic model from the FBA solution.
 
