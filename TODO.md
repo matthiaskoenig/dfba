@@ -2,8 +2,8 @@
 
 ## Guidelines
 - create updated guidelines 
-  - remove requirements for ids
-- publish guidelines in the repository, i.e. create a github.io where the guidelines are visible
+  - describe flux weighting
+  - check guidelines against created examples
 - release on github
 
 ## Combine archives
