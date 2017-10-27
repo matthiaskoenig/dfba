@@ -3,12 +3,8 @@
 [![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fdfba.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fdfba)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 
-This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML.
-
-The latest guidelines and rules are available from this repository at
-[DFBA models in SBML](./guidelines/DFBA_models_in_SBML.md).
-
-Example models are provided with instructions on how to run the simulations below
+This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML. The latest guidelines and rules are available from this repository at
+[DFBA models in SBML](./guidelines/DFBA_models_in_SBML.md). Example models are provided with instructions on how to run the simulations below
 
 This effort builds on existing standards, i.e., [SBML](http://sbml.org), [SED-ML](http://sed-ml.org), and the [COMBINE archive](http://co.mbine.org/documents/archive).
 
@@ -16,13 +12,14 @@ This effort builds on existing standards, i.e., [SBML](http://sbml.org), [SED-ML
 <a href="http://sed-ml.org" title="SED-ML"><img src="./docs/images/sedml.png" height="35"/></a>&nbsp;
 <a href="http://co.mbine.org/documents/archive" title="CombineArchive"><img src="./docs/images/omex.png" height="35"/></a>&nbsp;
 
-
 ##  How to cite
+The latest manuscript version is available at
+[https://www.overleaf.com/6382003zbbpfy#/21488847/](https://www.overleaf.com/6382003zbbpfy#/21488847/).
+
 If you use the guidelines and the provided examples please cite the manuscript above and this repository  
 [![DOI](https://www.zenodo.org/badge/71236313.svg)](https://www.zenodo.org/badge/latestdoi/71236313)
 
-The latest manuscript version is available at
-[https://www.overleaf.com/6382003zbbpfy#/21488847/](https://www.overleaf.com/6382003zbbpfy#/21488847/).
+
 
 ## License
 * Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
