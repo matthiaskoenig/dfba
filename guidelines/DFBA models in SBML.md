@@ -1,5 +1,6 @@
 # Guidelines for encoding DFBA models in SBML
-**version: 0.3.0**
+*Matthias König, Leandro Watanabe, and Chris Myers*  
+**version: 0.3.0**  
 
 # Introduction
 This document describes rules and guidelines for encoding Dynamic Flux Balance Analysis (DFBA) models in the Systems Biology Markup Language ([SBML](http://sbml.org/Main_Page)), a free and open interchange format for computer models of biological processes.
@@ -14,6 +15,8 @@ The document is structured into the following sections
 DFBA Implementation based on these rules and guidelines are provided by [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
 All supplementary information, including the latest version of this document as well as example models implementing the DFBA rules and guidelines, are provided in at [https://github.com/matthiaskoenig/dfba](https://github.com/matthiaskoenig/dfba).
 
+We expect readers to be familiar with the concepts of SBML and the `fbc` and `comp` packages and refer to the respective specifications [http://sbml.org/Documents/Specifications](http://sbml.org/Documents/Specifications) for additional information. Also we expect readers to be familiar with the concepts of DFBA and refer to the respective literature.
+
 The following conventions are used throughout this document:
 * Required rules are stated via **MUST**, i.e., DFBA models in SBML must implement these rules.
 * Guidelines which are recommended to be followed are indicated by **SHOULD**, i.e., it is good practice to follow these guidelines, but they are not required for an executable and reproducible DFBA model encoded in SBML. The provided implmentations by [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) will run the DFBA even if these recommendations are not followed.
@@ -26,26 +29,30 @@ The following abbreviations are used in this document
 * FBA : Flux Balance Analysis
 * SBML : Systems Biology Markup Language
 
-
 <!------------------------------------------------------------------->
 # A) Encoding DFBA models in SBML
-This section describes rules and guidelines for encodeing DFBA models in SBML. The proposed schema uses SBML `core`, SBML `comp` for model compositions, and SBML `fbc` to encode FBA related information. We expect readers to be familiar with the concepts of SBML and the respective packages and refer to the respective specifications available from [http://sbml.org/Documents/Specifications](http://sbml.org/Documents/Specifications) for additional information. 
-The core concept behind the presented guidelines and rules is to encode models with different modeling frameworks, i.e., kinetic models and FBA models, as well as models with different functions, i.e., updating or calculation of flux bounds within separate submodels. These submodels are subsequently connected and combined using hierarchical model composition based on `comp`.
+This section describes rules and guidelines for encoding DFBA models in SBML. The proposed schema uses SBML `core`, SBML `comp` for model compositions, and SBML `fbc` to encode FBA related information. 
 
-Two main links are hereby required between the FBA model and the kinetic models: 
-* Update of flux bounds in the FBA model from the kinetic model. 
-* Update of reaction fluxes in the kinetic model from the FBA solution.
+The core concept behind this guidelines and rules is to encode models with different modeling frameworks, i.e., kinetic models and FBA models, as well as models with different functions, i.e., updating or calculation of flux bounds within separate submodels. These submodels are connected into the overall DFBA model using hierarchical model composition based on `comp`.
+
+Two main links are required between the FBA model and the kinetic models: 
+* Update of flux bounds in the FBA model from the kinetic model 
+* Update of reaction fluxes in the kinetic model from the FBA solution
 
 The DFBA models consists of different components performing parts of the DFBA task:
-* `TOP` : DFBA comp model that includes all submodels and their corresponding connections
-* `KINETIC` : kinetic part of the DFBA model
-* `FBA` : FBA part of the DFBA model
-* `BOUNDS` : calculation of the upper and lower bounds for the `FBA` model
-* `UPDATE` : calculation of the updated `KINETIC` part from the `FBA` solution
+* `TOP`: DFBA comp model that includes all submodels and their corresponding connections
+* `KINETIC`: kinetic part of the DFBA model
+* `FBA`: FBA part of the DFBA model
+* `BOUNDS`: calculation of the upper and lower bounds for the `FBA` model
+* `UPDATE`: calculation of the updated `KINETIC` part from the `FBA` solution
 
- **`TODO:`** Create figure showing linking between submodels (this section is unclear, figure will help. Show the different alternatives)
-
-## DFBA model
+An overview of the different submodels and their connections is provided in the following diagram:
+<a href="http://sed-ml.org" title="SED-ML"><img src="../docs/images/diagram.png" width=500/></a>&nbsp;
+![DOI](../docs/diagram.png)
+ 
+<!---------------------->
+## A.1 DFBA model
+<!---------------------->
 * **`[DFBA-R0001]`** The DFBA model **MUST** be a single SBML `comp` model.
 * **`[DFBA-R0002]`** The DFBA submodels **MUST** be encoded in the DFBA model via `comp:SubModels`. 
 * **`[DFBA-R0003]`** The DFBA submodels **MUST** be defined via `comp:ExternalModelDefinitions`.
@@ -113,7 +120,9 @@ Matthias: Probably we don't need the naming rules R0009 & R0010, but for now the
 * **`[DFBA-G0004]`** All models **SHOULD** contain units. 
 * **`[DFBA-G0005]`** The units of the submodel **SHOULD** be identical and be replaced by the top model.
 
-## TOP model
+<!---------------------->
+## A.2 TOP model
+<!---------------------->
 * **`[TOP-R0001]`** The `TOP` model **MUST** have the SBOTerm [`SBO:0000293` (non-spatial continuous framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000293) on the `Model` element.
 * **`[TOP-R0002]`** The `TOP` model **MUST** have exactly one submodel with the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
 
@@ -167,7 +176,9 @@ These replacements update the ODE fluxes in the `TOP` model by replacing the dum
 - **`[TOP-R0019]`** `TODO:`For every uper and lower bound parameter ... (exchange reactions & kinetic reactions)
 
 
-## FBA submodel
+<!---------------------->
+## A.3 FBA submodel
+<!---------------------->
 * **`[FBA-R0001]`** The `Model` element of the `FBA` submodel **MUST** have the SBOTerm [`SBO:0000624` (flux balance framework)](http://www.ebi.ac.uk/sbo/main/SBO:0000624) on the `Model` element.
 * **`[FBA-R0002]`** The `FBA` model **MUST** be encoded using the SBML package `fbc-v2` with `strict=true`.
 * **`[FBA-R0003]`** The `reactions` in the FBA model **MUST NOT** have any `KineticLaw`.
@@ -201,7 +212,9 @@ Matthias: This would be great because it simplifies many things for me. Also we 
 * **`[FBA-R0012]`** All upper and lower bounds of exchange reactions **MUST** have a port.
 
 
-## BOUNDS submodel
+<!---------------------->
+## A.4 BOUNDS submodel
+<!---------------------->
 The `BOUNDS` submodel calculates the upper and lower bounds for the `FBA` model. For this calculation the `Species` changed via exchange `Reactions` in the FBA and the time step `dt` are required. 
 <!-- REMOVE
 The `BOUNDS` model can be part of the `TOP` model or a separate submodel (in this case some of the rules are obsolete)
@@ -252,7 +265,10 @@ TODO: update and describe the cases when species are in amounts and concentratio
 Every parameter in the `TOP` model contains hereby a `ReplacedElement` for the respective parameter from the `BOUNDS` model and `FBA` model.
 -->
 
-## UPDATE submodel
+
+<!---------------------->
+## A.5 UPDATE submodel
+<!---------------------->
 <!-- remove
 The `UPDATE` model can be part of the `TOP` model or a separate submodel.
 -->

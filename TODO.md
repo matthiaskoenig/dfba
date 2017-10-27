@@ -5,9 +5,11 @@
   - KISAO terms
   - remove requirements for ids
 - publish guidelines in the repository, i.e. create a github.io where the guidelines are visible
+- and create a release version which can be tragged (release version, zenodo)
 
 ## Combine archives
-- create combine archives for DFBA simulations (simple SED-ML timecourse + SBML files + some documentation), add as supplementary files or online in repository
+- create combine archives for DFBA simulations (simple SED-ML timecourse + SBML files + some documentation)
+- Reference the respective release in the repository.
 
 ## Cytoscape
 - Cytoscape session files for supplement (for Figure 3 and for the other models)
