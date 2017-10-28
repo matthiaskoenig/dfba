@@ -51,7 +51,7 @@ The DFBA models consists of different components performing parts of the DFBA ta
 
 An overview of the different submodels and their connections is provided in the following diagram:
 <a href="http://sed-ml.org" title="SED-ML"><img src="../docs/images/diagram.png" width=500/></a>&nbsp;
-![DOI](../docs/diagram.png)
+![DOI](../docs/images/dfba_schema.png)
  
 <!---------------------->
 ## A.1 `DFBA` model
@@ -318,6 +318,9 @@ while (time <= tend){
     time = time + dt
 }
 ```
+![DOI](../docs/images/simulation_algorithm.png)
+
+
 * The output time points **MUST** be in agreement with the `dt` parameter, i.e. the interval between subsequent time points **MUST** be `dt`. This does not affect the internal steps of the kinetic solver.
 * The model simulation **MUST** abort if the FBA LP probelm is infeasible.
 * If the kinetic simulation encounters problems like unfulfilled tolerances the simulation **MUST** stop.

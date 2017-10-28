@@ -12,9 +12,9 @@ Example models are provided with instructions on how to run the simulations belo
 
 This effort builds on existing standards, i.e., [SBML](http://sbml.org), [SED-ML](http://sed-ml.org), and the [COMBINE archive](http://co.mbine.org/documents/archive).
 
-<a href="http://sbml.org" title="SBML"><img src="./docs/images/sbml.png" height="35"/></a>&nbsp;
-<a href="http://sed-ml.org" title="SED-ML"><img src="./docs/images/sedml.png" height="35"/></a>&nbsp;
-<a href="http://co.mbine.org/documents/archive" title="CombineArchive"><img src="./docs/images/omex.png" height="35"/></a>&nbsp;
+<a href="http://sbml.org" title="SBML"><img src="./docs/images/logos/sbml.png" height="35"/></a>&nbsp;
+<a href="http://sed-ml.org" title="SED-ML"><img src="./docs/images/logos/sedml.png" height="35"/></a>&nbsp;
+<a href="http://co.mbine.org/documents/archive" title="CombineArchive"><img src="./docs/images/logos/omex.png" height="35"/></a>&nbsp;
 
 ##  How to cite
 If you use these guidelines and/or the provided examples, or want to reference the information within,  
@@ -34,8 +34,8 @@ The latest manuscript is available from
 Matthias König is supported by the Federal Ministry of Education and Research (BMBF, Germany) 
 within the research network Systems Medicine of the Liver (LiSyM, grant number 031L0054).
 
-<a href="http://www.lisym.org/" alt="LiSyM" target="_blank"><img src="./docs/images/lisym.png" height="35"></a> &nbsp;&nbsp;
-<a href="http://www.bmbf.de/" alt="BMBF" target="_blank"><img src="./docs/images/bmbf.png" height="35"></a> &nbsp;&nbsp;
+<a href="http://www.lisym.org/" alt="LiSyM" target="_blank"><img src="./docs/images/logos/lisym.png" height="35"></a> &nbsp;&nbsp;
+<a href="http://www.bmbf.de/" alt="BMBF" target="_blank"><img src="./docs/images/logos/bmbf.png" height="35"></a> &nbsp;&nbsp;
 
 
 # Running example models
@@ -49,6 +49,8 @@ The model examples are provided as COMBINE archives for exchange.
 As part of this project DFBA implementations based on these guidelines have been implemented. 
 The models can be simulated either with [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/)
 with detailed instructions below.
+
+
 
 
 ## sbmlutils

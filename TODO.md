@@ -1,8 +1,10 @@
 # Final things to finish before submission
 
+## README:
+- add logos for iBioSim and sbmlutils
+
 ## Guidelines
 - create updated guidelines 
-  - describe flux weighting
   - check guidelines against created examples
 - release on github
 
@@ -15,7 +17,7 @@
 - Create figures from session files
 
 ## Numerical comparison
-- create numerical results and compare with leandros files
+- create numerical results and compare with Leandros files
 
 ## Software
 - release latest version of sbmlutils supporting the full set of DFBA simulations
