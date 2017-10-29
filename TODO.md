@@ -1,12 +1,8 @@
 # Final things to finish before submission
 
-## README:
-- add logos for iBioSim and sbmlutils
-- add orcid link and logo
-
 ## Guidelines
 - create updated guidelines 
-  - check guidelines against created examples
+- check guidelines against created examples
 - release on github
 
 ## Combine archives

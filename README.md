@@ -3,9 +3,9 @@
 [![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fdfba.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fdfba)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 
-<i>Matthias König <a href="https://orcid.org/0000-0003-1725-179X" title="orcid id"><img src="./docs/images/logos/orcid.png" height="15"/>https://orcid.org/0000-0003-1725-179X</a>,
+<b>Matthias König <a href="https://orcid.org/0000-0003-1725-179X" title="orcid id"><img src="./docs/images/logos/orcid.png" height="20"/></a>,
  Leandro Watanabe, Chris Myers
-</i>
+</b>
 
 This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML. The latest guidelines and rules are available from this repository at  
 [latest guidelines](./guidelines/DFBA_models_in_SBML.md). 
@@ -48,19 +48,17 @@ within the research network Systems Medicine of the Liver (LiSyM, grant number 0
 
 
 # Running example models
-Model examples encoded in the proposed dynamic FBA scheme. the models are listed in the `/models/*` folders. Example models consist of
+Model examples encoded in the proposed dynamic FBA scheme. the models are listed in the `/models/*` folders. 
+Example models consist of
 * SBML model(s) according to guidelines and rules
 * SED-ML file encoding example simulation experiments
-* Simulation results for `iBioSim` and `sbmlutils`
+* Simulation results for [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/)
 
 The model examples are provided as COMBINE archives for exchange.
 
 
-
-
-
-
-## sbmlutils
+## sbmlutils 
+<a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils"><img src="./docs/images/logos/sbmlutils.jpg" height="35"/></a> 
 To run the ipython notebooks setup a virtual environment via
 ```
 # clone repository
@@ -83,8 +81,6 @@ Kernel -> Restart & Run All
 ```
 
 ## iBioSim
+<a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>
 The tutorial on running the models in iBioSim is available from
 [Tutorial_iBioSim](./docs/Tutorial_iBioSim.pdf)
-
-
-
