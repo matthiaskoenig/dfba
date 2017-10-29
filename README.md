@@ -3,27 +3,27 @@
 [![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fdfba.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fdfba)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 
-<b>Matthias König <a href="https://orcid.org/0000-0003-1725-179X" title="orcid id"><img src="./docs/images/logos/orcid.png" height="20"/></a>,
+<b><a href="https://orcid.org/0000-0003-1725-179X" title="orcid id"><img src="./docs/images/logos/orcid.png" height="15"/></a> Matthias König,
  Leandro Watanabe, Chris Myers
 </b>
 
-This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML. The latest guidelines and rules are available from this repository at  
-[latest guidelines](./guidelines/DFBA_models_in_SBML.md). 
+This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML. The latest guidelines and rules are available from this repository at [latest guidelines](./guidelines/DFBA_models_in_SBML.md). 
 
 As part of this project DFBA implementations based on these guidelines have been implemented in 
 [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
  
 
-<a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>&nbsp;
-<a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils"><img src="./docs/images/logos/sbmlutils.jpg" height="35"/></a>&nbsp;
+<a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim" target="_blank"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>&nbsp;
+<a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils" target="_blank"><img src="./docs/images/logos/sbmlutils.jpg" height="35"/></a>&nbsp;
 
 Example models with detailed instructions on how to run the simulations are provided [below](#running-example-models).
 
+## Standardization
 This effort builds on existing standards, i.e., [SBML](http://sbml.org), [SED-ML](http://sed-ml.org), and the [COMBINE archive](http://co.mbine.org/documents/archive).
 
-<a href="http://sbml.org" title="SBML"><img src="./docs/images/logos/sbml.png" height="35"/></a>&nbsp;
-<a href="http://sed-ml.org" title="SED-ML"><img src="./docs/images/logos/sedml.png" height="35"/></a>&nbsp;
-<a href="http://co.mbine.org/documents/archive" title="CombineArchive"><img src="./docs/images/logos/omex.png" height="35"/></a>&nbsp;
+<a href="http://sbml.org" title="SBML" target="_blank"><img src="./docs/images/logos/sbml.png" height="35"/></a>&nbsp;
+<a href="http://sed-ml.org" title="SED-ML" target="_blank"><img src="./docs/images/logos/sedml.png" height="35"/></a>&nbsp;
+<a href="http://co.mbine.org/documents/archive" title="CombineArchive" target="_blank"><img src="./docs/images/logos/omex.png" height="35"/></a>&nbsp;
 
 ##  How to cite
 If you use these guidelines and/or the provided examples, or want to reference the information within,  
@@ -82,5 +82,5 @@ Kernel -> Restart & Run All
 
 ## iBioSim
 <a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>
-The tutorial on running the models in iBioSim is available from
-[Tutorial_iBioSim](./docs/Tutorial_iBioSim.pdf)
+The tutorial describing how to run the models in iBioSim is available from
+[DFBA_Tutorial_iBioSim](./docs/Tutorial_iBioSim.pdf).
