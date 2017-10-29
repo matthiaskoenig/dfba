@@ -2,6 +2,7 @@
 
 ## README:
 - add logos for iBioSim and sbmlutils
+- add orcid link and logo
 
 ## Guidelines
 - create updated guidelines 

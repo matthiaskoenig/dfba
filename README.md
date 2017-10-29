@@ -8,7 +8,14 @@
 This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML. The latest guidelines and rules are available from this repository at  
 [latest guidelines](./guidelines/DFBA_models_in_SBML.md). 
 
-Example models are provided with instructions on how to run the simulations below
+As part of this project DFBA implementations based on these guidelines have been implemented in 
+[iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
+ 
+
+<a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>&nbsp;
+<a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils"><img src="./docs/images/logos/sbmlutils.png" height="35"/></a>&nbsp;
+
+Example models with detailed instructions on how to run the simulations are provided [below](#running-example-models).
 
 This effort builds on existing standards, i.e., [SBML](http://sbml.org), [SED-ML](http://sed-ml.org), and the [COMBINE archive](http://co.mbine.org/documents/archive).
 
@@ -46,9 +53,7 @@ Model examples encoded in the proposed dynamic FBA scheme. the models are listed
 
 The model examples are provided as COMBINE archives for exchange.
 
-As part of this project DFBA implementations based on these guidelines have been implemented. 
-The models can be simulated either with [iBioSim](http://www.async.ece.utah.edu/ibiosim) or [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/)
-with detailed instructions below.
+
 
 
 
