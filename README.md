@@ -3,7 +3,9 @@
 [![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fdfba.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fdfba)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 
-**Matthias König, Leandro Watanabe, Chris Myers**
+<i>Matthias König <a href="https://orcid.org/0000-0003-1725-179X" title="orcid id"><img src="./docs/images/logos/orcid.png" height="15"/>https://orcid.org/0000-0003-1725-179X</a>,
+ Leandro Watanabe, Chris Myers
+</i>
 
 This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML. The latest guidelines and rules are available from this repository at  
 [latest guidelines](./guidelines/DFBA_models_in_SBML.md). 
@@ -13,7 +15,7 @@ As part of this project DFBA implementations based on these guidelines have been
  
 
 <a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>&nbsp;
-<a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils"><img src="./docs/images/logos/sbmlutils.png" height="35"/></a>&nbsp;
+<a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils"><img src="./docs/images/logos/sbmlutils.jpg" height="35"/></a>&nbsp;
 
 Example models with detailed instructions on how to run the simulations are provided [below](#running-example-models).
 
