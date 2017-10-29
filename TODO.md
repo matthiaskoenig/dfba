@@ -20,6 +20,7 @@
 - release latest version of sbmlutils supporting the full set of DFBA simulations
 
 ## Manuscript
+- add KISAO, COMBINE archive and SED-ML information to the manuscript
 - Figure 3 in high quality (and latest version of model), same figure for other models) 
 latest release of sbmlutils with all example simulations
 csv results files for comparison
