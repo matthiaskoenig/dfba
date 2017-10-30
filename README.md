@@ -89,5 +89,11 @@ Kernel -> Restart & Run All
 
 ## iBioSim
 <a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>
-The tutorial describing how to run the models in iBioSim is available from
-[DFBA_Tutorial_iBioSim](./docs/Tutorial_iBioSim.pdf).
+To install the iBioSim tool, you can:
+* Download [iBioSim 3.0](https://github.com/MyersResearchGroup/iBioSim/releases)
+* Install from [source](https://github.com/MyersResearchGroup/iBioSim/)
+
+To run DFBA models from iBioSim, you need to follow these steps:
+* Open up the tool as instructed [here](https://github.com/MyersResearchGroup/iBioSim/).
+* Create a project by clicking on File->New->Project and specify the location and name of the project.
+* Once a project is created, you can import our examples by clicking on File->Import->Archive and selecting the appropriate omex file.
