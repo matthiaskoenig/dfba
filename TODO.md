@@ -18,6 +18,7 @@
 
 ## Software
 - release latest version of sbmlutils supporting the full set of DFBA simulations
+- update reference with latest zenodo in manuscript
 
 ## Manuscript
 - update information about numerical comparison
