@@ -53,6 +53,8 @@ within the research network Systems Medicine of the Liver (LiSyM, grant number 0
 <a href="http://www.lisym.org/" alt="LiSyM" target="_blank"><img src="./docs/images/logos/lisym.png" height="35"></a> &nbsp;&nbsp;
 <a href="http://www.bmbf.de/" alt="BMBF" target="_blank"><img src="./docs/images/logos/bmbf.png" height="35"></a> &nbsp;&nbsp;
 
+The development of iBioSim is supported by the National Science Foundation under Grants CCF-1218095 and CCF-1748200. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+
 
 # Running example models
 Model examples encoded in the proposed dynamic FBA scheme. the models are listed in the `/models/*` folders. 
