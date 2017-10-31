@@ -53,6 +53,9 @@ within the research network Systems Medicine of the Liver (LiSyM, grant number 0
 <a href="http://www.lisym.org/" alt="LiSyM" target="_blank"><img src="./docs/images/logos/lisym.png" height="35"></a> &nbsp;&nbsp;
 <a href="http://www.bmbf.de/" alt="BMBF" target="_blank"><img src="./docs/images/logos/bmbf.png" height="35"></a> &nbsp;&nbsp;
 
+The development of iBioSim is supported by the National Science Foundation under Grants CCF-1218095 and CCF-1748200. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+
+<a href="http://www.lisym.org/" alt="NSF" target="_blank"><img src="./docs/images/logos/nsf.jpg" height="50"></a> 
 
 # Running example models
 Model examples encoded in the proposed dynamic FBA scheme. the models are listed in the `/models/*` folders. 
@@ -89,5 +92,11 @@ Kernel -> Restart & Run All
 
 ## iBioSim
 <a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>
-The tutorial describing how to run the models in iBioSim is available from
-[DFBA_Tutorial_iBioSim](./docs/Tutorial_iBioSim.pdf).
+To install the iBioSim tool, you can:
+* Download [iBioSim 3.0](https://github.com/MyersResearchGroup/iBioSim/releases)
+* Install from [source](https://github.com/MyersResearchGroup/iBioSim/)
+
+To run DFBA models from iBioSim, you need to follow these steps:
+* Open up the tool as instructed [here](https://github.com/MyersResearchGroup/iBioSim/).
+* Create a project by clicking on File->New->Project and specify the location and name of the project.
+* Once a project is created, you can import our examples by clicking on File->Import->Archive and selecting the appropriate omex file.
