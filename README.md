@@ -7,7 +7,7 @@
  Leandro Watanabe, Chris Myers
 </b>
 
-This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML. The latest guidelines and rules are available from this repository at [latest guidelines](./guidelines/DFBA_models_in_SBML.md). 
+This repository provides guidelines and rules for the encoding of dynamic flux balance analysis (DFBA) models in SBML. The latest guidelines and rules are available from this repository at [latest schema](./schema/DFBA_models_in_SBML.md). 
 
 As part of this project DFBA implementations based on these guidelines have been implemented in 
 [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/).
@@ -33,7 +33,7 @@ This effort builds on existing standards, i.e., [SBML](http://sbml.org), [SED-ML
 <a href="http://co.mbine.org/documents/archive" title="CombineArchive" target="_blank"><img src="./docs/images/logos/omex.png" height="35"/></a>&nbsp;
 
 ##  How to cite
-If you use these guidelines and/or the provided examples, or want to reference the information within,  
+If you use these schema and guidelines and/or the provided examples, or want to reference the information within,  
 please cite corresponding manuscript and this repository via its DOI
 
 [![DOI](https://www.zenodo.org/badge/71236313.svg)](https://www.zenodo.org/badge/latestdoi/71236313)
