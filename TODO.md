@@ -16,9 +16,9 @@
 ## Software
 - release latest version of sbmlutils supporting the full set of DFBA simulations
 - update sbmlutils reference with latest zenodo in manuscript
+- release cy3sbml with comp changes
 
 ## Manuscript
-- figures in high quality
-  - Figure 3: load latest model, save session, create legend  
-  - Figure S3: load latest diauxic model, save session, create legend
+- figures in high quality  
+  - Figure S3: load latest diauxic model, save session
   - Figure 4, 5, 6: pdf from latest simulation, figure 5 add data
