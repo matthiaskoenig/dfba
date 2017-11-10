@@ -19,7 +19,6 @@
 
 ## Manuscript
 - figures in high quality
-  - Figure 1: boxes same width, Write Results (CSV)
   - Figure 2: add legend, add framework info, add extension info
   - Figure 3: load latest model, save session, create legend  
   - Figure S3: load latest diauxic model, save session, create legend
