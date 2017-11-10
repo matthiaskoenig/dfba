@@ -1,30 +1,24 @@
 # Final things to finish before submission
 
-## Guidelines
-- create updated guidelines 
-- check guidelines against created examples
-- release on github
-
-## Combine archives
+## Models as combine archives
+- create latest version of models
+- biomass weighting
 - create combine archives for DFBA simulations (simple SED-ML timecourse + SBML files + some documentation)
-- Reference the respective release in the repository.
+- create figures and run simulations with COMBINE archives
 
-## Cytoscape
-- Cytoscape session files for supplement (for Figure 3 and for the other models)
-- Create figures from session files
+## Guidelines
+- check guidelines against created examples
 
 ## Numerical comparison
 - create numerical results and compare with Leandros files
+- update information about numerical comparison in manuscript
 
 ## Software
 - release latest version of sbmlutils supporting the full set of DFBA simulations
-- update reference with latest zenodo in manuscript
+- update sbmlutils reference with latest zenodo in manuscript
 
 ## Manuscript
-- update information about numerical comparison
-- Figure 3 in high quality (and latest version of model), same figure for other models) 
-latest release of sbmlutils with all example simulations
-csv results files for comparison
-
-- create supplementary files/files in repository
-- revise manuscript
+- figures in high quality
+  - Figure 3: load latest model, save session, create legend  
+  - Figure S3: load latest diauxic model, save session, create legend
+  - Figure 4, 5, 6: pdf from latest simulation, figure 5 add data
