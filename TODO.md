@@ -19,7 +19,6 @@
 
 ## Manuscript
 - figures in high quality
-  - Figure 2: add legend, add framework info, add extension info
   - Figure 3: load latest model, save session, create legend  
   - Figure S3: load latest diauxic model, save session, create legend
   - Figure 4, 5, 6: pdf from latest simulation, figure 5 add data
