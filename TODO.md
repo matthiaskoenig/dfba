@@ -6,14 +6,15 @@
 - run simulations
 - create figures 
 - numerical comparison
-    - toy_atp
     - diauxic
-    - ecoli
+
+## Leandro latest results/figures
+- toy_wholecell
+- toy_atp
 
 ## Manuscript
 - figures in high quality
     - Figure 5
-    - Figure 6
  
 ## Software
 - release latest version of sbmlutils supporting the full set of DFBA simulations
