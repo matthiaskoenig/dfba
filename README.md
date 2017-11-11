@@ -69,26 +69,9 @@ The model examples are provided as COMBINE archives for exchange.
 
 ## sbmlutils 
 <a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils"><img src="./docs/images/logos/sbmlutils.jpg" height="35"/></a> 
-To run the ipython notebooks setup a virtual environment via
-```
-# clone repository
-git clone https://github.com/matthiaskoenig/dfba.git
-cd dfba
+Example notebooks for the individual models are available in `./models/`.
 
-# setup virtual environment
-mkvirtualenv dfba
-(dfba) pip install -r requirements.txt
-
-# install kernel for ipython
-(dfba) python -m ipykernel install --user --name=dfba
-
-# start jupyter notbook
-jupyter notebook
-
-# select notebook for model (dfba/models/*/*.ipynb) and run notbook with the dfba kernel
-Kernel -> Change kernel -> dfba
-Kernel -> Restart & Run All
-```
+Installation instructions and the entry point to the individual notebooks is available at [./models/index.ipynb](./models/index.ipynb)
 
 ## iBioSim
 <a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>
