@@ -2,8 +2,9 @@
 
 ## Models as combine archives
 - create latest version of models
-- biomass weighting
+
 - create combine archives for DFBA simulations (simple SED-ML timecourse + SBML files + some documentation)
+- biomass weighting
 - create figures and run simulations with COMBINE archives
 
 ## Guidelines
@@ -11,6 +12,9 @@
 
 ## Numerical comparison
 - create numerical results and compare with Leandros files
+  - toy_wholecell
+  - toy_atp
+  - diauxic
 - update information about numerical comparison in manuscript
 
 ## Software

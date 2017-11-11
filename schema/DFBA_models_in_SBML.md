@@ -57,7 +57,7 @@ The DFBA models consists of different components performing parts of the DFBA ta
 
 An overview of the different submodels and their connections is provided in the following diagram:
 
- ![Overview DFBA schema](../docs/images/dfba_schema.png)
+ ![Overview of schema for encoding DFBA models in SBML. The hierarchical SBML model is composed of a top-level model with four submodels: FBA, BOUNDS, UPDATE, and KINETIC. The individual submodels are connected via ports. The respective SBML packages used are listed in the models, as well as the simulation framework used. The BOUNDS submodel calculates the upper and lower flux bounds based on metabolite availability. The FBA submodel computes the reaction fluxes of the metabolic fbc model using the bounds as constraints. The UPDATE submodel calculates the dynamic update of the dynamic metabolites affected by the FBA model. The rates of change are herby functions of the FBA fluxes. The KINETIC submodel includes all of the other processes in the model, which may affect or be affected by entities in metabolism. The top-level model ties together the different submodels using SBML comp replacements and replacedBy constructs.](../docs/images/dfba_schema.png)
  
 <!---------------------->
 ## A.1 `DFBA` model
