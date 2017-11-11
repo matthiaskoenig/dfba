@@ -12,7 +12,6 @@
 
 ## Numerical comparison
 - create numerical results and compare with Leandros files
-  - toy_wholecell
   - toy_atp
   - diauxic
 - update information about numerical comparison in manuscript
