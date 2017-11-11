@@ -25,4 +25,4 @@
 ## Manuscript
 - figures in high quality  
   - Figure S3: load latest diauxic model, save session
-  - Figure 4, 5, 6: pdf from latest simulation, figure 5 add data
+  - Figure 5, 6: pdf from latest simulation, figure 5 add data
