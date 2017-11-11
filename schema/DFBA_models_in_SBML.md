@@ -1,5 +1,5 @@
 # Guidelines for encoding DFBA models in SBML
-**version: 0.3.1**  
+**version: 0.3.2**  
 *Matthias König, Leandro Watanabe, and Chris Myers*
  
 # Introduction
