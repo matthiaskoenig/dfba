@@ -72,7 +72,12 @@ The model examples are provided as COMBINE archives for exchange.
 <a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils"><img src="./docs/images/logos/sbmlutils.jpg" height="35"/></a> 
 
 Example jupyter notebooks reproducing the results are available for the individual DFBA models. 
-Installation instructions and the entry point is available at [./models/index.ipynb](./models/index.ipynb)
+Installation instructions and the entry point is available at [`./models/index.ipynb`](./models/index.ipynb)
+
+* [`./models/toy_wholecell/toy_wholecell.ipynb`](./models/toy_wholecell/toy_wholecell.ipynb)
+* [`./models/toy_atp/toy_atp.ipynb`](./models/toy_atp/toy_atp.ipynb)
+* [`./models/diauxic_growth/diauxic_growth.ipynb`](./models/diauxic_growth/diauxic_growth.ipynb)
+* [`./models/ecoli/ecoli.ipynb`](./models/ecoli/ecoli.ipynb)
 
 ## iBioSim
 <a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>
