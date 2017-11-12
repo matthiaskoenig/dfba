@@ -81,7 +81,8 @@ Installation instructions and the entry point is available at [`./models/index.i
 
 ## iBioSim
 <a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>
-To use iBioSim, you can follow the instructions available at [this link](./models/iBioSim_Tutorial.md).
+
+To use iBioSim, you can follow the instructions available [here](./models/iBioSim_Tutorial.md).
 
 ## Tool reproducibility
 The numerical identity of the results was checked with results available in the
