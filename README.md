@@ -17,11 +17,10 @@ As part of this project DFBA implementations based on these guidelines have been
 <a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils" target="_blank"><img src="./docs/images/logos/sbmlutils.jpg" height="35"/></a>&nbsp;
 
 This repository contains the following content
-* `./docs/`: documentation, presentation, tutorial
-* `./guidelines/`: guidelines for encoding DFBA in SBML
-* `./models/`: examples models
-* `./README.md`: this document
-* `./requirements.txt`: python requirements for [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/) examples
+* [`./docs/`](./docs/): documentation, presentation, tutorial
+* [`./guidelines/`](./guidelines/): guidelines for encoding DFBA in SBML
+* [`./models/`](./models/): examples models with simulation results, cytoscape visualizations, jupyter notebooks
+* [`./README.md`](./README.md): this document
 
 Detailed instructions on how to run the example models are provided [below](#running-example-models).
 
@@ -57,21 +56,28 @@ The development of iBioSim is supported by the National Science Foundation under
 
 <a href="http://www.lisym.org/" alt="NSF" target="_blank"><img src="./docs/images/logos/nsf.jpg" height="50"></a> 
 
-# Running example models
-Model examples encoded in the proposed dynamic FBA scheme. the models are listed in the `/models/*` folders. 
-Example models consist of
+# Example models
+Model examples encoded in the proposed dynamic FBA scheme in the [`./models/`](./models/) folder. 
+Example models contain
 * SBML model(s) according to guidelines and rules
 * SED-ML file encoding example simulation experiments
 * Simulation results for [iBioSim](http://www.async.ece.utah.edu/ibiosim) and [sbmlutils](https://github.com/matthiaskoenig/sbmlutils/)
+* Jupyter notebooks
+* Cytoscape visualization
 
 The model examples are provided as COMBINE archives for exchange.
 
 
 ## sbmlutils 
 <a href="https://github.com/matthiaskoenig/sbmlutils/" title="sbmlutils"><img src="./docs/images/logos/sbmlutils.jpg" height="35"/></a> 
-Example notebooks for the individual models are available in `./models/`.
 
-Installation instructions and the entry point to the individual notebooks is available at [./models/index.ipynb](./models/index.ipynb)
+Example jupyter notebooks reproducing the results are available for the individual DFBA models. 
+Installation instructions and the entry point is available at [`./models/index.ipynb`](./models/index.ipynb)
+
+* [`./models/toy_wholecell/toy_wholecell.ipynb`](./models/toy_wholecell/toy_wholecell.ipynb)
+* [`./models/toy_atp/toy_atp.ipynb`](./models/toy_atp/toy_atp.ipynb)
+* [`./models/diauxic_growth/diauxic_growth.ipynb`](./models/diauxic_growth/diauxic_growth.ipynb)
+* [`./models/ecoli/ecoli.ipynb`](./models/ecoli/ecoli.ipynb)
 
 ## iBioSim
 <a href="http://www.async.ece.utah.edu/ibiosim" title="iBioSim"><img src="./docs/images/logos/ibiosim.png" height="35"/></a>
@@ -83,3 +89,8 @@ To run DFBA models from iBioSim, you need to follow these steps:
 * Open up the tool as instructed [here](https://github.com/MyersResearchGroup/iBioSim/).
 * Create a project by clicking on File->New->Project and specify the location and name of the project.
 * Once a project is created, you can import our examples by clicking on File->Import->Archive and selecting the appropriate omex file.
+
+## Tool reproducibility
+The numerical identity of the results was checked with results available in the
+following notebook  
+[`./models/compare.ipynb`](./models/compare.ipynb)
