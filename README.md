@@ -89,3 +89,8 @@ To run DFBA models from iBioSim, you need to follow these steps:
 * Open up the tool as instructed [here](https://github.com/MyersResearchGroup/iBioSim/).
 * Create a project by clicking on File->New->Project and specify the location and name of the project.
 * Once a project is created, you can import our examples by clicking on File->Import->Archive and selecting the appropriate omex file.
+
+## Tool reproducibility
+The numerical identity of the results was checked with results available in the
+following notebook  
+[`./models/compare.ipynb`](./models/compare.ipynb)
