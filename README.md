@@ -18,7 +18,7 @@ As part of this project DFBA implementations based on these guidelines have been
 
 This repository contains the following content
 * [`./docs/`](./docs/): documentation, presentation, tutorial
-* [`./schema/`](./guidelines/): guidelines for encoding DFBA in SBML
+* [`./schema/`](./schema/): guidelines for encoding DFBA in SBML
 * [`./models/`](./models/): examples models with simulation results, cytoscape visualizations, jupyter notebooks
 * [`./README.md`](./README.md): this document
 
