@@ -2,3 +2,8 @@
 *.pyc
 .idea
 models/.ipynb_checkpoints/
+
+*.aux
+*.bbl
+*.log
+*.out

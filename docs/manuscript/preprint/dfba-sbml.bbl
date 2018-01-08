@@ -1,0 +1,212 @@
+\begin{thebibliography}{}
+
+\bibitem[Bergmann {\em et~al.}(2014)Bergmann {\em et~al.}]{COMBINE_ARCHIVE}
+Bergmann, F.~T. {\em et~al.} (2014).
+\newblock {COMBINE archive and OMEX format: one file to share all information
+  to reproduce a modeling project}.
+\newblock {\em BMC bioinformatics\/}, {\bf 15}(1), 369.
+
+\bibitem[Bordbar {\em et~al.}(2014)Bordbar {\em et~al.}]{constraintModels}
+Bordbar, A. {\em et~al.} (2014).
+\newblock Constraint-based models predict metabolic and associated cellular
+  functions.
+\newblock {\em Nature reviews. Genetics\/}, {\bf 15}(2), 107.
+
+\bibitem[Courtot {\em et~al.}(2011)Courtot {\em et~al.}]{SBO}
+Courtot, M. {\em et~al.} (2011).
+\newblock Controlled vocabularies and semantics in systems biology.
+\newblock {\em Molecular Systems Biology\/}, {\bf 7}(1).
+
+\bibitem[Ebrahim {\em et~al.}(2013)Ebrahim {\em et~al.}]{COBRAPY}
+Ebrahim, A. {\em et~al.} (2013).
+\newblock {COBRApy: COnstraints-Based Reconstruction and Analysis for python}.
+\newblock {\em BMC systems biology\/}, {\bf 7}(1), 74.
+
+\bibitem[Gomez {\em et~al.}(2014)Gomez, H{\"o}ffner, and Barton]{Gomez2014}
+Gomez, J.~A., H{\"o}ffner, K., and Barton, P.~I. (2014).
+\newblock {DFBAlab: a fast and reliable MATLAB code for dynamic flux balance
+  analysis.}
+\newblock {\em BMC bioinformatics\/}, {\bf 15}, 409.
+
+\bibitem[Hanly and Henson(2011)Hanly and Henson]{hanly2012}
+Hanly, T.~J. and Henson, M.~A. (2011).
+\newblock Dynamic flux balance modeling of microbial co-cultures for efficient
+  batch fermentation of glucose and xylose mixtures.
+\newblock {\em Biotechnology and bioengineering\/}, {\bf 108}(2), 376--385.
+
+\bibitem[Hedley {\em et~al.}(2001)Hedley {\em et~al.}]{CELLML}
+Hedley, W.~J. {\em et~al.} (2001).
+\newblock A short introduction to {C}ell{ML}.
+\newblock {\em Philos. T. Roy. Soc. A\/}, {\bf 359}(1783), 1073--1089.
+
+\bibitem[Hjersted {\em et~al.}(2007)Hjersted {\em et~al.}]{hjersted2007}
+Hjersted, J.~L. {\em et~al.} (2007).
+\newblock Genome-scale analysis of saccharomyces cerevisiae metabolism and
+  ethanol production in fed-batch culture.
+\newblock {\em Biotechnology and bioengineering\/}, {\bf 97}(5), 1190--1204.
+
+\bibitem[H{\"o}ffner {\em et~al.}(2013)H{\"o}ffner {\em et~al.}]{hoffner2013}
+H{\"o}ffner, K. {\em et~al.} (2013).
+\newblock A reliable simulator for dynamic flux balance analysis.
+\newblock {\em Biotechnology and bioengineering\/}, {\bf 110}(3), 792--802.
+
+\bibitem[Hucka {\em et~al.}(2003)Hucka {\em et~al.}]{SBML}
+Hucka, M. {\em et~al.} (2003).
+\newblock The {Systems Biology Markup Language (SBML)}: a medium for
+  representation and exchange of biochemical network models.
+\newblock {\em Bioinformatics\/}, {\bf 19}(4), 524--531.
+
+\bibitem[Karr {\em et~al.}(2012)Karr {\em et~al.}]{WHOLECELL}
+Karr, J.~R. {\em et~al.} (2012).
+\newblock A whole-cell computational model predicts phenotype from genotype.
+\newblock {\em Cell\/}, (2), 389--401.
+
+\bibitem[Kauffman(1969)Kauffman]{boolean2}
+Kauffman, S. (1969).
+\newblock Metabolic stability and epigenesis in randomly constructed genetic
+  nets.
+\newblock {\em Journal of Theoretical Biology\/}, {\bf 22}(3), 437 -- 467.
+
+\bibitem[King {\em et~al.}(2015)King {\em et~al.}]{bigg}
+King, Z.~A. {\em et~al.} (2015).
+\newblock {BiGG Models}: A platform for integrating, standardizing and sharing
+  genome-scale models.
+\newblock {\em Nucleic acids research\/}, {\bf 44}(D1), D515--D522.
+
+\bibitem[Kitano(2002)Kitano]{COMPBIO}
+Kitano, H. (2002).
+\newblock Computational systems biology.
+\newblock {\em Nature\/}, {\bf 420}(6912), 206--210.
+
+\bibitem[K\"{o}nig(2017)K\"{o}nig]{sbmlutils}
+K\"{o}nig, M. (2017).
+\newblock {matthiaskoenig/sbmlutils: sbmlutils-v0.1.8 10.5281/zenodo.1045519}.
+
+\bibitem[K{\"o}nig {\em et~al.}(2012)K{\"o}nig {\em et~al.}]{CySBML}
+K{\"o}nig, M. {\em et~al.} (2012).
+\newblock {CySBML: a Cytoscape plugin for SBML}.
+\newblock {\em Bioinformatics\/}, {\bf 28}(18), 2402--2403.
+
+\bibitem[Le~Novere {\em et~al.}(2009)Le~Novere {\em et~al.}]{SBGN}
+Le~Novere, N. {\em et~al.} (2009).
+\newblock {The Systems Biology Graphical Notation (SBGN)}.
+\newblock {\em Nature biotechnology\/}, {\bf 27}(8), 735--741.
+
+\bibitem[Lequeux {\em et~al.}(2010)Lequeux {\em et~al.}]{lequeux2010}
+Lequeux, G. {\em et~al.} (2010).
+\newblock Dynamic metabolic flux analysis demonstrated on cultures where the
+  limiting substrate is changed from carbon to nitrogen and vice versa.
+\newblock {\em BioMed Research International\/}, {\bf 2010}.
+
+\bibitem[Luo {\em et~al.}(2006)Luo {\em et~al.}]{LUO2006}
+Luo, R.-Y. {\em et~al.} (2006).
+\newblock Dynamic analysis of optimality in myocardial energy metabolism under
+  normal and ischemic conditions.
+\newblock {\em Molecular systems biology\/}, {\bf 2}(1).
+
+\bibitem[Madsen {\em et~al.}(2012)Madsen {\em et~al.}]{BIOSIM}
+Madsen, C. {\em et~al.} (2012).
+\newblock Design and test of genetic circuits using i{B}io{S}im.
+\newblock {\em Design and Test of Computers, IEEE\/}, {\bf 29}(3), 32--39.
+
+\bibitem[Mahadevan {\em et~al.}(2002)Mahadevan {\em et~al.}]{DFBA_ECOLI}
+Mahadevan, R. {\em et~al.} (2002).
+\newblock Dynamic flux balance analysis of diauxic growth in {E}scherichia
+  coli.
+\newblock {\em Biophysical journal\/}, {\bf 83}(3), 1331--1340.
+
+\bibitem[Mahadevan and Schilling(2003)Mahadevan and Schilling]{FVA}
+Mahadevan, R. and Schilling, C. (2003).
+\newblock The effects of alternate optimal solutions in constraint-based
+  genome-scale metabolic models.
+\newblock {\em Metabolic engineering\/}, {\bf 5}(4), 264--276.
+
+\bibitem[Meadows {\em et~al.}(2010)Meadows {\em et~al.}]{meadows2010}
+Meadows, A.~L. {\em et~al.} (2010).
+\newblock Application of dynamic flux balance analysis to an industrial
+  {E}scherichia coli fermentation.
+\newblock {\em Metabolic engineering\/}, {\bf 12}(2), 150--160.
+
+\bibitem[Morris {\em et~al.}(2010)Morris {\em et~al.}]{logicSignaling}
+Morris, M.~K. {\em et~al.} (2010).
+\newblock Logic-based models for the analysis of cell signaling networks.
+\newblock {\em Biochemistry\/}, {\bf 49}(15), 3216--3224.
+\newblock PMID: 20225868.
+
+\bibitem[Olivier and Bergmann(2015)Olivier and Bergmann]{SBMLfluxl3v1}
+Olivier, B.~G. and Bergmann, F.~T. (2015).
+\newblock {The Systems Biology Markup Language (SBML) Level 3 Package: Flux
+  Balance Constraints}.
+\newblock {\em Journal of Integrative Bioinformatics\/}, {\bf 12}(2), 269.
+
+\bibitem[Orth {\em et~al.}(2010)Orth {\em et~al.}]{ecoli_core}
+Orth, J. {\em et~al.} (2010).
+\newblock Reconstruction and use of microbial metabolic networks: the core
+  {E}scherichia coli metabolic model as an educational guide.
+\newblock {\em EcoSal Plus\/}.
+
+\bibitem[Pizarro {\em et~al.}(2007)Pizarro {\em et~al.}]{pizarro2007}
+Pizarro, F. {\em et~al.} (2007).
+\newblock Coupling kinetic expressions and metabolic networks for predicting
+  wine fermentations.
+\newblock {\em Biotechnology and bioengineering\/}, {\bf 98}(5), 986--998.
+
+\bibitem[Savinell and Palsson(1992)Savinell and Palsson]{FBA0}
+Savinell, J.~M. and Palsson, B.~O. (1992).
+\newblock Network analysis of intermediary metabolism using linear
+  optimization. i. development of mathematical formalism.
+\newblock {\em Journal of theoretical biology\/}, {\bf 154}(4), 421--454.
+
+\bibitem[Smith {\em et~al.}(2015)Smith {\em et~al.}]{SBMLhierarichicall3v1}
+Smith, L.~P. {\em et~al.} (2015).
+\newblock {SBML Level 3 package: Hierarchical Model Composition, Version 1
+  Release 3}.
+\newblock {\em Journal of Integrative Bioinformatics\/}, {\bf 12}(2), 268.
+
+\bibitem[Somogyi {\em et~al.}(2015)Somogyi {\em et~al.}]{roadrunner}
+Somogyi, E.~T. {\em et~al.} (2015).
+\newblock {libRoadRunner: a high performance SBML simulation and analysis
+  library}.
+\newblock {\em Bioinformatics\/}, {\bf 31}(20), 3315--3321.
+
+\bibitem[Thomas(1973)Thomas]{boolean1}
+Thomas, R. (1973).
+\newblock Boolean formalization of genetic control circuits.
+\newblock {\em Journal of Theoretical Biology\/}, {\bf 42}(3), 563 -- 585.
+
+\bibitem[Varma {\em et~al.}(1993)Varma {\em et~al.}]{FBA1}
+Varma, A. {\em et~al.} (1993).
+\newblock Biochemical production capabilities of {E}scherichia coli.
+\newblock {\em Biotechnology and bioengineering\/}, {\bf 42}(1), 59--73.
+
+\bibitem[Varma and Palsson(1994)Varma and Palsson]{DFBA}
+Varma, A. and Palsson, B.~O. (1994).
+\newblock Stoichiometric flux balance models quantitatively predict growth and
+  metabolic by-product secretion in wild-type {Escherichia coli W3110}.
+\newblock {\em Applied and environmental microbiology\/}, {\bf 60}(10),
+  3724--3731.
+
+\bibitem[Waltemath {\em et~al.}(2011)Waltemath {\em et~al.}]{SEDML}
+Waltemath, D. {\em et~al.} (2011).
+\newblock Reproducible computational biology experiments with {SED-ML}-the
+  {Simulation Experiment Description Markup Language}.
+\newblock {\em BMC systems biology\/}, {\bf 5}(1), 1.
+
+\bibitem[Waltemath {\em et~al.}(2016)Waltemath {\em
+  et~al.}]{whole_cell_workshop}
+Waltemath, D. {\em et~al.} (2016).
+\newblock Toward community standards and software for whole-cell modeling.
+\newblock {\em IEEE Transactions on Biomedical Engineering\/}, {\bf 63}(10),
+  2007--2014.
+
+\bibitem[Watanabe and Myers(2014)Watanabe and Myers]{watanabe2014}
+Watanabe, L.~H. and Myers, C.~J. (2014).
+\newblock Hierarchical stochastic simulation algorithm for {SBML} models of
+  genetic circuits.
+\newblock {\em Frontiers in Bioengineering and Biotechnology\/}, {\bf 2}, 55.
+
+\bibitem[Zhukova {\em et~al.}(2011)Zhukova {\em et~al.}]{kisao}
+Zhukova, A. {\em et~al.} (2011).
+\newblock {Kinetic Simulation Algorithm Ontology (KISAO)}.
+
+\end{thebibliography}

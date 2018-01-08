@@ -1,0 +1,144 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{COMPBIO}
+\citation{SBML}
+\citation{CELLML}
+\citation{boolean1,boolean2}
+\citation{logicSignaling}
+\citation{constraintModels}
+\citation{DFBA}
+\citation{FBA0,FBA1}
+\newcplabel{^_1}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{1.1}}Multi-framework computational models}{1}{subsection.1.1}}
+\citation{WHOLECELL}
+\citation{DFBA}
+\citation{DFBA,DFBA_ECOLI,LUO2006}
+\citation{pizarro2007,lequeux2010,meadows2010}
+\citation{hanly2012,hjersted2007}
+\citation{hoffner2013}
+\citation{Gomez2014}
+\citation{Gomez2014}
+\citation{whole_cell_workshop}
+\citation{SBML}
+\citation{SEDML}
+\citation{SBGN}
+\citation{COMBINE_ARCHIVE}
+\citation{SBMLhierarichicall3v1}
+\citation{SBMLfluxl3v1}
+\citation{BIOSIM}
+\citation{sbmlutils}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{1.2}}Dynamic flux balance analysis}{2}{subsection.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{1.3}}Exchangeability \& reproducibility of models}{2}{subsection.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{1.4}}Model standards}{2}{subsection.1.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Methods}{2}{section.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.1}}Model encoding}{2}{subsection.2.1}}
+\citation{watanabe2014}
+\citation{roadrunner}
+\citation{COBRAPY}
+\citation{kisao}
+\citation{FVA}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of the implemented SOA algorithm for DFBA. After initialization of the model, the FBA and kinetic simulations are run in an iterative manner until the simulation end point. In every step, FBA is used to compute the reaction rates of the FBA network. Subsequently, based on the computed FBA rates, the values of the species are updated dynamically. In the SOA approach, FBA fluxes are assumed to be constant within a time step. For a detailed description see the methods section.\relax }}{3}{figure.caption.1}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:sim}{{1}{3}{Overview of the implemented SOA algorithm for DFBA. After initialization of the model, the FBA and kinetic simulations are run in an iterative manner until the simulation end point. In every step, FBA is used to compute the reaction rates of the FBA network. Subsequently, based on the computed FBA rates, the values of the species are updated dynamically. In the SOA approach, FBA fluxes are assumed to be constant within a time step. For a detailed description see the methods section.\relax }{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.2}}Stationary optimization approach (SOA)}{3}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{2.3}}Reproducibility between tools}{3}{subsection.2.3}}
+\newlabel{met:reproducibility}{{{2.3}}{3}{Reproducibility between tools}{subsection.2.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{3}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Schema for dynamic flux balance analysis}{3}{subsection.3.1}}
+\citation{SBO}
+\citation{CySBML}
+\citation{CySBML}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of schema for encoding DFBA models in SBML. The hierarchical SBML model is composed of a top-level model with four submodels: FBA, BOUNDS, UPDATE, and KINETIC. The individual submodels are connected via ports. The respective SBML packages used are listed in the models, as well as the simulation framework used. The BOUNDS submodel calculates the upper and lower flux bounds based on metabolite availability. The FBA submodel computes the reaction fluxes of the metabolic fbc model using the bounds as constraints. The UPDATE submodel calculates the dynamic update of the dynamic metabolites affected by the FBA model. The rates of change are herby functions of the FBA fluxes. The KINETIC submodel includes all of the other processes in the model, which may affect or be affected by entities in metabolism. The top-level model ties together the different submodels using SBML comp replacements and replacedBy constructs.\relax }}{4}{figure.caption.2}}
+\newlabel{fig:schema}{{2}{4}{Overview of schema for encoding DFBA models in SBML. The hierarchical SBML model is composed of a top-level model with four submodels: FBA, BOUNDS, UPDATE, and KINETIC. The individual submodels are connected via ports. The respective SBML packages used are listed in the models, as well as the simulation framework used. The BOUNDS submodel calculates the upper and lower flux bounds based on metabolite availability. The FBA submodel computes the reaction fluxes of the metabolic fbc model using the bounds as constraints. The UPDATE submodel calculates the dynamic update of the dynamic metabolites affected by the FBA model. The rates of change are herby functions of the FBA fluxes. The KINETIC submodel includes all of the other processes in the model, which may affect or be affected by entities in metabolism. The top-level model ties together the different submodels using SBML comp replacements and replacedBy constructs.\relax }{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.2}}Minimal Example (\texttt  {toy\_wholecell})}{4}{subsection.3.2}}
+\citation{DFBA_ECOLI}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Detailed schema of the minimal example model (\texttt  {toy\_wholecell}). The figure shows the components in the BOUNDS, FBA and UPDATE submodels. Links between submodel components are based on ports which are connected elements via TOP model replacements (replacedElements and replacedBy). The flattened SBML comp model (FLATTENED) shows the resolved connections between the different submodels after these replacements have been performed. The flattened model can not be simulated because the separation of frameworks is lost in the flattening process. The network visualization are available as interactive graphs in Cytoscape as Supplementary Material\nobreakspace  {}\nameref  {sup:toy_wholecell_cytoscape}, which provide additional information and annotation of the components. The figure was created with cy3sbml using the SBML models \citep  {CySBML}.\relax }}{5}{figure.caption.3}}
+\newlabel{fig:toy_schema}{{3}{5}{Detailed schema of the minimal example model (\texttt {toy\_wholecell}). The figure shows the components in the BOUNDS, FBA and UPDATE submodels. Links between submodel components are based on ports which are connected elements via TOP model replacements (replacedElements and replacedBy). The flattened SBML comp model (FLATTENED) shows the resolved connections between the different submodels after these replacements have been performed. The flattened model can not be simulated because the separation of frameworks is lost in the flattening process. The network visualization are available as interactive graphs in Cytoscape as Supplementary Material~\nameref {sup:toy_wholecell_cytoscape}, which provide additional information and annotation of the components. The figure was created with cy3sbml using the SBML models \citep {CySBML}.\relax }{figure.caption.3}{}}
+\newlabel{fig:sbmlutils_toy_results}{{4a}{5}{Simulation results with \texttt {sbmlutils}\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:sbmlutils_toy_results}{{a}{5}{Simulation results with \texttt {sbmlutils}\relax }{figure.caption.4}{}}
+\newlabel{fig:biosim_toy_results}{{4b}{5}{Simulation results with \texttt {iBioSim}\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:biosim_toy_results}{{b}{5}{Simulation results with \texttt {iBioSim}\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces DFBA Simulation results for the \texttt  {toy\_wholecell} model in two different tools. This demonstrates that models can be exchanged by different tools using standards and the results can be reproduced when using the same simulation algorithm. Species \texttt  {A} is converted to \texttt  {C} via the FBA subnetwork over time. \texttt  {C} is converted to \texttt  {D} via the kinetic parts in the top model. Species \texttt  {A} is not consumed completely because the import of \texttt  {A} in the FBA subnetwork via \texttt  {R1} is shut down via a rate rule for the upper flux bound, and a steady state is reached. The model was simulated for 50[h] with a time step \texttt  {dt} of 0.1[h].\relax }}{5}{figure.caption.4}}
+\newlabel{fig:toy_results}{{4}{5}{DFBA Simulation results for the \texttt {toy\_wholecell} model in two different tools. This demonstrates that models can be exchanged by different tools using standards and the results can be reproduced when using the same simulation algorithm. Species \texttt {A} is converted to \texttt {C} via the FBA subnetwork over time. \texttt {C} is converted to \texttt {D} via the kinetic parts in the top model. Species \texttt {A} is not consumed completely because the import of \texttt {A} in the FBA subnetwork via \texttt {R1} is shut down via a rate rule for the upper flux bound, and a steady state is reached. The model was simulated for 50[h] with a time step \texttt {dt} of 0.1[h].\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.3}}Diauxic growth in \emph  {E. coli} (\texttt  {diauxic\_growth})}{5}{subsection.3.3}}
+\citation{DFBA_ECOLI}
+\citation{DFBA}
+\citation{DFBA_ECOLI}
+\citation{ecoli_core}
+\citation{bigg}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.4}}\emph  {E. coli} core (\texttt  {ecoli})}{6}{subsection.3.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{6}{section.4}}
+\newlabel{sup:guidelines}{{4}{6}{S1}{section*.10}{}}
+\bibstyle{natbib}
+\bibdata{ref}
+\bibcite{COMBINE_ARCHIVE}{{1}{2014}{{Bergmann {\em  et~al.}}}{{Bergmann {\em  et~al.}}}}
+\bibcite{constraintModels}{{2}{2014}{{Bordbar {\em  et~al.}}}{{Bordbar {\em  et~al.}}}}
+\bibcite{SBO}{{3}{2011}{{Courtot {\em  et~al.}}}{{Courtot {\em  et~al.}}}}
+\bibcite{COBRAPY}{{4}{2013}{{Ebrahim {\em  et~al.}}}{{Ebrahim {\em  et~al.}}}}
+\bibcite{Gomez2014}{{5}{2014}{{Gomez {\em  et~al.}}}{{Gomez, H{\"o}ffner, and Barton}}}
+\bibcite{hanly2012}{{6}{2011}{{Hanly and Henson}}{{Hanly and Henson}}}
+\bibcite{CELLML}{{7}{2001}{{Hedley {\em  et~al.}}}{{Hedley {\em  et~al.}}}}
+\bibcite{hjersted2007}{{8}{2007}{{Hjersted {\em  et~al.}}}{{Hjersted {\em  et~al.}}}}
+\newlabel{diauxic_sbmlutils}{{5a}{7}{This is the simulation results for the diauxic growth of \emph {E. Coli} in \texttt {sbmlutils}.\relax }{figure.caption.5}{}}
+\newlabel{sub@diauxic_sbmlutils}{{a}{7}{This is the simulation results for the diauxic growth of \emph {E. Coli} in \texttt {sbmlutils}.\relax }{figure.caption.5}{}}
+\newlabel{diauxic_ibiosim}{{5b}{7}{This is the simulation results for the diauxic growth of \emph {E. Coli} simulated in \texttt {iBioSim}. \relax }{figure.caption.5}{}}
+\newlabel{sub@diauxic_ibiosim}{{b}{7}{This is the simulation results for the diauxic growth of \emph {E. Coli} simulated in \texttt {iBioSim}. \relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces This plot shows the results for the model representing diauxic growth in \emph  {E. coli}. The model is able to reproduce the general behavior captured from experiment data. There is an exponential cell growth while glucose is present in the model, but when the cell runs out of glucose, growth slows down and is affected mostly by oxygen. However, when the cell runs out of glucose and oxygen, growth diminishes significantly. The model was simulated for 15[h] with a time step \texttt  {dt} of 0.01[h].\relax }}{7}{figure.caption.5}}
+\newlabel{diauxic_example}{{5}{7}{This plot shows the results for the model representing diauxic growth in \emph {E. coli}. The model is able to reproduce the general behavior captured from experiment data. There is an exponential cell growth while glucose is present in the model, but when the cell runs out of glucose, growth slows down and is affected mostly by oxygen. However, when the cell runs out of glucose and oxygen, growth diminishes significantly. The model was simulated for 15[h] with a time step \texttt {dt} of 0.01[h].\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces DFBA simulation results for core metabolism of \emph  {E. coli} with sbmlutils. The proposed approach can be used in larger models, such as the \emph  {E. coli} model described in the paper. The model is growing aerobically on glucose in the initial phase and reaches a steady state after oxygen is consumed. The model was simulated for 3.5[h] with a time step \texttt  {dt} of 0.01[h].\relax }}{7}{figure.caption.6}}
+\newlabel{fig:ecoli}{{6}{7}{DFBA simulation results for core metabolism of \emph {E. coli} with sbmlutils. The proposed approach can be used in larger models, such as the \emph {E. coli} model described in the paper. The model is growing aerobically on glucose in the initial phase and reaches a steady state after oxygen is consumed. The model was simulated for 3.5[h] with a time step \texttt {dt} of 0.01[h].\relax }{figure.caption.6}{}}
+\newlabel{sup:reproducibility}{{4}{7}{S2}{section*.11}{}}
+\newlabel{sup:toy_wholecell}{{4}{7}{S3}{section*.12}{}}
+\newlabel{sup:toy_wholecell_cytoscape}{{4}{7}{S4}{section*.13}{}}
+\newlabel{sup:toy_atp}{{4}{7}{S5}{section*.14}{}}
+\newlabel{sup:toy_atp_cytoscape}{{4}{7}{S6}{section*.15}{}}
+\newlabel{sup:diauxic_growth}{{4}{7}{S7}{section*.16}{}}
+\newlabel{sup:diauxic_growth_cytoscape}{{4}{7}{S8}{section*.17}{}}
+\newlabel{sup:ecoli}{{4}{7}{S9}{section*.18}{}}
+\bibcite{hoffner2013}{{9}{2013}{{H{\"o}ffner {\em  et~al.}}}{{H{\"o}ffner {\em  et~al.}}}}
+\bibcite{SBML}{{10}{2003}{{Hucka {\em  et~al.}}}{{Hucka {\em  et~al.}}}}
+\bibcite{WHOLECELL}{{11}{2012}{{Karr {\em  et~al.}}}{{Karr {\em  et~al.}}}}
+\bibcite{boolean2}{{12}{1969}{{Kauffman}}{{Kauffman}}}
+\bibcite{bigg}{{13}{2015}{{King {\em  et~al.}}}{{King {\em  et~al.}}}}
+\bibcite{COMPBIO}{{14}{2002}{{Kitano}}{{Kitano}}}
+\bibcite{sbmlutils}{{15}{2017}{{K\"{o}nig}}{{K\"{o}nig}}}
+\bibcite{CySBML}{{16}{2012}{{K{\"o}nig {\em  et~al.}}}{{K{\"o}nig {\em  et~al.}}}}
+\bibcite{SBGN}{{17}{2009}{{Le~Novere {\em  et~al.}}}{{Le~Novere {\em  et~al.}}}}
+\bibcite{lequeux2010}{{18}{2010}{{Lequeux {\em  et~al.}}}{{Lequeux {\em  et~al.}}}}
+\bibcite{LUO2006}{{19}{2006}{{Luo {\em  et~al.}}}{{Luo {\em  et~al.}}}}
+\bibcite{BIOSIM}{{20}{2012}{{Madsen {\em  et~al.}}}{{Madsen {\em  et~al.}}}}
+\bibcite{DFBA_ECOLI}{{21}{2002}{{Mahadevan {\em  et~al.}}}{{Mahadevan {\em  et~al.}}}}
+\bibcite{FVA}{{22}{2003}{{Mahadevan and Schilling}}{{Mahadevan and Schilling}}}
+\bibcite{meadows2010}{{23}{2010}{{Meadows {\em  et~al.}}}{{Meadows {\em  et~al.}}}}
+\bibcite{logicSignaling}{{24}{2010}{{Morris {\em  et~al.}}}{{Morris {\em  et~al.}}}}
+\bibcite{SBMLfluxl3v1}{{25}{2015}{{Olivier and Bergmann}}{{Olivier and Bergmann}}}
+\bibcite{ecoli_core}{{26}{2010}{{Orth {\em  et~al.}}}{{Orth {\em  et~al.}}}}
+\bibcite{pizarro2007}{{27}{2007}{{Pizarro {\em  et~al.}}}{{Pizarro {\em  et~al.}}}}
+\bibcite{FBA0}{{28}{1992}{{Savinell and Palsson}}{{Savinell and Palsson}}}
+\bibcite{SBMLhierarichicall3v1}{{29}{2015}{{Smith {\em  et~al.}}}{{Smith {\em  et~al.}}}}
+\bibcite{roadrunner}{{30}{2015}{{Somogyi {\em  et~al.}}}{{Somogyi {\em  et~al.}}}}
+\bibcite{boolean1}{{31}{1973}{{Thomas}}{{Thomas}}}
+\bibcite{FBA1}{{32}{1993}{{Varma {\em  et~al.}}}{{Varma {\em  et~al.}}}}
+\bibcite{DFBA}{{33}{1994}{{Varma and Palsson}}{{Varma and Palsson}}}
+\bibcite{SEDML}{{34}{2011}{{Waltemath {\em  et~al.}}}{{Waltemath {\em  et~al.}}}}
+\bibcite{whole_cell_workshop}{{35}{2016}{{Waltemath {\em  et~al.}}}{{Waltemath {\em  et~al.}}}}
+\bibcite{watanabe2014}{{36}{2014}{{Watanabe and Myers}}{{Watanabe and Myers}}}
+\bibcite{kisao}{{37}{2011}{{Zhukova {\em  et~al.}}}{{Zhukova {\em  et~al.}}}}
+\global\@namedef{@lastpage@}{8}

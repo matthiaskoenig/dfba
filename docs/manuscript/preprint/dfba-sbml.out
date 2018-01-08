@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Multi-framework computational models}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Dynamic flux balance analysis}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Exchangeability \046 reproducibility of models}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Model standards}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Methods}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Model encoding}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Stationary optimization approach \(SOA\)}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Reproducibility between tools}{section.2}% 9
+\BOOKMARK [1][-]{section.3}{Results}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{Schema for dynamic flux balance analysis}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Minimal Example \(toy\137wholecell\)}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.3}{Diauxic growth in E. coli \(diauxic\137growth\)}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.4}{E. coli core \(ecoli\)}{section.3}% 14
+\BOOKMARK [1][-]{section.4}{Discussion}{}% 15

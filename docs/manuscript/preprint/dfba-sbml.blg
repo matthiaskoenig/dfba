@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: dfba-sbml.aux
+The style file: natbib.bst
+Database file #1: ref.bib
+Warning--there's a number but no volume in WHOLECELL
+Warning--empty journal in kisao
+You've used 37 entries,
+            2378 wiz_defined-function locations,
+            771 strings with 9539 characters,
+and the built_in function-call counts, 17682 in all, are:
+= -- 1814
+> -- 750
+< -- 36
++ -- 222
+- -- 212
+* -- 1717
+:= -- 2882
+add.period$ -- 224
+call.type$ -- 37
+change.case$ -- 228
+chr.to.int$ -- 37
+cite$ -- 39
+duplicate$ -- 812
+empty$ -- 1217
+format.name$ -- 287
+if$ -- 3499
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 36
+newline$ -- 187
+num.names$ -- 148
+pop$ -- 166
+preamble$ -- 1
+purify$ -- 228
+quote$ -- 0
+skip$ -- 508
+stack$ -- 0
+substring$ -- 1237
+swap$ -- 184
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 333
+warning$ -- 2
+while$ -- 160
+width$ -- 0
+write$ -- 478
+(There were 2 warnings)
